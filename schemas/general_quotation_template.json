@@ -1,0 +1,193 @@
+{
+  "id": "general_quotation_template",
+  "name": "General Quotation Data Extraction",
+  "description": "Universal template for extracting data from quotations, estimates, and purchase orders",
+  "version": "1.0",
+  "fields": [
+    {
+      "name": "document_source",
+      "description": "Original document filename or reference",
+      "required": true,
+      "type": "text"
+    },
+    {
+      "name": "quotation_number",
+      "description": "Unique quotation/estimate/invoice number",
+      "required": true,
+      "type": "text"
+    },
+    {
+      "name": "quotation_date",
+      "description": "Date when quotation was issued",
+      "required": false,
+      "type": "date"
+    },
+    {
+      "name": "supplier_name",
+      "description": "Name of the supplier/vendor company",
+      "required": true,
+      "type": "text"
+    },
+    {
+      "name": "supplier_gstin",
+      "description": "Supplier's GST identification number",
+      "required": false,
+      "type": "text"
+    },
+    {
+      "name": "supplier_address",
+      "description": "Complete address of supplier",
+      "required": false,
+      "type": "text"
+    },
+    {
+      "name": "supplier_contact",
+      "description": "Phone number, email or contact person details",
+      "required": false,
+      "type": "text"
+    },
+    {
+      "name": "customer_name",
+      "description": "Name of the customer/buyer company",
+      "required": false,
+      "type": "text"
+    },
+    {
+      "name": "customer_gstin",
+      "description": "Customer's GST identification number",
+      "required": false,
+      "type": "text"
+    },
+    {
+      "name": "goods_description",
+      "description": "Detailed description of items/services quoted",
+      "required": true,
+      "type": "text"
+    },
+    {
+      "name": "item_details",
+      "description": "Array of individual items with quantities and rates",
+      "required": false,
+      "type": "array"
+    },
+    {
+      "name": "subtotal_amount",
+      "description": "Amount before taxes",
+      "required": false,
+      "type": "currency"
+    },
+    {
+      "name": "tax_details",
+      "description": "Breakdown of taxes (CGST, SGST, IGST, etc.)",
+      "required": false,
+      "type": "object"
+    },
+    {
+      "name": "total_amount",
+      "description": "Final total amount including all taxes and charges",
+      "required": true,
+      "type": "currency"
+    },
+    {
+      "name": "currency",
+      "description": "Currency code (INR, USD, etc.)",
+      "required": false,
+      "type": "text",
+      "default": "INR"
+    },
+    {
+      "name": "validity",
+      "description": "Validity period of the quotation",
+      "required": false,
+      "type": "text"
+    },
+    {
+      "name": "delivery",
+      "description": "Delivery terms and timeframe",
+      "required": false,
+      "type": "text"
+    },
+    {
+      "name": "payment_terms",
+      "description": "Payment terms, conditions, and schedule including any advance payment requirements",
+      "required": false,
+      "type": "text"
+    },
+    {
+      "name": "bank_details",
+      "description": "Bank account information including bank name, account number, IFSC code, and other relevant banking details for payment transfer",
+      "required": false,
+      "type": "object",
+      "properties": {
+        "bank_name": {"type": "text", "description": "Name of the bank"},
+        "account_number": {"type": "text", "description": "Bank account number"},
+        "ifsc_code": {"type": "text", "description": "IFSC/SWIFT code"},
+        "account_name": {"type": "text", "description": "Name on the bank account"},
+        "branch": {"type": "text", "description": "Bank branch details"}
+      }
+    },
+    {
+      "name": "freight_terms",
+      "description": "Freight/shipping terms",
+      "required": false,
+      "type": "text"
+    },
+    {
+      "name": "warranty",
+      "description": "Warranty terms if applicable",
+      "required": false,
+      "type": "text"
+    },
+    {
+      "name": "special_conditions",
+      "description": "Any special terms and conditions",
+      "required": false,
+      "type": "text"
+    },
+    {
+      "name": "hsn_codes",
+      "description": "HSN/SAC codes for items",
+      "required": false,
+      "type": "array"
+    },
+    {
+      "name": "po_reference",
+      "description": "Related purchase order reference if any",
+      "required": false,
+      "type": "text"
+    },
+    {
+      "name": "enquiry_reference",
+      "description": "Original enquiry reference number",
+      "required": false,
+      "type": "text"
+    },
+    {
+      "name": "document_type",
+      "description": "Type of document (quotation, estimate, proforma invoice, etc.)",
+      "required": false,
+      "type": "text"
+    },
+    {
+      "name": "status",
+      "description": "Current status of the quotation",
+      "required": false,
+      "type": "text"
+    },
+    {
+      "name": "extracted_date",
+      "description": "Date when data was extracted",
+      "required": false,
+      "type": "datetime"
+    },
+    {
+      "name": "extraction_notes",
+      "description": "Any notes or issues during extraction",
+      "required": false,
+      "type": "text"
+    }
+  ],  
+  "created_at": "2025-06-23T00:00:00.000000",
+  "updated_at": "2025-06-23T00:00:00.000000"
+  
+}
