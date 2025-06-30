@@ -8,19 +8,19 @@
   "telephone": "+95824448258",
   "email": "sushilkumarb@otegroup.com",
   "website": "Gulf Additives.com",
-  "ambient temperature min": "25",
-  "ambient temperature max": "45",
+  "ambient temperature min": "25 deg C",
+  "ambient temperature max": "45 deg C",
   "altitude": "Meters above sea level",
-  "relative humidity min": "25",
-  "relative humidity max": "55",
+  "relative humidity min": "25%",
+  "relative humidity max": "55%",
   "power voltage": "440",
-  "power frequency": "50",
+  "power frequency": "50 Hz",
   "three phase power": "Yes",
   "cooling water available": "Yes",
   "raw water available": "Yes",
   "pneumatic air available": "Yes",
-  "installation location hazardous": "Hazardous",
-  "ip protection rating": "Standard IP55 Special IP",
+  "installation location hazardous": "Non hazardous",
+  "ip protection rating": "Standard IP55",
   "main motor ip protection": null,
   "lube oil pump ip protection": null,
   "small motors ip protection": null,
@@ -76,7 +76,7 @@
   "send sample msds": "X",
   "formulation_tables": [
     {
-      "SI": "X",
+      "SI": "X 1",
       "Raw material Name": "LLDPE",
       "Bulk density gram/cc": "0.590",
       "Physical form(Flakes/granules/powder/liquid)": "Powder",
@@ -108,7 +108,7 @@
       "Feed rate %": "52"
     },
     {
-      "SI": "X",
+      "SI": "X 5",
       "Raw material Name": "TiO2",
       "Bulk density gram/cc": "3.65",
       "Physical form(Flakes/granules/powder/liquid)": "Powder",
@@ -188,7 +188,7 @@
       "Feed rate %": "10"
     },
     {
-      "SI": "1",
+      "Sl": "1",
       "Raw material Name": "LLDPE",
       "Bulk density gram/cc": null,
       "Physical form(Flakes/granules/powder/liquid)": "Powder",
@@ -196,7 +196,7 @@
       "Feed rate %": "40.4"
     },
     {
-      "SI": "2",
+      "Sl": "2",
       "Raw material Name": "CA5",
       "Bulk density gram/cc": null,
       "Physical form(Flakes/granules/powder/liquid)": "Powder",
@@ -204,7 +204,7 @@
       "Feed rate %": "0.5"
     },
     {
-      "SI": "3",
+      "Sl": "3",
       "Raw material Name": "A/O",
       "Bulk density gram/cc": null,
       "Physical form(Flakes/granules/powder/liquid)": "Powder",
@@ -212,7 +212,7 @@
       "Feed rate %": "0.1"
     },
     {
-      "SI": "4",
+      "Sl": "4",
       "Raw material Name": "CaCO3",
       "Bulk density gram/cc": null,
       "Physical form(Flakes/granules/powder/liquid)": "Powder",
@@ -220,7 +220,7 @@
       "Feed rate %": "40"
     },
     {
-      "SI": "5",
+      "Sl": "5",
       "Raw material Name": "PY17 (Yellow Pigment)",
       "Bulk density gram/cc": null,
       "Physical form(Flakes/granules/powder/liquid)": "Powder",
@@ -228,7 +228,7 @@
       "Feed rate %": "7"
     },
     {
-      "SI": "6",
+      "Sl": "6",
       "Raw material Name": "PY13 (Yellow Pigment)",
       "Bulk density gram/cc": null,
       "Physical form(Flakes/granules/powder/liquid)": "Powder",
@@ -236,7 +236,7 @@
       "Feed rate %": "7"
     },
     {
-      "SI": "7",
+      "Sl": "7",
       "Raw material Name": "Wax",
       "Bulk density gram/cc": null,
       "Physical form(Flakes/granules/powder/liquid)": "Powder",
@@ -244,7 +244,13 @@
       "Feed rate %": "5"
     }
   ],
-  "processing_zone_table": [],
+  "processing_zone_table": {
+    "Barrel Length*": [],
+    "Barrel Type**": [],
+    "Barrel preffered MOC***": [],
+    "Element Preffered MOC***": [],
+    "Shaft MOC***": []
+  },
   "bulk silo storage": null,
   "warehouse storage": "X",
   "magnetic separator": null,
@@ -279,14 +285,14 @@
   "basic push button control": null,
   "hmi control type": "X",
   "industrial pc control": null,
-  "operating side right": null,
+  "operating side right": "Right side",
   "operating side left": null,
   "tcu position right": null,
-  "tcu position left": null,
+  "tcu position left": "Left side",
   "vacuum system right": null,
-  "vacuum system left": null,
+  "vacuum system left": "Left side",
   "side feeder right": null,
-  "side feeder left": null,
+  "side feeder left": "Left side",
   "customization details": null,
   "fan cooled panels": null,
   "air conditioned panels": null,
@@ -303,10 +309,10 @@
   "tse operation training": null,
   "tse maintenance training": null,
   "application processing training": null,
-  "standard color coding": "X",
+  "standard color coding": "X, Machine base, motor and Panels: RAL7035, Gearbox and feeders: RAL5009, All types of Gaurds: RAL1003,",
   "nonstandard color coding": null,
   "english manuals": null,
   "other language manuals": null,
   "finalization timeline": null,
-  "delivery time": null
+  "delivery time": "Mar-25"
 }

@@ -36,7 +36,6 @@ from langchain.agents import AgentType
 from langchain.agents import initialize_agent
 from pathlib import Path
 import signal
-from logger import logger
 
 # Global variables for cleanup management
 _cleanup_done = False
@@ -51,7 +50,7 @@ def get_event_loop():
             asyncio.set_event_loop(_event_loop)
         return _event_loop
     except Exception as e:
-        logger.error("Error getting event loop: %s", e)
+        print(f"Error getting event loop: {e}")
         return asyncio.new_event_loop()
 
 def cleanup_resources():
@@ -70,17 +69,17 @@ def cleanup_resources():
                 # Shutdown gRPC
                 grpc.aio.shutdown_grpc_aio()
             except Exception as e:
-                logger.warning("Warning: Error during gRPC shutdown: %s", e)
+                print(f"Warning: Error during gRPC shutdown: {e}")
             
             try:
                 # Close the event loop
                 cleanup_loop.close()
             except Exception as e:
-                logger.warning("Warning: Error closing event loop: %s", e)
+                print(f"Warning: Error closing event loop: {e}")
             
             _cleanup_done = True
     except Exception as e:
-        logger.warning("Warning: Error during cleanup: %s", e)
+        print(f"Warning: Error during cleanup: {e}")
 
 # Register cleanup handlers
 atexit.register(cleanup_resources)
@@ -93,7 +92,7 @@ _event_loop = get_event_loop()
 try:
     grpc.aio.init_grpc_aio()
 except Exception as e:
-    logger.warning("Warning: Error initializing gRPC: %s", e)
+    print(f"Warning: Error initializing gRPC: {e}")
 
 # Load environment variables and configuration
 load_dotenv()
@@ -112,7 +111,7 @@ def validate_gemini_api_key(api_key):
         if response.status_code == 401:
             raise ValueError("Invalid or expired API key. Please renew your Gemini API key.")
         elif response.status_code == 429:
-            logger.warning("Warning: API rate limit reached. The script will implement retry logic.")
+            print("Warning: API rate limit reached. The script will implement retry logic.")
         elif response.status_code != 200:
             raise ValueError(f"API key validation failed with status code: {response.status_code}")
     except requests.exceptions.RequestException as e:
@@ -122,8 +121,8 @@ def validate_gemini_api_key(api_key):
 try:
     validate_gemini_api_key(api_key)
 except ValueError as e:
-    logger.error("Error: %s", str(e))
-    logger.info("Please update your API key in the .env file and try again.")
+    print(f"Error: {str(e)}")
+    print("Please update your API key in the .env file and try again.")
     exit(1)
 
 SCOPES = ['https://www.googleapis.com/auth/gmail.readonly']
@@ -162,8 +161,8 @@ def create_llm():
 try:
     llm = create_llm()
 except Exception as e:
-    logger.error("Failed to initialize LLM after retries: %s", str(e))
-    logger.info("Please check your API key and try again later.")
+    print(f"Failed to initialize LLM after retries: {str(e)}")
+    print("Please check your API key and try again later.")
     exit(1)
 
 # Create email classification prompt template with retry logic
@@ -185,7 +184,7 @@ def classify_email(subject, body):
         elif isinstance(response, str):
             classification = response.strip().upper()
         else:
-            logger.warning("Unexpected response type: %s", type(response))
+            print(f"Unexpected response type: {type(response)}")
             return "UNRELATED"
         
         # Strict classification validation - only allow ENQUIRY or QUOTATION
@@ -194,11 +193,11 @@ def classify_email(subject, body):
         elif classification == "QUOTATION":
             return "QUOTATION"
         else:
-            logger.warning("Not a valid enquiry or quotation email: %s", classification)
+            print(f"Not a valid enquiry or quotation email: {classification}")
             return "UNRELATED"
             
     except Exception as e:
-        logger.warning("Classification attempt failed: %s", str(e))
+        print(f"Classification attempt failed: {str(e)}")
         return "UNRELATED"
 
 # Create email classification prompt template
@@ -252,7 +251,7 @@ def classify_email(subject, body):
         result = classification_chain.invoke({"subject": subject, "body": body})
         return result.strip().upper()
     except Exception as e:
-        logger.warning("Error in email classification: %s", str(e))
+        print(f"Error in email classification: {str(e)}")
         raise
 
 # Create classification chain using the new pattern
@@ -264,7 +263,7 @@ def get_classification_response(inputs):
     elif isinstance(response, str):
         return response.strip().upper()
     else:
-        logger.warning("Unexpected response type: %s", type(response))
+        print(f"Unexpected response type: {type(response)}")
         return "UNKNOWN"
 
 classification_chain = RunnablePassthrough() | get_classification_response
@@ -284,7 +283,7 @@ def create_agent(llm, tools, prompt):
             prompt=prompt
         )
     except Exception as e:
-        logger.error("Error creating agent: %s", str(e))
+        print(f"Error creating agent: {str(e)}")
         raise
 
 @retry(
@@ -302,7 +301,7 @@ def execute_agent(agent_executor, tools_str, tool_names):
             "tool_names": ", ".join(tool_names)
         })
     except Exception as e:
-        logger.error("Error executing agent: %s", str(e))
+        print(f"Error executing agent: {str(e)}")
         raise
 
 def extract_email_body(msg_data):
@@ -404,7 +403,6 @@ def initialize_log_file():
                 'file_paths': pd.Series(dtype='str'),
                 'original_filenames': pd.Series(dtype='str'),
                 'res_path': pd.Series(dtype='str'),
-                'markdown_status': pd.Series(dtype='str'),
                 
                 # Data Integrity
                 'message_hash': pd.Series(dtype='str'),
@@ -424,7 +422,7 @@ def initialize_log_file():
             # Save with proper date formatting
             with pd.ExcelWriter(LOG_FILE, engine='openpyxl', datetime_format='YYYY-MM-DD HH:MM:SS') as writer:
                 df.to_excel(writer, index=False)
-            logger.info("Created new structured log file: %s", LOG_FILE)
+            print(f"Created new structured log file: {LOG_FILE}")
             return df
         else:
             # Load existing file
@@ -433,7 +431,7 @@ def initialize_log_file():
             ])
             return df
     except Exception as e:
-        logger.error("Error initializing log file: %s", e)
+        print(f"Error initializing log file: {e}")
         # Create empty DataFrame with proper structure as fallback
         return pd.DataFrame(columns=[
             'subject', 'email_id', 'thread_id', 'sender',
@@ -457,7 +455,7 @@ def load_log_data():
         else:
             return initialize_log_file()
     except Exception as e:
-        logger.error("Error loading log data: %s", e)
+        print(f"Error loading log data: {e}")
         return pd.DataFrame()
 
 def save_log_data(df):
@@ -465,9 +463,9 @@ def save_log_data(df):
     try:
         LOG_FILE.parent.mkdir(parents=True, exist_ok=True)
         df.to_excel(LOG_FILE, index=False)
-        logger.info("Log data saved to %s", LOG_FILE)
+        print(f"Log data saved to {LOG_FILE}")
     except Exception as e:
-        logger.error("Error saving log data: %s", e)
+        print(f"Error saving log data: {e}")
 
 def generate_message_hash(msg_data):
     """Generate unique hash for message to detect duplicates."""
@@ -564,7 +562,7 @@ def should_process_email(subject, body, has_pdf_attachment):
             'confidence': 0.0
         }
     except Exception as e:
-        logger.warning("Warning: Classification failed - %s", str(e))
+        print(f"Warning: Classification failed - {str(e)}")
         return False, {
             'decision': 'SKIP',
             'reason': 'Classification failed - skipping download',
@@ -588,20 +586,9 @@ def update_download_log(log_df, new_row):
         
         # Initialize result processing fields if not present
         if 'res_status' not in new_row:
-            # Count number of PDFs from attachment_names and create corresponding 'pending' statuses
-            if 'attachment_names' in new_row and new_row['attachment_names']:
-                pdf_count = len(str(new_row['attachment_names']).split(','))
-                new_row['res_status'] = ','.join(['pending'] * pdf_count)
-            else:
-                new_row['res_status'] = 'pending'
-                
+            new_row['res_status'] = 'pending'
         if 'res_path' not in new_row:
-            # Create empty res_path entries for each PDF
-            if 'attachment_names' in new_row and new_row['attachment_names']:
-                pdf_count = len(str(new_row['attachment_names']).split(','))
-                new_row['res_path'] = ','.join([''] * pdf_count)
-            else:
-                new_row['res_path'] = ''
+            new_row['res_path'] = ''
         
         # Update tracking fields
         new_row['last_check_date'] = current_time
@@ -671,7 +658,7 @@ def update_download_log(log_df, new_row):
             
         return log_df
     except Exception as e:
-        logger.error("Error updating download log: %s", e)
+        print(f"Error updating download log: {e}")
         return log_df
 
 def monitor_gmail_for_new_attachments_with_logging() -> str:
@@ -686,7 +673,7 @@ def monitor_gmail_for_new_attachments_with_logging() -> str:
         # Search for recent emails with attachments (last 24 hours)
         yesterday = datetime.now() - timedelta(days=1)
         query = f'has:attachment after:{yesterday.strftime("%Y/%m/%d")}'
-        logger.info("Searching for emails with query: %s", query)
+        print(f"Searching for emails with query: {query}")
        
         results = service.users().messages().list(userId='me', q=query).execute()
         messages = results.get('messages', [])
@@ -710,8 +697,8 @@ def monitor_gmail_for_new_attachments_with_logging() -> str:
                 date_header = next((h['value'] for h in headers if h['name'] == 'Date'), '')
                 thread_id = msg_data.get('threadId', '')
                 
-                logger.info("\nProcessing email from: %s", sender)
-                logger.info("Subject: %s", subject)
+                print(f"\nProcessing email from: {sender}")
+                print(f"Subject: {subject}")
                 
                 # Extract body and classify immediately
                 body = extract_email_body(msg_data)
@@ -720,12 +707,12 @@ def monitor_gmail_for_new_attachments_with_logging() -> str:
                 # Strict classification check - only proceed if explicitly ENQUIRY or QUOTATION
                 if classification not in ["ENQUIRY", "QUOTATION"]:
                     skip_reason = f"Not a valid enquiry or quotation email (got {classification})"
-                    logger.info("Skipping email: %s", skip_reason)
+                    print(f"Skipping email: {skip_reason}")
                     skipped.append(f"'{subject}' from {sender} - {skip_reason}")
                     skip_details.append(f"  • {subject}: {skip_reason}")
                     continue
 
-                logger.info("Email classified as: %s", classification)
+                print(f"Email classified as: {classification}")
                
                 # Generate message hash
                 message_hash = generate_message_hash(msg_data)
@@ -743,7 +730,7 @@ def monitor_gmail_for_new_attachments_with_logging() -> str:
                
                 if not document_attachments:
                     skip_reason = "No PDF attachments found"
-                    logger.info("Skipping email: %s", skip_reason)
+                    print(f"Skipping email: {skip_reason}")
                     skipped.append(f"'{subject}' from {sender} - {skip_reason}")
                     skip_details.append(f"  • {subject}: {skip_reason}")
                     continue
@@ -755,7 +742,7 @@ def monitor_gmail_for_new_attachments_with_logging() -> str:
                         existing_entry = thread_entries.iloc[0]
                         if existing_entry['classification'] == classification:
                             skip_reason = "Thread already processed with same classification"
-                            logger.info("Skipping: %s", skip_reason)
+                            print(f"Skipping: {skip_reason}")
                             skipped.append(f"'{subject}' - {skip_reason}")
                             skip_details.append(f"  • {subject}: {skip_reason}")
                             continue
@@ -773,7 +760,7 @@ def monitor_gmail_for_new_attachments_with_logging() -> str:
                         try:
                             # Get file data for duplicate checking
                             if 'body' not in part or 'attachmentId' not in part['body']:
-                                logger.info("Skipping %s: Invalid attachment data", filename)
+                                print(f"Skipping {filename}: Invalid attachment data")
                                 continue
                             
                             attachment = service.users().messages().attachments().get(
@@ -785,7 +772,7 @@ def monitor_gmail_for_new_attachments_with_logging() -> str:
                             is_duplicate, reason = is_file_already_downloaded(log_df, filename, file_data, msg['id'], thread_id)
                            
                             if is_duplicate:
-                                logger.info("Skipping duplicate: %s", reason)
+                                print(f"Skipping duplicate: {reason}")
                                 skipped.append(filename)
                                 skip_details.append(f"  • {filename}: {reason}")
                                 continue
@@ -815,10 +802,10 @@ def monitor_gmail_for_new_attachments_with_logging() -> str:
                             file_hashes.append(file_hash)
                             unique_file_ids.append(unique_file_id)
                             downloaded.append(f"{filename} -> {final_filename}")
-                            logger.info("Successfully downloaded: %s", final_filename)
+                            print(f"Successfully downloaded: {final_filename}")
                            
                         except Exception as e:
-                            logger.error("Error downloading %s: %s", filename, e)
+                            print(f"Error downloading {filename}: {e}")
                             continue
 
                 if successfully_downloaded:
@@ -850,7 +837,7 @@ def monitor_gmail_for_new_attachments_with_logging() -> str:
                     processed_emails.append(f"📧 {sender}: {subject}")
                
             except Exception as e:
-                logger.error("Error processing message: %s", e)
+                print(f"Error processing message: {e}")
                 continue
        
         # Generate detailed summary
@@ -878,15 +865,13 @@ def monitor_gmail_for_new_attachments_with_logging() -> str:
         return '\n'.join(summary) if downloaded or skipped else "📭 No new document attachments found in recent emails."
        
     except Exception as e:
-        error_msg = f"❌ Error monitoring emails: {str(e)}"
-        logger.error(error_msg)
-        return error_msg
+        return f"❌ Error monitoring emails: {str(e)}"
 
 
 def download_gmail_attachments_with_logging() -> str:
     """Download PDF attachments from business-related Enquiry or Quotation emails only."""
     try:
-        logger.info("Starting email attachment download process...")
+        print("Starting email attachment download process...")
         initialize_log_file()
         log_df = load_log_data()
         service = get_gmail_service()
@@ -894,13 +879,13 @@ def download_gmail_attachments_with_logging() -> str:
         # Search for emails with PDF attachments from the last 30 days
         date_limit = (datetime.now() - timedelta(days=30)).strftime('%Y/%m/%d')
         query = f'has:attachment filename:pdf after:{date_limit}'
-        logger.info("Searching for emails with query: %s", query)
+        print(f"Searching for emails with query: {query}")
         
         try:
             results = service.users().messages().list(userId='me', q=query).execute()
             messages = results.get('messages', [])
         except Exception as e:
-            logger.error("Error searching emails: %s", str(e))
+            print(f"Error searching emails: {str(e)}")
             return "❌ Failed to search emails. Please check your connection and try again."
         
         if not messages:
@@ -920,8 +905,8 @@ def download_gmail_attachments_with_logging() -> str:
                 date_header = next((h['value'] for h in headers if h['name'] == 'Date'), '')
                 thread_id = msg_data.get('threadId', '')
                 
-                logger.info("\nProcessing email from: %s", sender)
-                logger.info("Subject: %s", subject)
+                print(f"\nProcessing email from: {sender}")
+                print(f"Subject: {subject}")
 
                 # Extract email body and classify immediately
                 body = extract_email_body(msg_data)
@@ -930,12 +915,12 @@ def download_gmail_attachments_with_logging() -> str:
                 # Strict classification check - only proceed if explicitly ENQUIRY or QUOTATION
                 if classification not in ["ENQUIRY", "QUOTATION"]:
                     skip_reason = f"Not a valid enquiry or quotation email (got {classification})"
-                    logger.info("Skipping email: %s", skip_reason)
+                    print(f"Skipping email: {skip_reason}")
                     skipped.append(f"'{subject}' from {sender} - {skip_reason}")
                     skip_details.append(f"  • {subject}: {skip_reason}")
                     continue
 
-                logger.info("Email classified as: %s", classification)
+                print(f"Email classified as: {classification}")
 
                 # Check for existing thread processing
                 if thread_id:
@@ -944,7 +929,7 @@ def download_gmail_attachments_with_logging() -> str:
                         existing_entry = thread_entries.iloc[0]
                         if existing_entry['classification'] == classification:
                             skip_reason = "Thread already processed with same classification"
-                            logger.info("Skipping: %s", skip_reason)
+                            print(f"Skipping: {skip_reason}")
                             skipped.append(f"'{subject}' - {skip_reason}")
                             skip_details.append(f"  • {subject}: {skip_reason}")
                             continue
@@ -957,7 +942,7 @@ def download_gmail_attachments_with_logging() -> str:
                 pdf_parts = [part for part in parts if part.get('filename', '').lower().endswith('.pdf')]
                 if not pdf_parts:
                     skip_reason = "No PDF attachments found"
-                    logger.info("Skipping email: %s", skip_reason)
+                    print(f"Skipping email: {skip_reason}")
                     skipped.append(f"'{subject}' from {sender} - {skip_reason}")
                     skip_details.append(f"  • {subject}: {skip_reason}")
                     continue
@@ -975,12 +960,12 @@ def download_gmail_attachments_with_logging() -> str:
                     if not filename:
                         continue
                     
-                    logger.info("Processing attachment: %s", filename)
+                    print(f"Processing attachment: {filename}")
                     
                     try:
                         # Validate attachment data
                         if 'body' not in part or 'attachmentId' not in part['body']:
-                            logger.info("Skipping %s: Invalid attachment data", filename)
+                            print(f"Skipping {filename}: Invalid attachment data")
                             continue
                         
                         # Get attachment data
@@ -992,7 +977,7 @@ def download_gmail_attachments_with_logging() -> str:
                         # Check for duplicates
                         is_duplicate, reason = is_file_already_downloaded(log_df, filename, file_data, msg['id'], thread_id)
                         if is_duplicate:
-                            logger.info("Skipping duplicate: %s", reason)
+                            print(f"Skipping duplicate: {reason}")
                             skipped.append(filename)
                             skip_details.append(f"  • {filename}: {reason}")
                             continue
@@ -1022,37 +1007,33 @@ def download_gmail_attachments_with_logging() -> str:
                         file_hashes.append(file_hash)
                         unique_file_ids.append(unique_file_id)
                         downloaded.append(f"{filename} -> {final_filename}")
-                        logger.info("Successfully downloaded: %s", final_filename)
+                        print(f"Successfully downloaded: {final_filename}")
                         
                     except Exception as e:
-                        logger.error("Error downloading %s: %s", filename, e)
+                        print(f"Error downloading {filename}: {e}")
                         continue
 
                 if successfully_downloaded:
-                    # Create res_status entries for each downloaded file
-                    res_status_list = ['pending'] * len(successfully_downloaded)
-                    res_path_list = [''] * len(successfully_downloaded)
-                    
                     # Log the download with enhanced metadata
                     new_row = {
                         'subject': subject,
                         'first_inbox_msg': date_header,
                         'last_check_date': current_time,
-                        'download_date': current_time,
+                        'download_date': current_time,  # Ensure download date is set
                         'count_download': len(successfully_downloaded),
-                        'list_name_count': ','.join(successfully_downloaded),
+                        'list_name_count': ', '.join(successfully_downloaded),
                         'email_id': msg['id'],
                         'thread_id': thread_id,
                         'sender': sender,
-                        'attachment_names': ','.join(successfully_downloaded),
-                        'file_paths': ','.join(file_paths),
+                        'attachment_names': ', '.join(successfully_downloaded),
+                        'file_paths': ', '.join(file_paths),
                         'message_hash': message_hash,
-                        'file_hashes': ','.join(file_hashes),
-                        'unique_file_ids': ','.join(unique_file_ids),
+                        'file_hashes': ', '.join(file_hashes),
+                        'unique_file_ids': ', '.join(unique_file_ids),
                         'process_status': 'downloaded',
                         'classification': classification,
-                        'res_status': ','.join(res_status_list),  # One 'pending' for each file
-                        'res_path': ','.join(res_path_list),  # One empty path for each file
+                        'res_status': 'pending',
+                        'res_path': '',
                         'duplicate_check_date': current_time,
                         'duplicate_status': 'unique'
                     }
@@ -1061,7 +1042,7 @@ def download_gmail_attachments_with_logging() -> str:
                     processed_emails.append(f"📧 {sender}: {subject}")
 
             except Exception as e:
-                logger.error("Error processing message: %s", e)
+                print(f"Error processing message: {e}")
                 continue
 
         # Generate detailed summary
@@ -1090,7 +1071,7 @@ def download_gmail_attachments_with_logging() -> str:
 
     except Exception as e:
         error_msg = f"❌ Error in download process: {str(e)}"
-        logger.error(error_msg)
+        print(f"\nError: {error_msg}")
         return error_msg
 
 
@@ -1265,123 +1246,11 @@ def clear_duplicate_entries() -> str:
     except Exception as e:
         return f"❌ Error cleaning log: {str(e)}"
 
-def update_processing_status(file_name: str, new_status: str) -> str:
-    """
-    Update the processing status for a specific PDF file in the log.
-    
-    Args:
-        file_name (str): Name of the PDF file to update
-        new_status (str): New status to set ('pending', 'processing', 'completed', 'failed')
-    
-    Returns:
-        str: Message indicating the result of the update
-    """
-    try:
-        if not LOG_FILE.exists():
-            return "❌ Log file not found"
-        
-        # Read the Excel file
-        log_df = pd.read_excel(LOG_FILE)
-        
-        # Find rows where this file exists
-        for idx, row in log_df.iterrows():
-            if pd.isna(row['list_name_count']) or pd.isna(row['res_status']):
-                continue
-                
-            file_names = str(row['list_name_count']).split(',')
-            current_statuses = str(row['res_status']).split(',')
-            
-            # Ensure lists have same length
-            if len(file_names) != len(current_statuses):
-                logger.warning(f"Mismatch in file names and statuses for row {idx}")
-                continue
-            
-            # Find the file in the list
-            try:
-                file_index = file_names.index(file_name.strip())
-                # Update the status for this file
-                current_statuses[file_index] = new_status
-                # Join back into comma-separated string
-                log_df.at[idx, 'res_status'] = ','.join(current_statuses)
-                
-                # Save the updated DataFrame
-                with pd.ExcelWriter(LOG_FILE, engine='openpyxl', datetime_format='YYYY-MM-DD HH:MM:SS') as writer:
-                    log_df.to_excel(writer, index=False)
-                
-                return f"✅ Updated status of '{file_name}' to '{new_status}'"
-            except ValueError:
-                continue
-        
-        return f"❌ File '{file_name}' not found in log"
-        
-    except Exception as e:
-        logger.error(f"Error updating processing status: {str(e)}")
-        return f"❌ Error: {str(e)}"
-
-def get_processing_status(file_name: str = None) -> str:
-    """
-    Get the processing status of files in the log.
-    
-    Args:
-        file_name (str, optional): Specific file to check. If None, returns status of all files.
-    
-    Returns:
-        str: Status information
-    """
-    try:
-        if not LOG_FILE.exists():
-            return "❌ Log file not found"
-        
-        log_df = pd.read_excel(LOG_FILE)
-        
-        summary = []
-        summary.append("📊 Processing Status Report")
-        summary.append("=" * 40)
-        
-        for idx, row in log_df.iterrows():
-            if pd.isna(row['list_name_count']) or pd.isna(row['res_status']):
-                continue
-                
-            file_names = str(row['list_name_count']).split(',')
-            current_statuses = str(row['res_status']).split(',')
-            
-            if file_name:
-                # Looking for specific file
-                try:
-                    file_index = file_names.index(file_name.strip())
-                    status = current_statuses[file_index]
-                    return f"Status of '{file_name}': {status}"
-                except ValueError:
-                    continue
-            else:
-                # Report all files in this row
-                summary.append(f"\n📧 Email: {row.get('subject', 'Unknown Subject')}")
-                summary.append(f"From: {row.get('sender', 'Unknown Sender')}")
-                summary.append("Files:")
-                
-                for f_name, status in zip(file_names, current_statuses):
-                    status_emoji = {
-                        'pending': '⏳',
-                        'processing': '🔄',
-                        'completed': '✅',
-                        'failed': '❌'
-                    }.get(status.lower(), '❓')
-                    
-                    summary.append(f"{status_emoji} {f_name}: {status}")
-        
-        if file_name:
-            return f"❌ File '{file_name}' not found in log"
-        
-        return '\n'.join(summary)
-        
-    except Exception as e:
-        logger.error(f"Error getting processing status: {str(e)}")
-        return f"❌ Error: {str(e)}"
 
 def agent_main():
     """Main function to initialize and run the Gmail processing agent."""
     try:
-        logger.info("Initializing Gmail Processing Agent...")
+        print("Initializing Gmail Processing Agent...")
         
         # Initialize Gmail credentials
         try:
@@ -1392,11 +1261,11 @@ def agent_main():
             )
             
             api_resource = build_resource_service(credentials=credentials)
-            logger.info("✅ Gmail credentials initialized successfully")
+            print("✅ Gmail credentials initialized successfully")
             
         except Exception as e:
             error_msg = f"Failed to initialize Gmail credentials: {str(e)}"
-            logger.error(error_msg)
+            print(f"❌ {error_msg}")
             return {
                 "status": "error",
                 "message": "Gmail initialization failed",
@@ -1407,41 +1276,41 @@ def agent_main():
             # Execute functions in sequence with proper error handling
             results = []
             
-            logger.info("\n1. Monitoring Gmail for new attachments...")
+            print("\n1. Monitoring Gmail for new attachments...")
             try:
                 monitor_result = monitor_gmail_for_new_attachments_with_logging()
                 results.append(("Monitor", "success", monitor_result))
-                logger.info("✅ Monitoring completed successfully")
+                print("✅ Monitoring completed successfully")
             except Exception as e:
                 results.append(("Monitor", "error", str(e)))
-                logger.error(f"❌ Monitoring failed: {str(e)}")
+                print(f"❌ Monitoring failed: {str(e)}")
             
-            logger.info("\n2. Downloading relevant PDF attachments...")
+            print("\n2. Downloading relevant PDF attachments...")
             try:
                 download_result = download_gmail_attachments_with_logging()
                 results.append(("Download", "success", download_result))
-                logger.info("✅ Download completed successfully")
+                print("✅ Download completed successfully")
             except Exception as e:
                 results.append(("Download", "error", str(e)))
-                logger.error(f"❌ Download failed: {str(e)}")
+                print(f"❌ Download failed: {str(e)}")
             
-            logger.info("\n3. Checking download log...")
+            print("\n3. Checking download log...")
             try:
                 log_result = view_download_log()
                 results.append(("Log View", "success", log_result))
-                logger.info("✅ Log check completed successfully")
+                print("✅ Log check completed successfully")
             except Exception as e:
                 results.append(("Log View", "error", str(e)))
-                logger.error(f"❌ Log check failed: {str(e)}")
+                print(f"❌ Log check failed: {str(e)}")
             
-            logger.info("\n4. Cleaning up duplicate entries...")
+            print("\n4. Cleaning up duplicate entries...")
             try:
                 cleanup_result = clear_duplicate_entries()
                 results.append(("Cleanup", "success", cleanup_result))
-                logger.info("✅ Cleanup completed successfully")
+                print("✅ Cleanup completed successfully")
             except Exception as e:
                 results.append(("Cleanup", "error", str(e)))
-                logger.error(f"❌ Cleanup failed: {str(e)}")
+                print(f"❌ Cleanup failed: {str(e)}")
             
             # Generate final report
             summary = []
@@ -1467,7 +1336,7 @@ def agent_main():
             
         except Exception as e:
             error_msg = f"Error in execution: {str(e)}"
-            logger.error(f"\n❌ {error_msg}")
+            print(f"\n❌ {error_msg}")
             return {
                 "status": "error",
                 "message": "Execution failed",
@@ -1476,13 +1345,13 @@ def agent_main():
 
     except Exception as e:
         error_msg = f"Error in setup: {str(e)}"
-        logger.error(f"\n❌ {error_msg}")
+        print(f"\n❌ {error_msg}")
         
         if "API key" in str(e):
-            logger.info("\nAPI key error. Please:")
-            logger.info("1. Check if GEMINI_API_KEY is set in your .env file")
-            logger.info("2. Verify the API key is valid")
-            logger.info("3. Generate a new API key if needed")
+            print("\nAPI key error. Please:")
+            print("1. Check if GEMINI_API_KEY is set in your .env file")
+            print("2. Verify the API key is valid")
+            print("3. Generate a new API key if needed")
         
         return {
             "status": "error",
@@ -1495,12 +1364,12 @@ if __name__ == "__main__":
         # Run the main function
         result = agent_main()
         if result["status"] != "success":
-            logger.error("\nExecution completed with issues:")
-            logger.error(result["error"])
+            print("\nExecution completed with issues:")
+            print(result["error"])
         else:
-            logger.info("\nExecution completed successfully!")
+            print("\nExecution completed successfully!")
     except Exception as e:
-        logger.error(f"\nUnexpected error: {str(e)}")
+        print(f"\nUnexpected error: {str(e)}")
     finally:
         cleanup_resources()
-        logger.info("\nExecution finished.")
+        print("\nExecution finished.")

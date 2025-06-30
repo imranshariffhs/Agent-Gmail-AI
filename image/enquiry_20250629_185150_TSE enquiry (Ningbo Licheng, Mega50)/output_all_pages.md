@@ -1,20 +1,21 @@
 # PDF Extraction Summary
-                                **File:** /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/download_email/enquiry_20250624_171144_TSE enquiry (Ningbo Licheng, Mega50).pdf
+                                **File:** /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/download_email/enquiry_20250629_185150_TSE enquiry (Ningbo Licheng, Mega50).pdf
                                 **Total Pages:** 8
                                 **Successfully Processed:** 8
                                 **Failed:** 0
-                                **Extraction Date:** 2025-06-30 06:21:13
+                                **Extraction Date:** 2025-06-30 07:32:03
                                 ---
                         ## page_1.png
 
 ```markdown
-# SEPL/SYS-TSE-EF/F-01 Rev: No: 00 / 11-08-2020
 # Co-rotating Twin screw extruder Enquiry Form
 
-# Please tell us about your company details
+SEPL/SYS-TSE-EF/F-01 Rev:No: 00 / 11-08-2020
+
+## Please tell us about your company details
 
 **Name of the client:** Ningbo Licheng
-**Building No:**
+**Building No:** 
 **Street:**
 **City/Town:** Yuyao
 **State:** Ningbo
@@ -23,23 +24,25 @@
 **Email:**
 **Website:**
 
-# Site Information
+## Site Information
 
 **Ambient temperature at site:** Min 5 deg C Max 35 deg C
 **Altitude:** 50 Meters above sea level
 **Relative humidity at site:** Min 10 % Max 80 %
 **Power voltage/Hz:** 380 Voltage 50 Hz
-**3 Phase, 1 neutral:** Yes No
-**Cooling water available:** Yes No
-**Raw water available:** Yes No
-**Pneumatic air available:** Yes No
-**Place of machine installation:** Hazardous Non hazardous
-**Please specify IP protection required:** Standard IP55 Special IP
-unselect[] Main Motor unselect[] Lube oil pump unselect[] Small motors unselect[] Junction box
-unselect[] Heaters and Thermocouple unselect[] PLC panel unselect[] Drive panel
-
-INDIA | CHINA | JAPAN | USA | EUROPE | SOUTH KOREA
-STEER A NEW WORLD
+**3 Phase, 1 neutral:** Yes
+**Cooling water available:** Yes
+**Raw water available:** Yes
+**Pneumatic air available:** Yes
+**Place of machine installation:** Non hazardous
+**Please specify IP protection required:** Standard IP55
+unselect[] Main Motor
+unselect[] Lube oil pump
+unselect[] Small motors
+unselect[] Junction box
+unselect[] Heaters and Thermocouple
+unselect[] PLC panel
+unselect[] Drive panel
 ```
 
 ---
@@ -89,7 +92,7 @@ STEER A NEW WORLD
 # STEER
 Co-rotating Twin screw extruder Enquiry Form
 
-# Application details
+## Application details
 
 **Basic recipe details:**:
 PPA compounding
@@ -122,8 +125,12 @@ unselect[] No
 unselect[] Will be provided before contract
 
 **If yes, please specify:**
-MFI Impact Tensile Flexural Flammability unselect[] Will be provided
-before contract
+**MFI:**
+**Impact:**
+**Tensile:**
+**Flexural:**
+**Flammability:**
+unselect[] Will be provided before contract
 
 **If any other, please specify:**
 
@@ -154,31 +161,31 @@ STEER A NEW WORLD
 
 Co-rotating Twin screw extruder Enquiry Form
 
-## Raw material details
+# Raw material details
 
-### Formulation-1
+## Formulation-1
 
-| SI | Raw material Name                         | Bulk density gram/cc | Physical form(Flakes/granules/powder/liquid) | Size in mm/micron/Cps | Feed rate % |
-|----|-------------------------------------------|----------------------|-------------------------------------------|----------------------|-------------|
-| 1  | PA 10T                                    |                      | POWDER                                      |                      | 44.5%       |
-| 2  | Phosphorus nitrogen flame retardant      |                      | POWDER                                      |                      | 10%         |
-| 3  | Chopped GF                                |                      |                                           |                      | 45%         |
-| 4  | additive and carbon black                 |                      | POWDER                                      |                      | 0.5%        |
-| 5  |                                           |                      |                                           |                      |             |
-| 6  |                                           |                      |                                           |                      |             |
-| 7  |                                           |                      |                                           |                      |             |
+| SI | Raw material Name                     | Bulk density gram/cc | Physical form(Flakes/granules/powder/liquid) | Size in mm/micron/Cps | Feed rate % |
+|----|---------------------------------------|----------------------|---------------------------------------------|-----------------------|--------------|
+| 1  | PA 10T                                |                      | POWDER                                      |                       | 44.5%        |
+| 2  | Phosphorus nitrogen flame retardant |                      | POWDER                                      |                       | 10%          |
+| 3  | Chopped GF                            |                      |                                             |                       | 45%          |
+| 4  | additive and carbon black             |                      | POWDER                                      |                       | 0.5%         |
+| 5  |                                       |                      |                                             |                       |              |
+| 6  |                                       |                      |                                             |                       |              |
+| 7  |                                       |                      |                                             |                       |              |
 
-### Formulation-2
+## Formulation-2
 
 | SI | Raw material Name | Bulk density gram/cc | Physical form(Flakes/granules/powder/liquid) | Size in mm/micron/Cps | Feed rate % |
-|----|-------------------|----------------------|-------------------------------------------|----------------------|-------------|
-| 1  |                   |                      |                                           |                      |             |
-| 2  |                   |                      |                                           |                      |             |
-| 3  |                   |                      |                                           |                      |             |
-| 4  |                   |                      |                                           |                      |             |
-| 5  |                   |                      |                                           |                      |             |
-| 6  |                   |                      |                                           |                      |             |
-| 7  |                   |                      |                                           |                      |             |
+|----|-------------------|----------------------|---------------------------------------------|-----------------------|--------------|
+| 1  |                   |                      |                                             |                       |              |
+| 2  |                   |                      |                                             |                       |              |
+| 3  |                   |                      |                                             |                       |              |
+| 4  |                   |                      |                                             |                       |              |
+| 5  |                   |                      |                                             |                       |              |
+| 6  |                   |                      |                                             |                       |              |
+| 7  |                   |                      |                                             |                       |              |
 
 INDIA | CHINA| JAPAN| USA | EUROPE | SOUTH KOREA
 
@@ -192,7 +199,7 @@ STEER A NEW WORLD
 ```markdown
 # STEER
 
-**Document Title:** Co-rotating Twin screw extruder Enquiry Form
+**Co-rotating Twin screw extruder Enquiry Form**
 
 ## Raw material details
 
@@ -217,6 +224,7 @@ STEER A NEW WORLD
 - unselect[] Metal separator
 
 INDIA | CHINA| JAPAN| USA | EUROPE | SOUTH KOREA
+
 STEER A NEW WORLD
 ```
 
@@ -238,7 +246,7 @@ STEER A NEW WORLD
 
 **Type of process:** unselect[] Premix select[X] Split feed
 
-**Expected throughput:** ______ kg/hr
+**Expected throughput:**  kg/hr
 
 **Screw diameter:** 50 mm
 
@@ -272,17 +280,17 @@ unselect[] 1 select[X] 2 unselect[] 3 if more please specify ______
 
 If customer specified please provide below details,
 
-## Processing zone details,
+# Processing zone details,
 
-| Barrel Length*        |     |     |     |     |     |     |     |     |
-|-----------------------|-----|-----|-----|-----|-----|-----|-----|-----|
-| Barrel Type**         |     |     |     |     |     |     |     |     |
-| Barrel preffered MOC*** | CR15|     |     |     |     |     |     |     |
-| Element Preffered MOC***| CR4M|     |     |     |     |     |     |     |
-| Shaft MOC***          |     |     |     |     |     |     |     |     |
+| Barrel Length*            |     |     |     |     |     |     |     |     |
+| ------------------------- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Barrel Type**             |     |     |     |     |     |     |     |     |
+| Barrel preffered MOC***  | CR15|     |     |     |     |     |     |     |
+| Element Preffered MOC*** | CR4M|     |     |     |     |     |     |     |
+| Shaft MOC***              |     |     |     |     |     |     |     |     |
 
 * 4D or 6D length
-** 1-Intake, 2-Closed, 3-Side feed, 4-ATM Vent, 5-Vaccum Vent, 6-Liquid injection
+** 1-Intake, 2-Closed, 3-Side feed, 4-ATM Vent, 5-Vaccum Vent , 6-Liquid injection
 *** Customer to specify required MOC
 
 INDIA | CHINA| JAPAN| USA | EUROPE | SOUTH KOREA
@@ -298,7 +306,7 @@ STEER A NEW WORLD
 # STEER
 ## Co-rotating Twin screw extruder Enquiry Form
 
-# Extruder details
+## Extruder details
 
 **Drive and PLC panel cooling type:-**
 unselect[] Fan cooled
@@ -323,14 +331,21 @@ unselect[] Industrial PC type
 
 **Operating side when viewed from Die end**
 Right side
+Left side
+
 **TCU position when viewed from Die end**
 Right side
+Left side
+
 **Vacuum system when viewed from Die end**
 Right side
+Left side
+
 **Side feeder when viewed from Die end**
 Right side
+Left side
 
-Please specify/attach additional information in case of customization required :
+**Please specify/attach additional information in case of customization required :**
 1. side feeder, spare shaft with elements, vacuum stuffer quoted as optional
 2. SCG may source side feeder locally if competitors give too low price
 
@@ -367,7 +382,7 @@ Co-rotating Twin screw extruder Enquiry Form
 
 **Color coding:**
 - select[X] Standard, Machine base, motor and Panels: RAL7035, Gearbox and feeders: RAL5009, All types of Gaurds: RAL1003,
-- unselect[] Non Standard, please specify details ______________________________________________________
+- unselect[] Non Standard, please specify details ____________________________________
 
 **Extruder Manuals:**
 - unselect[] Standard English
@@ -375,8 +390,8 @@ Co-rotating Twin screw extruder Enquiry Form
 
 # Project details
 
-**Expected finalization time line:** _______ Weeks
-**Expected delivery time:** _______ Weeks
+**Expected finalization time line:** ______ Weeks
+**Expected delivery time:** ______ Weeks
 
 INDIA | CHINA| JAPAN| USA | EUROPE | SOUTH KOREA
 STEER A NEW WORLD

@@ -26,6 +26,7 @@ from langchain.agents import AgentExecutor, create_tool_calling_agent
 from langchain_core.prompts import ChatPromptTemplate
 from dotenv import load_dotenv
 from datetime import datetime
+from logger import logger
 
 # # Load environment variables
 # load_dotenv()
@@ -404,88 +405,94 @@ class DocumentClassifier:
         """
         Enhanced document classification with bank details detection
         """
-        # Extract sections and keywords
-        found_sections = self.extract_sections_from_markdown(content)
-        content_words = self.extract_keywords(content)
+        try:
+            logger.info("Classifying document")
+            # Extract sections and keywords
+            found_sections = self.extract_sections_from_markdown(content)
+            content_words = self.extract_keywords(content)
 
-        # Detect bank details
-        bank_details_detected = self.detect_bank_details(content)
+            # Detect bank details
+            bank_details_detected = self.detect_bank_details(content)
 
-        # Calculate section matches
-        enquiry_section_matches, enquiry_section_confidence = self.calculate_section_matches(
-            found_sections, self.enquiry_sections
-        )
+            # Calculate section matches
+            enquiry_section_matches, enquiry_section_confidence = self.calculate_section_matches(
+                found_sections, self.enquiry_sections
+            )
 
-        quotation_section_matches, quotation_section_confidence = self.calculate_section_matches(
-            found_sections, self.quotation_sections
-        )
+            quotation_section_matches, quotation_section_confidence = self.calculate_section_matches(
+                found_sections, self.quotation_sections
+            )
 
-        # Calculate keyword matches
-        enquiry_keyword_matches, enquiry_keyword_confidence = self.calculate_keyword_matches(
-            content_words, self.enquiry_keywords
-        )
+            # Calculate keyword matches
+            enquiry_keyword_matches, enquiry_keyword_confidence = self.calculate_keyword_matches(
+                content_words, self.enquiry_keywords
+            )
 
-        quotation_keyword_matches, quotation_keyword_confidence = self.calculate_keyword_matches(
-            content_words, self.quotation_keywords
-        )
+            quotation_keyword_matches, quotation_keyword_confidence = self.calculate_keyword_matches(
+                content_words, self.quotation_keywords
+            )
 
-        # Bank details boost for quotations
-        bank_boost = 0.2 if bank_details_detected else 0.0
+            # Bank details boost for quotations
+            bank_boost = 0.2 if bank_details_detected else 0.0
 
-        # Combined scoring with bank details consideration
-        enquiry_combined_score = (enquiry_section_confidence * 0.6) + (enquiry_keyword_confidence * 0.4)
-        quotation_combined_score = (quotation_section_confidence * 0.6) + (quotation_keyword_confidence * 0.4) + bank_boost
+            # Combined scoring with bank details consideration
+            enquiry_combined_score = (enquiry_section_confidence * 0.6) + (enquiry_keyword_confidence * 0.4)
+            quotation_combined_score = (quotation_section_confidence * 0.6) + (quotation_keyword_confidence * 0.4) + bank_boost
 
-        # Determine document type
-        min_confidence_threshold = 0.2
-        significant_difference = 0.15
+            # Determine document type
+            min_confidence_threshold = 0.2
+            significant_difference = 0.15
 
-        keyword_matches = {
-            "enquiry_keywords": enquiry_keyword_matches,
-            "quotation_keywords": quotation_keyword_matches
-        }
+            keyword_matches = {
+                "enquiry_keywords": enquiry_keyword_matches,
+                "quotation_keywords": quotation_keyword_matches
+            }
 
-        if enquiry_combined_score > quotation_combined_score + significant_difference and enquiry_combined_score > min_confidence_threshold:
-            doc_type = DocumentType.ENQUIRY
-            confidence = enquiry_combined_score
-            matched = enquiry_section_matches
-            missing = [s for s in self.enquiry_sections if s not in enquiry_section_matches]
-            reasoning = (f"Classified as Enquiry with {confidence:.2%} confidence. "
-                        f"Section score: {enquiry_section_confidence:.2%}, "
-                        f"Keyword score: {enquiry_keyword_confidence:.2%}. "
-                        f"Found {len(matched)} relevant sections and {len(enquiry_keyword_matches)} keywords.")
+            if enquiry_combined_score > quotation_combined_score + significant_difference and enquiry_combined_score > min_confidence_threshold:
+                doc_type = DocumentType.ENQUIRY
+                confidence = enquiry_combined_score
+                matched = enquiry_section_matches
+                missing = [s for s in self.enquiry_sections if s not in enquiry_section_matches]
+                reasoning = (f"Classified as Enquiry with {confidence:.2%} confidence. "
+                            f"Section score: {enquiry_section_confidence:.2%}, "
+                            f"Keyword score: {enquiry_keyword_confidence:.2%}. "
+                            f"Found {len(matched)} relevant sections and {len(enquiry_keyword_matches)} keywords.")
 
-        elif quotation_combined_score > enquiry_combined_score + significant_difference and quotation_combined_score > min_confidence_threshold:
-            doc_type = DocumentType.QUOTATION
-            confidence = quotation_combined_score
-            matched = quotation_section_matches
-            missing = [s for s in self.quotation_sections if s not in quotation_section_matches]
-            reasoning = (f"Classified as Quotation with {confidence:.2%} confidence. "
-                        f"Section score: {quotation_section_confidence:.2%}, "
-                        f"Keyword score: {quotation_keyword_confidence:.2%}. "
-                        f"Bank details detected: {bank_details_detected}. "
-                        f"Found {len(matched)} relevant sections and {len(quotation_keyword_matches)} keywords.")
+            elif quotation_combined_score > enquiry_combined_score + significant_difference and quotation_combined_score > min_confidence_threshold:
+                doc_type = DocumentType.QUOTATION
+                confidence = quotation_combined_score
+                matched = quotation_section_matches
+                missing = [s for s in self.quotation_sections if s not in quotation_section_matches]
+                reasoning = (f"Classified as Quotation with {confidence:.2%} confidence. "
+                            f"Section score: {quotation_section_confidence:.2%}, "
+                            f"Keyword score: {quotation_keyword_confidence:.2%}. "
+                            f"Bank details detected: {bank_details_detected}. "
+                            f"Found {len(matched)} relevant sections and {len(quotation_keyword_matches)} keywords.")
 
-        else:
-            doc_type = DocumentType.UNKNOWN
-            confidence = max(enquiry_combined_score, quotation_combined_score)
-            matched = enquiry_section_matches if enquiry_combined_score > quotation_combined_score else quotation_section_matches
-            missing = []
-            reasoning = (f"Could not classify with confidence. "
-                        f"Enquiry score: {enquiry_combined_score:.2%}, "
-                        f"Quotation score: {quotation_combined_score:.2%}. "
-                        f"Bank details detected: {bank_details_detected}. "
-                        f"Difference too small or scores too low. Requires manual review.")
+            else:
+                doc_type = DocumentType.UNKNOWN
+                confidence = max(enquiry_combined_score, quotation_combined_score)
+                matched = enquiry_section_matches if enquiry_combined_score > quotation_combined_score else quotation_section_matches
+                missing = []
+                reasoning = (f"Could not classify with confidence. "
+                            f"Enquiry score: {enquiry_combined_score:.2%}, "
+                            f"Quotation score: {quotation_combined_score:.2%}. "
+                            f"Bank details detected: {bank_details_detected}. "
+                            f"Difference too small or scores too low. Requires manual review.")
 
-        return ClassificationResult(
-            document_type=doc_type,
-            confidence_score=confidence,
-            found_sections=matched,
-            missing_sections=missing,
-            reasoning=reasoning,
-            keyword_matches=keyword_matches,
-            bank_details_found=bank_details_detected
-        )
+            return ClassificationResult(
+                document_type=doc_type,
+                confidence_score=confidence,
+                found_sections=matched,
+                missing_sections=missing,
+                reasoning=reasoning,
+                keyword_matches=keyword_matches,
+                bank_details_found=bank_details_detected
+            )
+
+        except Exception as e:
+            logger.error("Error classifying document: %s", str(e))
+            return "UNRELATED"
 
 # Initialize the enhanced classifier
 classifier = DocumentClassifier()
@@ -496,6 +503,7 @@ def classify_document_clean(file_path: str) -> str:
     Clean function to classify a document and return only essential information
     """
     try:
+        logger.info("Classifying document")
         # Handle directory path by looking for output_all_pages.md
         if os.path.isdir(file_path):
             file_path = os.path.join(file_path, 'output_all_pages.md')
@@ -516,6 +524,7 @@ def classify_document_clean(file_path: str) -> str:
         return f"{result.document_type.value}, {result.confidence_score:.2%}"
 
     except Exception as e:
+        logger.error("Error processing file: %s", str(e))
         return f"Error processing file: {str(e)}"
 
 # Example usage with clean output

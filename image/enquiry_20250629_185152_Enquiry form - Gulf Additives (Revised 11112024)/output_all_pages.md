@@ -1,15 +1,17 @@
 # PDF Extraction Summary
-                                **File:** /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/download_email/enquiry_20250624_171147_Enquiry_form.pdf
+                                **File:** /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/download_email/enquiry_20250629_185152_Enquiry form - Gulf Additives (Revised 11112024).pdf
                                 **Total Pages:** 8
                                 **Successfully Processed:** 8
                                 **Failed:** 0
-                                **Extraction Date:** 2025-06-30 06:23:22
+                                **Extraction Date:** 2025-06-30 07:33:09
                                 ---
                         ## page_1.png
 
 ```markdown
-# SEPL/SYS-TSE-EF/F-01 Rev: No: 00 / 11-08-2020
 # STEER
+
+SEPL/SYS-TSE-EF/F-01 Rev:No: 00 / 11-08-2020
+
 Co-rotating Twin screw extruder Enquiry Form
 
 # Please tell us about your company details
@@ -28,14 +30,14 @@ Co-rotating Twin screw extruder Enquiry Form
 
 **Ambient temperature at site:** Min 25 deg C Max 45 deg C
 **Altitude:** Meters above sea level
-**Relative humidity at site:** Min 25 % Max 55 %
+**Relative humidity at site:** Min 25% Max 55%
 **Power voltage/Hz:** 440 Voltage 50 Hz
-**3 Phase, 1 neutral:** Yes No
-**Cooling water available:** Yes No
-**Raw water available:** Yes No
-**Pneumatic air available:** Yes No
-**Place of machine installation:** Hazardous Non hazardous
-**Please specify IP protection required:** Standard IP55 Special IP
+**3 Phase, 1 neutral:** Yes
+**Cooling water available:** Yes
+**Raw water available:** Yes
+**Pneumatic air available:** Yes
+**Place of machine installation:** Non hazardous
+**Please specify IP protection required:** Standard IP55
 unselect[] Main Motor
 unselect[] Lube oil pump
 unselect[] Small motors
@@ -57,7 +59,7 @@ STEER A NEW WORLD
 
 Co-rotating Twin screw extruder Enquiry Form
 
-## Scope of supply and work
+# Scope of supply and work
 
 unselect[] Only extruder
 select[X] Any addition please select below,
@@ -81,6 +83,7 @@ unselect[] Cable supply, laying and termination
 unselect[] Upstream and downstream equipment supervision work
 unselect[] Utility piping supply and connection
 unselect[] De-dusting system and ducting work
+
 Note: - Manpower and material handling resources need to be arranged by customer.
 
 INDIA | CHINA| JAPAN| USA | EUROPE | SOUTH KOREA
@@ -97,7 +100,7 @@ Co-rotating Twin screw extruder Enquiry Form
 
 # Application details
 
-**Basic recipe details:** :
+**Basic recipe details: :**
 
 **End Application details:**
 - select[X] Industrial application
@@ -162,7 +165,7 @@ STEER A NEW WORLD
 ```markdown
 # STEER
 
-## Co-rotating Twin screw extruder Enquiry Form
+**Co-rotating Twin screw extruder Enquiry Form**
 
 # Raw material details
 
@@ -204,25 +207,22 @@ STEER A NEW WORLD
 
 Co-rotating Twin screw extruder Enquiry Form
 
-# Raw material details
+## Raw material details
 
-## Formulation-3
+### Formulation-3
 
-| SI | Raw material Name | Bulk density gram/cc | Physical form(Flakes/granules/powder/liquid) | Size in mm/micron/ Cps | Feed rate % |
-|---|---|---|---|---|---|
-| 1 | LLDPE |  | Powder |  | 40.4 |
-| 2 | CA5 |  | Powder |  | 0.5 |
-| 3 | A/O |  | Powder |  | 0.1 |
-| 4 | CaCO3 |  | Powder |  | 40 |
-| 5 | PY17 (Yellow Pigment) |  | Powder |  | 7 |
-| 6 | PY13 (Yellow Pigment) |  | Powder |  | 7 |
-| 7 | Wax |  | Powder |  | 5 |
+| Sl | Raw material Name       | Bulk density gram/cc | Physical form(Flakes/granules/powder/liquid) | Size in mm/micron/ Cps | Feed rate % |
+|----|-------------------------|----------------------|---------------------------------------------|-------------------------|-------------|
+| 1  | LLDPE                   |                      | Powder                                      |                         | 40.4        |
+| 2  | CA5                     |                      | Powder                                      |                         | 0.5         |
+| 3  | A/O                     |                      | Powder                                      |                         | 0.1         |
+| 4  | CaCO3                   |                      | Powder                                      |                         | 40          |
+| 5  | PY17 (Yellow Pigment) |                      | Powder                                      |                         | 7           |
+| 6  | PY13 (Yellow Pigment) |                      | Powder                                      |                         | 7           |
+| 7  | Wax                     |                      | Powder                                      |                         | 5           |
 
-**Raw material storage:** select[X] Inside warehouse
-unselect[] Bulk silo
-
-**Type of screening required:** unselect[] Magnetic separator
-unselect[] Metal separator
+**Raw material storage:** unselect[] Bulk silo select[X] Inside warehouse
+**Type of screening required:** unselect[] Magnetic separator unselect[] Metal separator
 
 INDIA | CHINA| JAPAN| USA | EUROPE | SOUTH KOREA
 
@@ -249,48 +249,47 @@ STEER A NEW WORLD
 
 **Expected throughput:** 400 kg/hr
 
-**Screw diameter:** mm
+**Screw diameter:** _____ mm
 
-**Screw speed:** rpm
+**Screw speed:** _____ rpm
 
-**Motor:** kW
+**Motor:** _____ kW
 
 **Motor type:** unselect[] Water cooled select[X] Air cooled unselect[] Synchronous servo motor
 
-**Nominal torque:** Nm/shaft
+**Nominal torque:** _____ Nm/shaft
 
-**Specific torque:** Nm/cm3
+**Specific torque:** _____ Nm/cm3
 
 **Gearbox make preferred:** unselect[] PIV unselect[] Zambello unselect[] Eisenbeiss unselect[] STEER
 
 **Note:** - Gearbox cooling by default on right side look from die end
-
 **Note:** - STEER gearbox available up to 60 mm extruders
 
-**No of side feeder required: -**
-select[X] 1 unselect[] 2 unselect[] 3 if more please specify _______
+**No of side feeder required:** -
+select[X] 1 unselect[] 2 unselect[] 3 if more please specify _____
 
-**Preferred L/D: -**
+**Preferred L/D:** - _____
 
-**Type of barrels: -** unselect[] 4D unselect[] 6D
+**Type of barrels:** - unselect[] 4D unselect[] 6D
 
-**Maximum barrel temperature: -** 300 deg C
+**Maximum barrel temperature:** - 300 deg C
 
 **Barrel, Element and Shaft MOC preference:** select[X] STEER unselect[] Customer specified
 
 If customer specified please provide below details,
 
-**Processing zone details,**
+## Processing zone details,
 
-| Barrel Length*          |      |      |      |      |      |      |      |      |      |      |
-|-------------------------|------|------|------|------|------|------|------|------|------|------|
-| Barrel Type**           |      |      |      |      |      |      |      |      |      |      |
-| Barrel preffered MOC*** |      |      |      |      |      |      |      |      |      |      |
-| Element Preffered MOC***|      |      |      |      |      |      |      |      |      |      |
-| Shaft MOC***            |      |      |      |      |      |      |      |      |      |      |
+| Barrel Length*          |     |     |     |     |     |     |     |     |
+| :----------------------- | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| Barrel Type**            |     |     |     |     |     |     |     |     |
+| Barrel preffered MOC*** |     |     |     |     |     |     |     |     |
+| Element Preffered MOC*** |     |     |     |     |     |     |     |     |
+| Shaft MOC***             |     |     |     |     |     |     |     |     |
 
 * 4D or 6D length
-** 1-Intake, 2-Closed, 3-Side feed, 4-ATM Vent, 5-Vaccum Vent, 6-Liquid injection
+** 1-Intake, 2-Closed, 3-Side feed, 4-ATM Vent, 5-Vaccum Vent , 6-Liquid injection
 *** Customer to specify required MOC
 
 INDIA | CHINA| JAPAN | USA | EUROPE | SOUTH KOREA
@@ -304,39 +303,42 @@ STEER A NEW WORLD
 
 ```markdown
 # STEER
-Co-rotating Twin screw extruder Enquiry Form
+
+## Co-rotating Twin screw extruder Enquiry Form
 
 # Extruder details
 
-Drive and PLC panel cooling type:-
-unselect[] Fan cooled
-unselect[] Air Condition
+- **Drive and PLC panel cooling type:-**
+  - unselect[] Fan cooled
+  - unselect[] Air Condition
 
-Cable entry to Drive and PLC panel:-
-select[X] Top
-unselect[] Bottom
+- **Cable entry to Drive and PLC panel:-**
+  - select[X] Top
+  - unselect[] Bottom
 
-Cable exit from Drive and PLC panel:-
-select[X] Top
-unselect[] Bottom
+- **Cable exit from Drive and PLC panel:-**
+  - select[X] Top
+  - unselect[] Bottom
 
-Note: - Cable exit will be from the side of the panel for PLC panel supplied with plug and play type cables
+- **Note:** - Cable exit will be from the side of the panel for PLC panel supplied with plug and
+play type cables
 
-**Electrical STD preference if any please specify:**
+- **Electrical STD preference if any please specify:**
 
-Preferred operating interface: -
-unselect[] Basic push button type
-select[X] HMI type
-unselect[] Industrial PC type
+- **Preferred operating interface: -**
+  - unselect[] Basic push button type
+  - select[X] HMI type
+  - unselect[] Industrial PC type
 
-**Operating side when viewed from Die end:** Right side
-**TCU position when viewed from Die end:** Left side
-**Vacuum system when viewed from Die end:** Left side
-**Side feeder when viewed from Die end:** Left side
+- **Operating side when viewed from Die end:** Right side
+- **TCU position when viewed from Die end:** Left side
+- **Vacuum system when viewed from Die end:** Left side
+- **Side feeder when viewed from Die end:** Left side
 
-**Please specify/attach additional information in case of customization required :**
+- **Please specify/attach additional information in case of customization required :**
 
 INDIA | CHINA| JAPAN| USA | EUROPE | SOUTH KOREA
+
 STEER A NEW WORLD
 ```
 
@@ -369,16 +371,16 @@ Co-rotating Twin screw extruder Enquiry Form
 
 **Color coding:**
 - select[X] Standard, Machine base, motor and Panels: RAL7035, Gearbox and feeders: RAL5009, All types of Gaurds: RAL1003,
-- unselect[] Non Standard, please specify details _____________________________________
+- unselect[] Non Standard, please specify details __________________________________________
 
 **Extruder Manuals:**
 - unselect[] Standard English
-- unselect[] Other language, please specify _____________________________________
+- unselect[] Other language, please specify __________________________________________
 
 # Project details
 
 **Expected finalization time line:** _______ Weeks
-**Expected delivery time:** `Mar-25` _______ Weeks
+**Expected delivery time:** Mar-25 Weeks
 
 INDIA | CHINA| JAPAN| USA | EUROPE | SOUTH KOREA
 STEER A NEW WORLD

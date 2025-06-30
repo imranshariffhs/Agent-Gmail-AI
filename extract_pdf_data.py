@@ -9,6 +9,9 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.messages import HumanMessage
 import hashlib
 from datetime import datetime
+from logger import logger
+import pandas as pd
+import openpyxl  # Explicitly import openpyxl
 
 # ---------- 1. Configuration ----------
 
@@ -49,32 +52,34 @@ def pdf_to_image(upload_path):
     - String: Path to the folder containing the images and markdown file
     """
     try:
+        logger.info("Converting PDF to images: %s", upload_path)
+        
         # Debug: Print current working directory
         cwd = os.getcwd()
-        print(f"Current working directory: {cwd}")
+        logger.info("Current working directory: %s", cwd)
         
         # Normalize paths
         upload_path = os.path.abspath(os.path.normpath(upload_path))
-        print(f"Normalized upload path: {upload_path}")
+        logger.info("Normalized upload path: %s", upload_path)
         
         # Get the base filename without extension
         filename = os.path.splitext(os.path.basename(upload_path))[0]
-        print(f"Base filename: {filename}")
+        logger.info("Base filename: %s", filename)
         
         # Create output folder path
         output_folder = os.path.join('image', filename)
         abs_output_folder = os.path.abspath(output_folder)
-        print(f"Creating output folder at: {abs_output_folder}")
+        logger.info("Creating output folder at: %s", abs_output_folder)
         
         # Create output folder
         os.makedirs(abs_output_folder, exist_ok=True)
-        print(f"Created output folder at: {abs_output_folder}")
+        logger.info("Created output folder at: %s", abs_output_folder)
 
-        print(f"📄 Converting PDF to images: {upload_path}")
+        logger.info("📄 Converting PDF to images: %s", upload_path)
         
         # Convert PDF to images
         images = convert_from_path(upload_path, dpi=300)
-        print(f"Converted {len(images)} pages")
+        logger.info("Converted %d pages", len(images))
         
         if not images:
             raise ValueError("❌ No pages found in PDF")
@@ -83,24 +88,24 @@ def pdf_to_image(upload_path):
         for i, img in enumerate(images):
             output_path = os.path.join(abs_output_folder, f'page_{i + 1}.png')
             img.save(output_path, 'PNG')
-            print(f"✅ Saved page {i+1} to: {output_path}")
+            logger.info("✅ Saved page %d to: %s", i+1, output_path)
 
         # Create markdown file
         output_md_path = os.path.join(abs_output_folder, "output_all_pages.md")
-        print(f"Creating markdown file at: {output_md_path}")
+        logger.info("Creating markdown file at: %s", output_md_path)
         
         with open(output_md_path, "w", encoding="utf-8") as f:
             f.write(f"# PDF Processing Results\n\nProcessing {filename}\n\n")
             
-        print(f"✅ Created markdown file at: {output_md_path}")
-        print(f"✅ All files saved in folder: {abs_output_folder}")
+        logger.info("✅ Created markdown file at: %s", output_md_path)
+        logger.info("✅ All files saved in folder: %s", abs_output_folder)
 
         # Return absolute folder path
-        print(f"Returning folder path: {abs_output_folder}")
+        logger.info("Returning folder path: %s", abs_output_folder)
         return abs_output_folder
 
     except Exception as e:
-        print(f"❌ Error during conversion: {str(e)}")
+        logger.error("Error during conversion: %s", str(e))
         raise
 
 # ---------- 3. Enhanced Gemini Extraction with Retry Logic ----------
@@ -120,7 +125,7 @@ def load_image_bytes(image_path):
                 raise ValueError(f"No data read from image: {image_path}")
             return base64.b64encode(image_data).decode("utf-8")
     except Exception as e:
-        print(f"❌ Error loading image {image_path}: {str(e)}")
+        logger.error("Error loading image %s: %s", image_path, str(e))
         raise
 
 def extract_image_to_markdown(image_path, max_retries=3):
@@ -170,7 +175,7 @@ def extract_image_to_markdown(image_path, max_retries=3):
     
     for attempt in range(max_retries):
         try:
-            print(f"🔄 Attempt {attempt + 1}/{max_retries} for {os.path.basename(image_path)}")
+            logger.info("🔄 Attempt %d/%d for %s", attempt + 1, max_retries, os.path.basename(image_path))
             
             image_base64 = load_image_bytes(image_path)
             
@@ -191,17 +196,17 @@ def extract_image_to_markdown(image_path, max_retries=3):
             if "unable to" in content.lower() or "cannot extract" in content.lower():
                 raise ValueError("Extraction failed - model reported inability to process")
             
-            print(f"✅ Successfully extracted {len(content)} characters")
+            logger.info("✅ Successfully extracted %d characters", len(content))
             return content
             
         except Exception as e:
-            print(f"⚠️ Attempt {attempt + 1} failed: {str(e)}")
+            logger.warning("⚠️ Attempt %d failed: %s", attempt + 1, str(e))
             if attempt < max_retries - 1:
                 wait_time = (attempt + 1) * 2  # Progressive backoff
-                print(f"⏳ Waiting {wait_time} seconds before retry...")
+                logger.info("⏳ Waiting %d seconds before retry...", wait_time)
                 time.sleep(wait_time)
             else:
-                print(f"❌ All attempts failed for {image_path}")
+                logger.error("❌ All attempts failed for %s", image_path)
                 # Return a placeholder to prevent complete data loss
                 return f"# Error Processing {os.path.basename(image_path)}\n\n*Failed to extract content after {max_retries} attempts.*\n\n**Error:** {str(e)}\n"
 
@@ -247,8 +252,8 @@ def save_progress(all_markdown, output_file):
         with open(metadata_file, 'w') as f:
             json.dump(metadata, f, indent=2)
             
-        print(f"✅ Progress saved successfully to {output_file}")
-        print(f"📊 Metadata saved to {metadata_file}")
+        logger.info("✅ Progress saved successfully to %s", output_file)
+        logger.info("📊 Metadata saved to %s", metadata_file)
         
         return True, metadata
         
@@ -258,8 +263,235 @@ def save_progress(all_markdown, output_file):
             'error': str(e),
             'status': 'failed'
         }
-        print(f"❌ Error saving progress: {str(e)}")
+        logger.error("❌ Error saving progress: %s", str(e))
         return False, error_metadata
+
+def convert_wsl_to_windows_path(wsl_path):
+    """Convert WSL path to Windows path"""
+    if wsl_path.startswith('/mnt/'):
+        # Remove /mnt/ and get the drive letter
+        path_parts = wsl_path.split('/')
+        drive_letter = path_parts[2].upper()
+        # Reconstruct the path
+        windows_path = drive_letter + ':\\' + '\\'.join(path_parts[3:])
+        return windows_path
+    return wsl_path
+
+def normalize_filename(filename):
+    """Normalize filename by removing date prefix and cleaning up the name"""
+    try:
+        # Remove file extension
+        filename = os.path.splitext(filename)[0]
+        
+        # Split by underscore
+        parts = filename.split('_')
+        
+        # If it follows our naming pattern (enquiry_YYYYMMDD_HHMMSS_actualname)
+        if len(parts) >= 4 and parts[1].isdigit() and parts[2].isdigit():
+            # Join all parts after the date/time
+            base_name = '_'.join(parts[3:])
+        else:
+            # If it doesn't follow the pattern, use the whole name
+            base_name = filename
+            
+        # Clean up the name
+        base_name = base_name.lower().strip()
+        
+        return base_name
+    except Exception as e:
+        logger.error("Error normalizing filename %s: %s", filename, str(e))
+        return filename
+
+def find_matching_row(df, update_filename, update_path):
+    """Find the matching row in DataFrame"""
+    try:
+        normalized_update = normalize_filename(update_filename)
+        logger.info("Looking for normalized name: '%s'", normalized_update)
+        logger.info("Original filename: '%s'", update_filename)
+        
+        for idx, row in df.iterrows():
+            if pd.notna(row['file_paths']):
+                file_paths = [p.strip() for p in str(row['file_paths']).split(',')]
+                
+                logger.debug("Checking row %d with %d files", idx, len(file_paths))
+                for i, path in enumerate(file_paths):
+                    current_filename = os.path.basename(path)
+                    normalized_current = normalize_filename(current_filename)
+                    
+                    logger.debug("Comparing:")
+                    logger.debug("  Current file: '%s'", current_filename)
+                    logger.debug("  Normalized current: '%s'", normalized_current)
+                    logger.debug("  Target file: '%s'", update_filename)
+                    logger.debug("  Normalized target: '%s'", normalized_update)
+                    
+                    # Try different matching strategies
+                    if (normalized_current == normalized_update or  # Exact normalized match
+                        current_filename.lower() == update_filename.lower() or  # Exact filename match
+                        normalized_current in normalized_update or  # Partial match
+                        normalized_update in normalized_current):  # Reverse partial match
+                        
+                        logger.info("✅ Found match in row %d, position %d", idx, i)
+                        return idx, i, file_paths
+                        
+        logger.warning("❌ No match found for file: %s", update_filename)
+        logger.warning("Available files in Excel:")
+        for idx, row in df.iterrows():
+            if pd.notna(row['file_paths']):
+                paths = str(row['file_paths']).split(',')
+                for path in paths:
+                    logger.warning("  - '%s' (normalized: '%s')", 
+                                 os.path.basename(path.strip()),
+                                 normalize_filename(os.path.basename(path.strip())))
+        return None, None, None
+        
+    except Exception as e:
+        logger.error("Error in find_matching_row: %s", str(e))
+        return None, None, None
+
+def update_excel_log(output_file):
+    """Update Excel log with processing status"""
+    try:
+        # Convert and normalize the update path
+        update_row_index = output_file.split('/output_all_pages.md')[0] + '.pdf'
+        update_row_index = convert_wsl_to_windows_path(update_row_index)
+        update_row_index = os.path.normpath(update_row_index)
+        
+        file_resd_xlsx = "download_email/email_download_log.xlsx"
+        
+        if not os.path.exists(file_resd_xlsx):
+            logger.error("❌ Excel log file not found: %s", file_resd_xlsx)
+            return False
+            
+        try:
+            df = pd.read_excel(file_resd_xlsx, engine='openpyxl', keep_default_na=True)
+            logger.info("📊 Successfully read Excel file with %d rows", len(df))
+        except Exception as excel_read_error:
+            logger.error("❌ Error reading Excel file: %s", str(excel_read_error))
+            return False
+
+        update_filename = os.path.basename(update_row_index)
+        logger.info("Processing file: %s", update_filename)
+        
+        # Find matching row
+        idx, position, file_paths = find_matching_row(df, update_filename, update_row_index)
+        
+        if idx is not None and position is not None:
+            try:
+                # Get current values
+                file_paths = [p.strip() for p in str(df.at[idx, 'file_paths']).split(',')]
+                total_files = len(file_paths)
+                
+                # Initialize or get current res_status
+                current_res_status = str(df.at[idx, 'res_status']) if pd.notna(df.at[idx, 'res_status']) else ''
+                res_status = current_res_status.split(',') if current_res_status else []
+                res_status = [s.strip().lower() for s in res_status]
+                
+                # Initialize or get current count_download
+                current_count = str(df.at[idx, 'count_download']) if pd.notna(df.at[idx, 'count_download']) else ''
+                count_list = current_count.split(',') if current_count else []
+                count_list = [c.strip() for c in count_list]
+                
+                # Ensure lists have correct length
+                while len(res_status) < total_files:
+                    res_status.append('pending')
+                while len(count_list) < total_files:
+                    count_list.append('0')
+                
+                logger.info("Before update:")
+                logger.info(f"Status: {res_status}")
+                logger.info(f"Counts: {count_list}")
+                
+                # Create new status and count lists
+                new_status = ['pending'] * total_files
+                new_count = ['0'] * total_files
+                
+                # First, mark our current position
+                new_status[position] = 'completed'
+                new_count[position] = '1'
+                
+                # For each completed status, ensure exactly one pending status follows it
+                completed_positions = []
+                pending_positions = []
+                
+                # First, collect all positions
+                for i in range(total_files):
+                    if i == position or (i < len(res_status) and res_status[i].lower() == 'completed'):
+                        completed_positions.append(i)
+                    else:
+                        pending_positions.append(i)
+                
+                # Ensure we have equal numbers by adjusting if necessary
+                while len(completed_positions) > len(pending_positions):
+                    if completed_positions[-1] != position:  # Don't remove our current position
+                        completed_positions.pop()
+                    elif len(completed_positions) > 1:  # If we must keep current position, remove another
+                        completed_positions.pop(-2)
+                    else:
+                        break  # Can't reduce further
+                
+                while len(completed_positions) < len(pending_positions):
+                    pending_positions.pop()
+                
+                # Apply the balanced statuses
+                for pos in completed_positions:
+                    new_status[pos] = 'completed'
+                    new_count[pos] = '1'
+                
+                for pos in pending_positions:
+                    new_status[pos] = 'pending'
+                    new_count[pos] = '0'
+                
+                # Update file paths and hashes
+                file_paths[position] = update_row_index
+                file_hashes = str(df.at[idx, 'file_hash']).split(',') if pd.notna(df.at[idx, 'file_hash']) else [''] * total_files
+                file_hashes = [h.strip() for h in file_hashes]
+                while len(file_hashes) < total_files:
+                    file_hashes.append('')
+                file_hashes[position] = update_row_index
+                
+                # Save all updates back to DataFrame
+                df.at[idx, 'file_paths'] = ','.join(file_paths)
+                df.at[idx, 'res_status'] = ','.join(new_status)
+                df.at[idx, 'count_download'] = ','.join(new_count)
+                df.at[idx, 'file_hash'] = ','.join(file_hashes)
+                
+                # Verify final state
+                final_completed = sum(1 for s in new_status if s == 'completed')
+                final_pending = sum(1 for s in new_status if s == 'pending')
+                final_count_1 = sum(1 for c in new_count if c == '1')
+                final_count_0 = sum(1 for c in new_count if c == '0')
+                
+                logger.info("\nFinal state:")
+                logger.info(f"Completed positions: {completed_positions}")
+                logger.info(f"Pending positions: {pending_positions}")
+                logger.info(f"Status - Completed: {final_completed}, Pending: {final_pending}")
+                logger.info(f"Counts - Ones: {final_count_1}, Zeros: {final_count_0}")
+                logger.info(f"Status list: {new_status}")
+                logger.info(f"Count list: {new_count}")
+                
+                if final_completed == final_count_1 and final_pending == final_count_0:
+                    logger.info("✅ Perfect balance achieved")
+                else:
+                    logger.error("❌ Balance check failed!")
+                    logger.error(f"Completed count mismatch: Status={final_completed}, Count={final_count_1}")
+                    logger.error(f"Pending count mismatch: Status={final_pending}, Count={final_count_0}")
+                
+                # Save Excel file
+                with pd.ExcelWriter(file_resd_xlsx, engine='openpyxl', mode='w') as writer:
+                    df.to_excel(writer, index=False)
+                logger.info("💾 Successfully saved updates to Excel file")
+                return True
+                
+            except Exception as update_error:
+                logger.error("❌ Error updating values: %s", str(update_error))
+                return False
+        else:
+            logger.warning("⚠️ No matching file found in Excel log for: %s", update_row_index)
+            return False
+            
+    except Exception as e:
+        logger.error("❌ Error updating Excel log: %s", str(e))
+        return False
 
 def process_pdf_image(pdf_path):
     """Process PDF with comprehensive error handling and data preservation"""
@@ -271,55 +503,56 @@ def process_pdf_image(pdf_path):
     
     # Check API key
     if not os.environ.get("GOOGLE_API_KEY"):
-        print("❌ GOOGLE_API_KEY not set in environment variables")
+        logger.error("❌ GOOGLE_API_KEY not set in environment variables")
         return None
     
     try:
         image_folder = pdf_to_image(pdf_path)
         abs_image_folder = os.path.abspath(image_folder)
-        print(f"Working with image folder: {abs_image_folder}")
+        logger.info("Working with image folder: %s", abs_image_folder)
     except Exception as e:
-        print(f"❌ Failed to convert PDF to images: {str(e)}")
+        logger.error("❌ Failed to convert PDF to images: %s", str(e))
         return None
     
     # Get all image files and validate
     if not os.path.exists(abs_image_folder):
-        print(f"❌ Image folder not found: {abs_image_folder}")
+        logger.error("❌ Image folder not found: %s", abs_image_folder)
         return None
 
     image_files = [f for f in sorted(os.listdir(abs_image_folder)) 
                    if f.endswith(".png") and f.startswith("page_")]
     
     if not image_files:
-        print(f"❌ No page images found in {abs_image_folder}")
+        logger.error("❌ No page images found in %s", abs_image_folder)
         return None
     
-    print(f"📋 Found {len(image_files)} pages to process")
+    logger.info("📋 Found %d pages to process", len(image_files))
     
     # Set up output paths
     output_file = os.path.join(abs_image_folder, "output_all_pages.md")
     temp_output_file = os.path.join(abs_image_folder, "temp_output_all_pages.md")
     
-    print(f"Output will be saved to: {output_file}")
+    logger.info("Output will be saved to: %s", output_file)
     processed_count = 0
     failed_count = 0
     all_markdown = []
     
     # Process each page
     for i, filename in enumerate(image_files, 1):
+        
         image_path = os.path.join(abs_image_folder, filename)
         
-        print(f"\n🔍 Processing {i}/{len(image_files)}: {filename}")
+        logger.info("\n🔍 Processing %d/%d: %s", i, len(image_files), filename)
         
         try:
             # Validate image file exists and has content
             if not os.path.exists(image_path):
-                print(f"⚠️ Image file missing: {filename}")
+                logger.warning("⚠️ Image file missing: %s", filename)
                 failed_count += 1
                 continue
                 
             if os.path.getsize(image_path) == 0:
-                print(f"⚠️ Image file is empty: {filename}")
+                logger.warning("⚠️ Image file is empty: %s", filename)
                 failed_count += 1
                 continue
             
@@ -328,27 +561,28 @@ def process_pdf_image(pdf_path):
             
             # Validate extracted content
             if not markdown_text or len(markdown_text.strip()) < 5:
-                print(f"⚠️ Warning: Very little content extracted from {filename}")
+                logger.warning("⚠️ Warning: Very little content extracted from %s", filename)
             
             # Add to results
             page_content = f"## {filename}\n\n{markdown_text}\n\n---\n\n"
             all_markdown.append(page_content)
             processed_count += 1
             
-            print(f"✅ Completed: {filename} ({len(markdown_text)} characters)")
+            logger.info("✅ Completed: %s (%d characters)", filename, len(markdown_text))
             
             # Save progress every 3 pages to prevent data loss
             if i % 3 == 0:
                 if save_progress(all_markdown, temp_output_file):
-                    print(f"💾 Progress saved (processed {processed_count} pages)")
-                
+                    logger.info("💾 Progress saved (processed %d pages)", processed_count)
+
+                    
         except KeyboardInterrupt:
-            print(f"\n⚠️ Process interrupted by user")
-            print(f"💾 Saving progress for {processed_count} completed pages...")
+            logger.warning("\n⚠️ Process interrupted by user")
+            logger.warning("💾 Saving progress for %d completed pages...", processed_count)
             break
             
         except Exception as e:
-            print(f"❌ Error processing {filename}: {str(e)}")
+            logger.error("❌ Error processing %s: %s", filename, str(e))
             failed_count += 1
             
             # Add error placeholder to maintain page order
@@ -372,9 +606,13 @@ def process_pdf_image(pdf_path):
                 f.write(summary)
                 f.writelines(all_markdown)
                 
-            print(f"\n✅ Final output saved to '{output_file}'")
-            print(f"📊 Summary: {processed_count} successful, {failed_count} failed out of {len(image_files)} total pages")
+            logger.info("\n✅ Final output saved to '%s'", output_file)
+            logger.info("📊 Summary: %d successful, %d failed out of %d total pages", processed_count, failed_count, len(image_files))
             
+            # Update Excel log with new function
+            if not update_excel_log(output_file):
+                logger.warning("⚠️ Failed to update Excel log, but PDF processing completed successfully")
+
             # Clean up temp file
             if os.path.exists(temp_output_file):
                 os.remove(temp_output_file)
@@ -383,10 +621,10 @@ def process_pdf_image(pdf_path):
             return abs_image_folder
             
         except Exception as e:
-            print(f"❌ Error saving final output: {str(e)}")
+            logger.error("❌ Error saving final output: %s", str(e))
             return None
     else:
-        print("❌ No content was successfully extracted")
+        logger.error("❌ No content was successfully extracted")
         return None
 
 # ---------- 6. Main Execution ----------

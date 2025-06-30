@@ -1,4 +1,5 @@
 from langchain_google_genai import GoogleGenerativeAI
+from logger import logger
 
 import os
 from dotenv import load_dotenv
@@ -113,3 +114,12 @@ def extract_json_from_response(response_text):
         logger.error(f"Error in extract_json_from_response: {str(e)}")
         logger.error(f"Response text: {response_text}")
         return {}
+
+def process_pdf(file_path):
+    try:
+        logger.info("Processing PDF: %s", file_path)
+        # ... rest of the code with print statements replaced with logger calls ...
+        
+    except Exception as e:
+        logger.error("Error processing PDF: %s", str(e))
+        return None

@@ -1,0 +1,754 @@
+2025-06-30 06:20:23 | INFO     | step_process.py:284 | Starting step process
+2025-06-30 06:20:23 | INFO     | step_process.py:189 | Processing: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/download_email/enquiry_20250624_171144_TSE enquiry (Ningbo Licheng, Mega50).pdf
+2025-06-30 06:20:23 | INFO     | extract_pdf_data.py:55 | Converting PDF to images: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/download_email/enquiry_20250624_171144_TSE enquiry (Ningbo Licheng, Mega50).pdf
+2025-06-30 06:20:23 | INFO     | extract_pdf_data.py:59 | Current working directory: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI
+2025-06-30 06:20:23 | INFO     | extract_pdf_data.py:63 | Normalized upload path: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/download_email/enquiry_20250624_171144_TSE enquiry (Ningbo Licheng, Mega50).pdf
+2025-06-30 06:20:23 | INFO     | extract_pdf_data.py:67 | Base filename: enquiry_20250624_171144_TSE enquiry (Ningbo Licheng, Mega50)
+2025-06-30 06:20:23 | INFO     | extract_pdf_data.py:72 | Creating output folder at: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171144_TSE enquiry (Ningbo Licheng, Mega50)
+2025-06-30 06:20:23 | INFO     | extract_pdf_data.py:76 | Created output folder at: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171144_TSE enquiry (Ningbo Licheng, Mega50)
+2025-06-30 06:20:23 | INFO     | extract_pdf_data.py:78 | 📄 Converting PDF to images: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/download_email/enquiry_20250624_171144_TSE enquiry (Ningbo Licheng, Mega50).pdf
+2025-06-30 06:20:27 | INFO     | extract_pdf_data.py:82 | Converted 8 pages
+2025-06-30 06:20:27 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 1 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171144_TSE enquiry (Ningbo Licheng, Mega50)/page_1.png
+2025-06-30 06:20:27 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 2 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171144_TSE enquiry (Ningbo Licheng, Mega50)/page_2.png
+2025-06-30 06:20:27 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 3 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171144_TSE enquiry (Ningbo Licheng, Mega50)/page_3.png
+2025-06-30 06:20:28 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 4 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171144_TSE enquiry (Ningbo Licheng, Mega50)/page_4.png
+2025-06-30 06:20:28 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 5 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171144_TSE enquiry (Ningbo Licheng, Mega50)/page_5.png
+2025-06-30 06:20:28 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 6 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171144_TSE enquiry (Ningbo Licheng, Mega50)/page_6.png
+2025-06-30 06:20:28 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 7 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171144_TSE enquiry (Ningbo Licheng, Mega50)/page_7.png
+2025-06-30 06:20:28 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 8 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171144_TSE enquiry (Ningbo Licheng, Mega50)/page_8.png
+2025-06-30 06:20:28 | INFO     | extract_pdf_data.py:95 | Creating markdown file at: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171144_TSE enquiry (Ningbo Licheng, Mega50)/output_all_pages.md
+2025-06-30 06:20:28 | INFO     | extract_pdf_data.py:100 | ✅ Created markdown file at: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171144_TSE enquiry (Ningbo Licheng, Mega50)/output_all_pages.md
+2025-06-30 06:20:28 | INFO     | extract_pdf_data.py:101 | ✅ All files saved in folder: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171144_TSE enquiry (Ningbo Licheng, Mega50)
+2025-06-30 06:20:28 | INFO     | extract_pdf_data.py:104 | Returning folder path: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171144_TSE enquiry (Ningbo Licheng, Mega50)
+2025-06-30 06:20:28 | INFO     | extract_pdf_data.py:512 | Working with image folder: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171144_TSE enquiry (Ningbo Licheng, Mega50)
+2025-06-30 06:20:28 | INFO     | extract_pdf_data.py:529 | 📋 Found 8 pages to process
+2025-06-30 06:20:28 | INFO     | extract_pdf_data.py:535 | Output will be saved to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171144_TSE enquiry (Ningbo Licheng, Mega50)/output_all_pages.md
+2025-06-30 06:20:28 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 1/8: page_1.png
+2025-06-30 06:20:28 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_1.png
+2025-06-30 06:20:35 | INFO     | extract_pdf_data.py:199 | ✅ Successfully extracted 1031 characters
+2025-06-30 06:20:35 | INFO     | extract_pdf_data.py:571 | ✅ Completed: page_1.png (1031 characters)
+2025-06-30 06:20:35 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 2/8: page_2.png
+2025-06-30 06:20:35 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_2.png
+2025-06-30 06:20:40 | INFO     | extract_pdf_data.py:199 | ✅ Successfully extracted 980 characters
+2025-06-30 06:20:40 | INFO     | extract_pdf_data.py:571 | ✅ Completed: page_2.png (980 characters)
+2025-06-30 06:20:40 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 3/8: page_3.png
+2025-06-30 06:20:40 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_3.png
+2025-06-30 06:20:45 | INFO     | extract_pdf_data.py:199 | ✅ Successfully extracted 1202 characters
+2025-06-30 06:20:45 | INFO     | extract_pdf_data.py:571 | ✅ Completed: page_3.png (1202 characters)
+2025-06-30 06:20:45 | INFO     | extract_pdf_data.py:255 | ✅ Progress saved successfully to /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171144_TSE enquiry (Ningbo Licheng, Mega50)/temp_output_all_pages.md
+2025-06-30 06:20:45 | INFO     | extract_pdf_data.py:256 | 📊 Metadata saved to /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171144_TSE enquiry (Ningbo Licheng, Mega50)/temp_output_all_pages.md.meta
+2025-06-30 06:20:45 | INFO     | extract_pdf_data.py:576 | 💾 Progress saved (processed 3 pages)
+2025-06-30 06:20:45 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 4/8: page_4.png
+2025-06-30 06:20:45 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_4.png
+2025-06-30 06:20:51 | INFO     | extract_pdf_data.py:199 | ✅ Successfully extracted 2790 characters
+2025-06-30 06:20:51 | INFO     | extract_pdf_data.py:571 | ✅ Completed: page_4.png (2790 characters)
+2025-06-30 06:20:51 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 5/8: page_5.png
+2025-06-30 06:20:51 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_5.png
+2025-06-30 06:20:56 | INFO     | extract_pdf_data.py:199 | ✅ Successfully extracted 685 characters
+2025-06-30 06:20:56 | INFO     | extract_pdf_data.py:571 | ✅ Completed: page_5.png (685 characters)
+2025-06-30 06:20:56 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 6/8: page_6.png
+2025-06-30 06:20:56 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_6.png
+2025-06-30 06:21:03 | INFO     | extract_pdf_data.py:199 | ✅ Successfully extracted 1948 characters
+2025-06-30 06:21:03 | INFO     | extract_pdf_data.py:571 | ✅ Completed: page_6.png (1948 characters)
+2025-06-30 06:21:03 | INFO     | extract_pdf_data.py:255 | ✅ Progress saved successfully to /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171144_TSE enquiry (Ningbo Licheng, Mega50)/temp_output_all_pages.md
+2025-06-30 06:21:03 | INFO     | extract_pdf_data.py:256 | 📊 Metadata saved to /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171144_TSE enquiry (Ningbo Licheng, Mega50)/temp_output_all_pages.md.meta
+2025-06-30 06:21:03 | INFO     | extract_pdf_data.py:576 | 💾 Progress saved (processed 6 pages)
+2025-06-30 06:21:03 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 7/8: page_7.png
+2025-06-30 06:21:03 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_7.png
+2025-06-30 06:21:08 | INFO     | extract_pdf_data.py:199 | ✅ Successfully extracted 1131 characters
+2025-06-30 06:21:08 | INFO     | extract_pdf_data.py:571 | ✅ Completed: page_7.png (1131 characters)
+2025-06-30 06:21:08 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 8/8: page_8.png
+2025-06-30 06:21:08 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_8.png
+2025-06-30 06:21:13 | INFO     | extract_pdf_data.py:199 | ✅ Successfully extracted 1003 characters
+2025-06-30 06:21:13 | INFO     | extract_pdf_data.py:571 | ✅ Completed: page_8.png (1003 characters)
+2025-06-30 06:21:13 | INFO     | extract_pdf_data.py:609 | 
+✅ Final output saved to '/mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171144_TSE enquiry (Ningbo Licheng, Mega50)/output_all_pages.md'
+2025-06-30 06:21:13 | INFO     | extract_pdf_data.py:610 | 📊 Summary: 8 successful, 0 failed out of 8 total pages
+2025-06-30 06:21:13 | ERROR    | extract_pdf_data.py:362 | ❌ Excel log file not found: download_email/email_download_log.xlsx
+2025-06-30 06:21:13 | WARNING  | extract_pdf_data.py:614 | ⚠️ Failed to update Excel log, but PDF processing completed successfully
+2025-06-30 06:21:13 | INFO     | classification_engine.py:506 | Classifying document
+2025-06-30 06:21:13 | INFO     | classification_engine.py:409 | Classifying document
+2025-06-30 06:21:13 | INFO     | step_process.py:93 | Using schema: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/schemas/extruder_enquiry_fields.json
+2025-06-30 06:21:13 | INFO     | step_process.py:106 | Successfully read 11511 characters from file
+2025-06-30 06:21:31 | INFO     | step_process.py:137 | Successfully extracted data from document
+2025-06-30 06:21:31 | INFO     | step_process.py:195 | Generated result path: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/result_json/enquiry_20250624_171144_TSE enquiry (Ningbo Licheng, Mega50).json
+2025-06-30 06:21:32 | INFO     | step_process.py:199 | JSON file generated successfully
+2025-06-30 06:21:32 | INFO     | step_process.py:210 | Successfully processed file: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/download_email/enquiry_20250624_171144_TSE enquiry (Ningbo Licheng, Mega50).pdf
+2025-06-30 06:21:32 | INFO     | step_process.py:211 | Result saved to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/result_json/enquiry_20250624_171144_TSE enquiry (Ningbo Licheng, Mega50).json
+2025-06-30 06:21:32 | INFO     | step_process.py:189 | Processing: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/download_email/enquiry_20250624_171145_Enquiry form - Gulf Additives (Revised 11112024).pdf
+2025-06-30 06:21:32 | INFO     | extract_pdf_data.py:55 | Converting PDF to images: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/download_email/enquiry_20250624_171145_Enquiry form - Gulf Additives (Revised 11112024).pdf
+2025-06-30 06:21:32 | INFO     | extract_pdf_data.py:59 | Current working directory: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI
+2025-06-30 06:21:32 | INFO     | extract_pdf_data.py:63 | Normalized upload path: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/download_email/enquiry_20250624_171145_Enquiry form - Gulf Additives (Revised 11112024).pdf
+2025-06-30 06:21:32 | INFO     | extract_pdf_data.py:67 | Base filename: enquiry_20250624_171145_Enquiry form - Gulf Additives (Revised 11112024)
+2025-06-30 06:21:32 | INFO     | extract_pdf_data.py:72 | Creating output folder at: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171145_Enquiry form - Gulf Additives (Revised 11112024)
+2025-06-30 06:21:32 | INFO     | extract_pdf_data.py:76 | Created output folder at: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171145_Enquiry form - Gulf Additives (Revised 11112024)
+2025-06-30 06:21:32 | INFO     | extract_pdf_data.py:78 | 📄 Converting PDF to images: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/download_email/enquiry_20250624_171145_Enquiry form - Gulf Additives (Revised 11112024).pdf
+2025-06-30 06:21:33 | INFO     | extract_pdf_data.py:82 | Converted 8 pages
+2025-06-30 06:21:34 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 1 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171145_Enquiry form - Gulf Additives (Revised 11112024)/page_1.png
+2025-06-30 06:21:34 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 2 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171145_Enquiry form - Gulf Additives (Revised 11112024)/page_2.png
+2025-06-30 06:21:34 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 3 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171145_Enquiry form - Gulf Additives (Revised 11112024)/page_3.png
+2025-06-30 06:21:34 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 4 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171145_Enquiry form - Gulf Additives (Revised 11112024)/page_4.png
+2025-06-30 06:21:34 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 5 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171145_Enquiry form - Gulf Additives (Revised 11112024)/page_5.png
+2025-06-30 06:21:35 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 6 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171145_Enquiry form - Gulf Additives (Revised 11112024)/page_6.png
+2025-06-30 06:21:35 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 7 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171145_Enquiry form - Gulf Additives (Revised 11112024)/page_7.png
+2025-06-30 06:21:35 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 8 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171145_Enquiry form - Gulf Additives (Revised 11112024)/page_8.png
+2025-06-30 06:21:35 | INFO     | extract_pdf_data.py:95 | Creating markdown file at: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171145_Enquiry form - Gulf Additives (Revised 11112024)/output_all_pages.md
+2025-06-30 06:21:35 | INFO     | extract_pdf_data.py:100 | ✅ Created markdown file at: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171145_Enquiry form - Gulf Additives (Revised 11112024)/output_all_pages.md
+2025-06-30 06:21:35 | INFO     | extract_pdf_data.py:101 | ✅ All files saved in folder: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171145_Enquiry form - Gulf Additives (Revised 11112024)
+2025-06-30 06:21:35 | INFO     | extract_pdf_data.py:104 | Returning folder path: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171145_Enquiry form - Gulf Additives (Revised 11112024)
+2025-06-30 06:21:35 | INFO     | extract_pdf_data.py:512 | Working with image folder: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171145_Enquiry form - Gulf Additives (Revised 11112024)
+2025-06-30 06:21:35 | INFO     | extract_pdf_data.py:529 | 📋 Found 8 pages to process
+2025-06-30 06:21:35 | INFO     | extract_pdf_data.py:535 | Output will be saved to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171145_Enquiry form - Gulf Additives (Revised 11112024)/output_all_pages.md
+2025-06-30 06:21:35 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 1/8: page_1.png
+2025-06-30 06:21:35 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_1.png
+2025-06-30 06:21:43 | INFO     | extract_pdf_data.py:199 | ✅ Successfully extracted 1098 characters
+2025-06-30 06:21:43 | INFO     | extract_pdf_data.py:571 | ✅ Completed: page_1.png (1098 characters)
+2025-06-30 06:21:43 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 2/8: page_2.png
+2025-06-30 06:21:43 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_2.png
+2025-06-30 06:21:47 | INFO     | extract_pdf_data.py:199 | ✅ Successfully extracted 976 characters
+2025-06-30 06:21:47 | INFO     | extract_pdf_data.py:571 | ✅ Completed: page_2.png (976 characters)
+2025-06-30 06:21:47 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 3/8: page_3.png
+2025-06-30 06:21:47 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_3.png
+2025-06-30 06:21:53 | INFO     | extract_pdf_data.py:199 | ✅ Successfully extracted 1293 characters
+2025-06-30 06:21:53 | INFO     | extract_pdf_data.py:571 | ✅ Completed: page_3.png (1293 characters)
+2025-06-30 06:21:53 | INFO     | extract_pdf_data.py:255 | ✅ Progress saved successfully to /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171145_Enquiry form - Gulf Additives (Revised 11112024)/temp_output_all_pages.md
+2025-06-30 06:21:53 | INFO     | extract_pdf_data.py:256 | 📊 Metadata saved to /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171145_Enquiry form - Gulf Additives (Revised 11112024)/temp_output_all_pages.md.meta
+2025-06-30 06:21:53 | INFO     | extract_pdf_data.py:576 | 💾 Progress saved (processed 3 pages)
+2025-06-30 06:21:53 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 4/8: page_4.png
+2025-06-30 06:21:53 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_4.png
+2025-06-30 06:21:59 | INFO     | extract_pdf_data.py:199 | ✅ Successfully extracted 1038 characters
+2025-06-30 06:21:59 | INFO     | extract_pdf_data.py:571 | ✅ Completed: page_4.png (1038 characters)
+2025-06-30 06:21:59 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 5/8: page_5.png
+2025-06-30 06:21:59 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_5.png
+2025-06-30 06:22:04 | INFO     | extract_pdf_data.py:199 | ✅ Successfully extracted 1629 characters
+2025-06-30 06:22:04 | INFO     | extract_pdf_data.py:571 | ✅ Completed: page_5.png (1629 characters)
+2025-06-30 06:22:04 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 6/8: page_6.png
+2025-06-30 06:22:04 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_6.png
+2025-06-30 06:22:11 | INFO     | extract_pdf_data.py:199 | ✅ Successfully extracted 2005 characters
+2025-06-30 06:22:11 | INFO     | extract_pdf_data.py:571 | ✅ Completed: page_6.png (2005 characters)
+2025-06-30 06:22:11 | INFO     | extract_pdf_data.py:255 | ✅ Progress saved successfully to /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171145_Enquiry form - Gulf Additives (Revised 11112024)/temp_output_all_pages.md
+2025-06-30 06:22:11 | INFO     | extract_pdf_data.py:256 | 📊 Metadata saved to /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171145_Enquiry form - Gulf Additives (Revised 11112024)/temp_output_all_pages.md.meta
+2025-06-30 06:22:11 | INFO     | extract_pdf_data.py:576 | 💾 Progress saved (processed 6 pages)
+2025-06-30 06:22:11 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 7/8: page_7.png
+2025-06-30 06:22:11 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_7.png
+2025-06-30 06:22:16 | INFO     | extract_pdf_data.py:199 | ✅ Successfully extracted 1060 characters
+2025-06-30 06:22:16 | INFO     | extract_pdf_data.py:571 | ✅ Completed: page_7.png (1060 characters)
+2025-06-30 06:22:16 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 8/8: page_8.png
+2025-06-30 06:22:16 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_8.png
+2025-06-30 06:22:21 | INFO     | extract_pdf_data.py:199 | ✅ Successfully extracted 1013 characters
+2025-06-30 06:22:21 | INFO     | extract_pdf_data.py:571 | ✅ Completed: page_8.png (1013 characters)
+2025-06-30 06:22:21 | INFO     | extract_pdf_data.py:609 | 
+✅ Final output saved to '/mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171145_Enquiry form - Gulf Additives (Revised 11112024)/output_all_pages.md'
+2025-06-30 06:22:21 | INFO     | extract_pdf_data.py:610 | 📊 Summary: 8 successful, 0 failed out of 8 total pages
+2025-06-30 06:22:21 | ERROR    | extract_pdf_data.py:362 | ❌ Excel log file not found: download_email/email_download_log.xlsx
+2025-06-30 06:22:21 | WARNING  | extract_pdf_data.py:614 | ⚠️ Failed to update Excel log, but PDF processing completed successfully
+2025-06-30 06:22:21 | INFO     | classification_engine.py:506 | Classifying document
+2025-06-30 06:22:21 | INFO     | classification_engine.py:409 | Classifying document
+2025-06-30 06:22:21 | INFO     | step_process.py:93 | Using schema: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/schemas/extruder_enquiry_fields.json
+2025-06-30 06:22:21 | INFO     | step_process.py:106 | Successfully read 10865 characters from file
+2025-06-30 06:22:38 | INFO     | step_process.py:137 | Successfully extracted data from document
+2025-06-30 06:22:39 | INFO     | step_process.py:195 | Generated result path: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/result_json/enquiry_20250624_171145_Enquiry form - Gulf Additives (Revised 11112024).json
+2025-06-30 06:22:39 | INFO     | step_process.py:199 | JSON file generated successfully
+2025-06-30 06:22:39 | INFO     | step_process.py:210 | Successfully processed file: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/download_email/enquiry_20250624_171145_Enquiry form - Gulf Additives (Revised 11112024).pdf
+2025-06-30 06:22:39 | INFO     | step_process.py:211 | Result saved to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/result_json/enquiry_20250624_171145_Enquiry form - Gulf Additives (Revised 11112024).json
+2025-06-30 06:22:39 | INFO     | step_process.py:189 | Processing: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/download_email/enquiry_20250624_171147_Enquiry_form.pdf
+2025-06-30 06:22:39 | INFO     | extract_pdf_data.py:55 | Converting PDF to images: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/download_email/enquiry_20250624_171147_Enquiry_form.pdf
+2025-06-30 06:22:39 | INFO     | extract_pdf_data.py:59 | Current working directory: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI
+2025-06-30 06:22:39 | INFO     | extract_pdf_data.py:63 | Normalized upload path: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/download_email/enquiry_20250624_171147_Enquiry_form.pdf
+2025-06-30 06:22:39 | INFO     | extract_pdf_data.py:67 | Base filename: enquiry_20250624_171147_Enquiry_form
+2025-06-30 06:22:39 | INFO     | extract_pdf_data.py:72 | Creating output folder at: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171147_Enquiry_form
+2025-06-30 06:22:39 | INFO     | extract_pdf_data.py:76 | Created output folder at: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171147_Enquiry_form
+2025-06-30 06:22:39 | INFO     | extract_pdf_data.py:78 | 📄 Converting PDF to images: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/download_email/enquiry_20250624_171147_Enquiry_form.pdf
+2025-06-30 06:22:41 | INFO     | extract_pdf_data.py:82 | Converted 8 pages
+2025-06-30 06:22:41 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 1 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171147_Enquiry_form/page_1.png
+2025-06-30 06:22:41 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 2 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171147_Enquiry_form/page_2.png
+2025-06-30 06:22:41 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 3 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171147_Enquiry_form/page_3.png
+2025-06-30 06:22:42 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 4 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171147_Enquiry_form/page_4.png
+2025-06-30 06:22:42 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 5 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171147_Enquiry_form/page_5.png
+2025-06-30 06:22:42 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 6 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171147_Enquiry_form/page_6.png
+2025-06-30 06:22:42 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 7 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171147_Enquiry_form/page_7.png
+2025-06-30 06:22:42 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 8 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171147_Enquiry_form/page_8.png
+2025-06-30 06:22:42 | INFO     | extract_pdf_data.py:95 | Creating markdown file at: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171147_Enquiry_form/output_all_pages.md
+2025-06-30 06:22:42 | INFO     | extract_pdf_data.py:100 | ✅ Created markdown file at: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171147_Enquiry_form/output_all_pages.md
+2025-06-30 06:22:42 | INFO     | extract_pdf_data.py:101 | ✅ All files saved in folder: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171147_Enquiry_form
+2025-06-30 06:22:42 | INFO     | extract_pdf_data.py:104 | Returning folder path: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171147_Enquiry_form
+2025-06-30 06:22:42 | INFO     | extract_pdf_data.py:512 | Working with image folder: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171147_Enquiry_form
+2025-06-30 06:22:42 | INFO     | extract_pdf_data.py:529 | 📋 Found 8 pages to process
+2025-06-30 06:22:42 | INFO     | extract_pdf_data.py:535 | Output will be saved to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171147_Enquiry_form/output_all_pages.md
+2025-06-30 06:22:42 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 1/8: page_1.png
+2025-06-30 06:22:42 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_1.png
+2025-06-30 06:22:47 | INFO     | extract_pdf_data.py:199 | ✅ Successfully extracted 1113 characters
+2025-06-30 06:22:47 | INFO     | extract_pdf_data.py:571 | ✅ Completed: page_1.png (1113 characters)
+2025-06-30 06:22:47 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 2/8: page_2.png
+2025-06-30 06:22:47 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_2.png
+2025-06-30 06:22:52 | INFO     | extract_pdf_data.py:199 | ✅ Successfully extracted 977 characters
+2025-06-30 06:22:52 | INFO     | extract_pdf_data.py:571 | ✅ Completed: page_2.png (977 characters)
+2025-06-30 06:22:52 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 3/8: page_3.png
+2025-06-30 06:22:52 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_3.png
+2025-06-30 06:22:57 | INFO     | extract_pdf_data.py:199 | ✅ Successfully extracted 1293 characters
+2025-06-30 06:22:57 | INFO     | extract_pdf_data.py:571 | ✅ Completed: page_3.png (1293 characters)
+2025-06-30 06:22:57 | INFO     | extract_pdf_data.py:255 | ✅ Progress saved successfully to /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171147_Enquiry_form/temp_output_all_pages.md
+2025-06-30 06:22:57 | INFO     | extract_pdf_data.py:256 | 📊 Metadata saved to /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171147_Enquiry_form/temp_output_all_pages.md.meta
+2025-06-30 06:22:57 | INFO     | extract_pdf_data.py:576 | 💾 Progress saved (processed 3 pages)
+2025-06-30 06:22:57 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 4/8: page_4.png
+2025-06-30 06:22:57 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_4.png
+2025-06-30 06:23:02 | INFO     | extract_pdf_data.py:199 | ✅ Successfully extracted 1045 characters
+2025-06-30 06:23:02 | INFO     | extract_pdf_data.py:571 | ✅ Completed: page_4.png (1045 characters)
+2025-06-30 06:23:02 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 5/8: page_5.png
+2025-06-30 06:23:02 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_5.png
+2025-06-30 06:23:07 | INFO     | extract_pdf_data.py:199 | ✅ Successfully extracted 773 characters
+2025-06-30 06:23:07 | INFO     | extract_pdf_data.py:571 | ✅ Completed: page_5.png (773 characters)
+2025-06-30 06:23:07 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 6/8: page_6.png
+2025-06-30 06:23:07 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_6.png
+2025-06-30 06:23:13 | INFO     | extract_pdf_data.py:199 | ✅ Successfully extracted 2066 characters
+2025-06-30 06:23:13 | INFO     | extract_pdf_data.py:571 | ✅ Completed: page_6.png (2066 characters)
+2025-06-30 06:23:13 | INFO     | extract_pdf_data.py:255 | ✅ Progress saved successfully to /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171147_Enquiry_form/temp_output_all_pages.md
+2025-06-30 06:23:13 | INFO     | extract_pdf_data.py:256 | 📊 Metadata saved to /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171147_Enquiry_form/temp_output_all_pages.md.meta
+2025-06-30 06:23:13 | INFO     | extract_pdf_data.py:576 | 💾 Progress saved (processed 6 pages)
+2025-06-30 06:23:13 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 7/8: page_7.png
+2025-06-30 06:23:13 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_7.png
+2025-06-30 06:23:17 | INFO     | extract_pdf_data.py:199 | ✅ Successfully extracted 962 characters
+2025-06-30 06:23:17 | INFO     | extract_pdf_data.py:571 | ✅ Completed: page_7.png (962 characters)
+2025-06-30 06:23:17 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 8/8: page_8.png
+2025-06-30 06:23:17 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_8.png
+2025-06-30 06:23:22 | INFO     | extract_pdf_data.py:199 | ✅ Successfully extracted 1028 characters
+2025-06-30 06:23:22 | INFO     | extract_pdf_data.py:571 | ✅ Completed: page_8.png (1028 characters)
+2025-06-30 06:23:22 | INFO     | extract_pdf_data.py:609 | 
+✅ Final output saved to '/mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171147_Enquiry_form/output_all_pages.md'
+2025-06-30 06:23:22 | INFO     | extract_pdf_data.py:610 | 📊 Summary: 8 successful, 0 failed out of 8 total pages
+2025-06-30 06:23:22 | ERROR    | extract_pdf_data.py:362 | ❌ Excel log file not found: download_email/email_download_log.xlsx
+2025-06-30 06:23:22 | WARNING  | extract_pdf_data.py:614 | ⚠️ Failed to update Excel log, but PDF processing completed successfully
+2025-06-30 06:23:22 | INFO     | classification_engine.py:506 | Classifying document
+2025-06-30 06:23:22 | INFO     | classification_engine.py:409 | Classifying document
+2025-06-30 06:23:22 | INFO     | step_process.py:93 | Using schema: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/schemas/extruder_enquiry_fields.json
+2025-06-30 06:23:22 | INFO     | step_process.py:106 | Successfully read 9974 characters from file
+2025-06-30 06:23:38 | INFO     | step_process.py:137 | Successfully extracted data from document
+2025-06-30 06:23:38 | INFO     | step_process.py:195 | Generated result path: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/result_json/enquiry_20250624_171147_Enquiry_form.json
+2025-06-30 06:23:38 | INFO     | step_process.py:199 | JSON file generated successfully
+2025-06-30 06:23:38 | INFO     | step_process.py:210 | Successfully processed file: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/download_email/enquiry_20250624_171147_Enquiry_form.pdf
+2025-06-30 06:23:38 | INFO     | step_process.py:211 | Result saved to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/result_json/enquiry_20250624_171147_Enquiry_form.json
+2025-06-30 06:23:38 | INFO     | step_process.py:225 | IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+2025-06-30 06:23:38 | INFO     | step_process.py:226 | res_paths: ['/mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/result_json/enquiry_20250624_171144_TSE enquiry (Ningbo Licheng, Mega50).json', '/mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/result_json/enquiry_20250624_171145_Enquiry form - Gulf Additives (Revised 11112024).json', '/mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/result_json/enquiry_20250624_171147_Enquiry_form.json']
+2025-06-30 06:23:38 | INFO     | step_process.py:227 | res_statuses: ['completed', 'completed', 'completed']
+2025-06-30 06:23:38 | INFO     | step_process.py:228 | markdown_statuses: ['pending', 'pending', 'pending']
+2025-06-30 06:23:38 | INFO     | step_process.py:229 | IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+2025-06-30 06:23:38 | INFO     | step_process.py:332 | IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+2025-06-30 06:23:38 | INFO     | step_process.py:333 | res_paths: ['/mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/result_json/enquiry_20250624_171144_TSE enquiry (Ningbo Licheng, Mega50).json', '/mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/result_json/enquiry_20250624_171145_Enquiry form - Gulf Additives (Revised 11112024).json', '/mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/result_json/enquiry_20250624_171147_Enquiry_form.json', '']
+2025-06-30 06:23:38 | INFO     | step_process.py:334 | res_statuses: ['completed', 'completed', 'completed', 'pending']
+2025-06-30 06:23:38 | INFO     | step_process.py:335 | markdown_statuses: ['pending', 'pending', 'pending', 'pending']
+2025-06-30 06:23:38 | INFO     | step_process.py:336 | IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+2025-06-30 06:23:38 | INFO     | step_process.py:350 | 
+Updating row 0:
+2025-06-30 06:23:38 | INFO     | step_process.py:351 | Result paths: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/result_json/enquiry_20250624_171144_TSE enquiry (Ningbo Licheng, Mega50).json,/mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/result_json/enquiry_20250624_171145_Enquiry form - Gulf Additives (Revised 11112024).json,/mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/result_json/enquiry_20250624_171147_Enquiry_form.json,
+2025-06-30 06:23:38 | INFO     | step_process.py:352 | Status: completed,completed,completed,pending
+2025-06-30 06:23:38 | INFO     | step_process.py:353 | Markdown status: pending,pending,pending,pending
+2025-06-30 06:23:38 | INFO     | step_process.py:269 | Successfully updated row 0 in Excel file
+2025-06-30 06:23:38 | INFO     | step_process.py:270 | Updated fields: res_path, res_status, markdown_status
+2025-06-30 06:23:38 | INFO     | step_process.py:189 | Processing: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/download_email/enquiry_20250624_171158_EM19335_Quotation_with_material__23.05.2025.pdf
+2025-06-30 06:23:38 | INFO     | extract_pdf_data.py:55 | Converting PDF to images: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/download_email/enquiry_20250624_171158_EM19335_Quotation_with_material__23.05.2025.pdf
+2025-06-30 06:23:38 | INFO     | extract_pdf_data.py:59 | Current working directory: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI
+2025-06-30 06:23:38 | INFO     | extract_pdf_data.py:63 | Normalized upload path: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/download_email/enquiry_20250624_171158_EM19335_Quotation_with_material__23.05.2025.pdf
+2025-06-30 06:23:38 | INFO     | extract_pdf_data.py:67 | Base filename: enquiry_20250624_171158_EM19335_Quotation_with_material__23.05.2025
+2025-06-30 06:23:38 | INFO     | extract_pdf_data.py:72 | Creating output folder at: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171158_EM19335_Quotation_with_material__23.05.2025
+2025-06-30 06:23:38 | INFO     | extract_pdf_data.py:76 | Created output folder at: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171158_EM19335_Quotation_with_material__23.05.2025
+2025-06-30 06:23:38 | INFO     | extract_pdf_data.py:78 | 📄 Converting PDF to images: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/download_email/enquiry_20250624_171158_EM19335_Quotation_with_material__23.05.2025.pdf
+2025-06-30 06:23:39 | INFO     | extract_pdf_data.py:82 | Converted 1 pages
+2025-06-30 06:23:39 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 1 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171158_EM19335_Quotation_with_material__23.05.2025/page_1.png
+2025-06-30 06:23:39 | INFO     | extract_pdf_data.py:95 | Creating markdown file at: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171158_EM19335_Quotation_with_material__23.05.2025/output_all_pages.md
+2025-06-30 06:23:39 | INFO     | extract_pdf_data.py:100 | ✅ Created markdown file at: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171158_EM19335_Quotation_with_material__23.05.2025/output_all_pages.md
+2025-06-30 06:23:39 | INFO     | extract_pdf_data.py:101 | ✅ All files saved in folder: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171158_EM19335_Quotation_with_material__23.05.2025
+2025-06-30 06:23:39 | INFO     | extract_pdf_data.py:104 | Returning folder path: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171158_EM19335_Quotation_with_material__23.05.2025
+2025-06-30 06:23:39 | INFO     | extract_pdf_data.py:512 | Working with image folder: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171158_EM19335_Quotation_with_material__23.05.2025
+2025-06-30 06:23:39 | INFO     | extract_pdf_data.py:529 | 📋 Found 1 pages to process
+2025-06-30 06:23:39 | INFO     | extract_pdf_data.py:535 | Output will be saved to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250624_171158_EM19335_Quotation_with_material__23.05.2025/output_all_pages.md
+2025-06-30 06:23:39 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 1/1: page_1.png
+2025-06-30 06:23:39 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_1.png
+2025-06-30 06:34:44 | WARNING  | extract_pdf_data.py:580 | 
+⚠️ Process interrupted by user
+2025-06-30 06:34:44 | WARNING  | extract_pdf_data.py:581 | 💾 Saving progress for 0 completed pages...
+2025-06-30 06:34:44 | ERROR    | extract_pdf_data.py:627 | ❌ No content was successfully extracted
+2025-06-30 06:34:44 | ERROR    | step_process.py:153 | Error processing document: Failed to process PDF to images
+2025-06-30 06:34:44 | INFO     | step_process.py:225 | IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+2025-06-30 06:34:44 | INFO     | step_process.py:226 | res_paths: ['']
+2025-06-30 06:34:44 | INFO     | step_process.py:227 | res_statuses: ['error: Failed to process PDF to images']
+2025-06-30 06:34:44 | INFO     | step_process.py:228 | markdown_statuses: ['pending']
+2025-06-30 06:34:44 | INFO     | step_process.py:229 | IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+2025-06-30 06:34:44 | INFO     | step_process.py:332 | IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+2025-06-30 06:34:44 | INFO     | step_process.py:333 | res_paths: ['']
+2025-06-30 06:34:44 | INFO     | step_process.py:334 | res_statuses: ['error: Failed to process PDF to images']
+2025-06-30 06:34:44 | INFO     | step_process.py:335 | markdown_statuses: ['pending']
+2025-06-30 06:34:44 | INFO     | step_process.py:336 | IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+2025-06-30 06:34:44 | INFO     | step_process.py:350 | 
+Updating row 1:
+2025-06-30 06:34:44 | INFO     | step_process.py:351 | Result paths: 
+2025-06-30 06:34:44 | INFO     | step_process.py:352 | Status: error: Failed to process PDF to images
+2025-06-30 06:34:44 | INFO     | step_process.py:353 | Markdown status: pending
+2025-06-30 06:34:56 | INFO     | step_process.py:284 | Starting step process
+2025-06-30 06:34:56 | ERROR    | step_process.py:377 | Error in main process: No such keys(s): 'io.excel.zip.reader'
+2025-06-30 07:03:17 | INFO     | step_process.py:284 | Starting step process
+2025-06-30 07:03:17 | ERROR    | step_process.py:377 | Error in main process: No such keys(s): 'io.excel.zip.reader'
+2025-06-30 07:03:35 | INFO     | step_process.py:284 | Starting step process
+2025-06-30 07:03:35 | ERROR    | step_process.py:377 | Error in main process: No such keys(s): 'io.excel.zip.reader'
+2025-06-30 07:04:35 | INFO     | step_process.py:284 | Starting step process
+2025-06-30 07:04:35 | ERROR    | step_process.py:377 | Error in main process: No such keys(s): 'io.excel.zip.reader'
+2025-06-30 07:05:54 | INFO     | step_process.py:284 | Starting step process
+2025-06-30 07:05:54 | INFO     | step_process.py:292 | Reading Excel file from: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/download_email/email_download_log.xlsx
+2025-06-30 07:05:54 | ERROR    | step_process.py:299 | Error reading Excel with openpyxl: "There is no item named '[Content_Types].xml' in the archive"
+2025-06-30 07:05:54 | ERROR    | step_process.py:305 | Error reading Excel with alternative engine: Missing optional dependency 'xlrd'. Install xlrd >= 2.0.1 for xls Excel support Use pip or conda to install xlrd.
+2025-06-30 07:08:17 | INFO     | step_process.py:324 | Starting step process
+2025-06-30 07:08:17 | INFO     | step_process.py:329 | Excel file path: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/download_email/email_download_log.xlsx
+2025-06-30 07:08:17 | ERROR    | step_process.py:295 | Error reading existing Excel file: "There is no item named '[Content_Types].xml' in the archive"
+2025-06-30 07:08:17 | INFO     | step_process.py:296 | Creating new Excel file with required columns
+2025-06-30 07:08:17 | INFO     | step_process.py:315 | Created new Excel file at: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/download_email/email_download_log.xlsx
+2025-06-30 07:08:17 | INFO     | step_process.py:344 | Successfully read Excel file
+2025-06-30 07:08:17 | INFO     | step_process.py:445 | No changes were necessary in the log file.
+2025-06-30 07:09:48 | INFO     | step_process.py:371 | Starting step process
+2025-06-30 07:09:48 | INFO     | step_process.py:376 | Excel file path: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/download_email/email_download_log.xlsx
+2025-06-30 07:09:48 | INFO     | step_process.py:486 | No changes were necessary in the log file.
+2025-06-30 07:24:30 | INFO     | step_process.py:299 | Starting step process
+2025-06-30 07:24:30 | INFO     | step_process.py:301 | Excel file path: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/download_email/email_download_log.xlsx
+2025-06-30 07:24:30 | INFO     | step_process.py:310 | Successfully loaded Excel file with 0 rows
+2025-06-30 07:24:30 | INFO     | step_process.py:429 | No changes were necessary in the log file.
+2025-06-30 07:25:07 | INFO     | step_process.py:299 | Starting step process
+2025-06-30 07:25:07 | INFO     | step_process.py:301 | Excel file path: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/download_email/email_download_log.xlsx
+2025-06-30 07:25:07 | INFO     | step_process.py:310 | Successfully loaded Excel file with 0 rows
+2025-06-30 07:25:07 | INFO     | step_process.py:429 | No changes were necessary in the log file.
+2025-06-30 07:25:52 | INFO     | step_process.py:284 | Starting step process
+2025-06-30 07:25:52 | INFO     | step_process.py:364 | No changes were necessary in the log file.
+2025-06-30 07:26:14 | INFO     | step_process.py:284 | Starting step process
+2025-06-30 07:26:14 | INFO     | step_process.py:364 | No changes were necessary in the log file.
+2025-06-30 07:26:32 | INFO     | step_process.py:324 | Starting step process
+2025-06-30 07:26:32 | INFO     | step_process.py:329 | Excel file path: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/download_email/email_download_log.xlsx
+2025-06-30 07:26:32 | INFO     | step_process.py:344 | Successfully read Excel file
+2025-06-30 07:26:32 | INFO     | step_process.py:445 | No changes were necessary in the log file.
+2025-06-30 07:27:39 | INFO     | step_process.py:324 | Starting step process
+2025-06-30 07:27:39 | INFO     | step_process.py:329 | Excel file path: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/download_email/email_download_log.xlsx
+2025-06-30 07:27:39 | INFO     | step_process.py:344 | Successfully read Excel file
+2025-06-30 07:27:39 | INFO     | step_process.py:445 | No changes were necessary in the log file.
+2025-06-30 07:28:06 | INFO     | step_process.py:284 | Starting step process
+2025-06-30 07:28:06 | INFO     | step_process.py:364 | No changes were necessary in the log file.
+2025-06-30 07:28:59 | INFO     | step_process.py:284 | Starting step process
+2025-06-30 07:28:59 | INFO     | step_process.py:364 | No changes were necessary in the log file.
+2025-06-30 07:30:21 | INFO     | step_process.py:284 | Starting step process
+2025-06-30 07:30:21 | INFO     | step_process.py:295 | Successfully read Excel file with 0 rows
+2025-06-30 07:30:21 | INFO     | step_process.py:308 | No files found to process in the Excel log
+2025-06-30 07:30:37 | INFO     | step_process.py:284 | Starting step process
+2025-06-30 07:30:37 | INFO     | step_process.py:295 | Successfully read Excel file with 0 rows
+2025-06-30 07:30:37 | INFO     | step_process.py:308 | No files found to process in the Excel log
+2025-06-30 07:31:18 | INFO     | step_process.py:286 | Starting step process
+2025-06-30 07:31:18 | INFO     | step_process.py:287 | Current directory: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI
+2025-06-30 07:31:18 | INFO     | step_process.py:288 | Looking for Excel file in: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/download_email
+2025-06-30 07:31:18 | INFO     | step_process.py:306 | Successfully read Excel file with 2 rows
+2025-06-30 07:31:18 | INFO     | step_process.py:307 | Columns found in Excel: ['subject', 'email_id', 'thread_id', 'sender', 'first_inbox_msg', 'last_check_date', 'download_date', 'duplicate_check_date', 'count_download', 'list_name_count', 'attachment_names', 'file_paths', 'original_filenames', 'res_path', 'markdown_status', 'message_hash', 'file_hashes', 'unique_file_ids', 'process_status', 'classification', 'duplicate_status', 'res_status', 'file_hash', 'unique_file_id']
+2025-06-30 07:31:18 | INFO     | step_process.py:323 | Found 2 rows with files to process
+2025-06-30 07:31:18 | INFO     | step_process.py:326 | Sample file paths to process:
+2025-06-30 07:31:18 | INFO     | step_process.py:328 | Row 0: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/download_email/enquiry_20250629_185150_TSE enquiry (Ningbo Licheng, Mega50).pdf,/mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/download_email/enquiry_20250629_185152_Enquiry form - Gulf Additives (Revised 11112024).pdf,/mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/download_email/enquiry_20250629_185153_Enquiry_form.pdf
+2025-06-30 07:31:18 | INFO     | step_process.py:328 | Row 1: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/download_email/enquiry_20250629_185204_EM19335_Quotation_with_material__23.05.2025.pdf
+2025-06-30 07:31:18 | INFO     | step_process.py:355 | Processing files for row 0: ['/mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/download_email/enquiry_20250629_185150_TSE enquiry (Ningbo Licheng, Mega50).pdf', '/mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/download_email/enquiry_20250629_185152_Enquiry form - Gulf Additives (Revised 11112024).pdf', '/mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/download_email/enquiry_20250629_185153_Enquiry_form.pdf']
+2025-06-30 07:31:18 | INFO     | step_process.py:191 | Processing: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/download_email/enquiry_20250629_185150_TSE enquiry (Ningbo Licheng, Mega50).pdf
+2025-06-30 07:31:18 | INFO     | extract_pdf_data.py:55 | Converting PDF to images: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/download_email/enquiry_20250629_185150_TSE enquiry (Ningbo Licheng, Mega50).pdf
+2025-06-30 07:31:18 | INFO     | extract_pdf_data.py:59 | Current working directory: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI
+2025-06-30 07:31:18 | INFO     | extract_pdf_data.py:63 | Normalized upload path: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/download_email/enquiry_20250629_185150_TSE enquiry (Ningbo Licheng, Mega50).pdf
+2025-06-30 07:31:18 | INFO     | extract_pdf_data.py:67 | Base filename: enquiry_20250629_185150_TSE enquiry (Ningbo Licheng, Mega50)
+2025-06-30 07:31:18 | INFO     | extract_pdf_data.py:72 | Creating output folder at: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185150_TSE enquiry (Ningbo Licheng, Mega50)
+2025-06-30 07:31:18 | INFO     | extract_pdf_data.py:76 | Created output folder at: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185150_TSE enquiry (Ningbo Licheng, Mega50)
+2025-06-30 07:31:18 | INFO     | extract_pdf_data.py:78 | 📄 Converting PDF to images: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/download_email/enquiry_20250629_185150_TSE enquiry (Ningbo Licheng, Mega50).pdf
+2025-06-30 07:31:21 | INFO     | extract_pdf_data.py:82 | Converted 8 pages
+2025-06-30 07:31:21 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 1 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185150_TSE enquiry (Ningbo Licheng, Mega50)/page_1.png
+2025-06-30 07:31:21 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 2 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185150_TSE enquiry (Ningbo Licheng, Mega50)/page_2.png
+2025-06-30 07:31:21 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 3 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185150_TSE enquiry (Ningbo Licheng, Mega50)/page_3.png
+2025-06-30 07:31:21 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 4 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185150_TSE enquiry (Ningbo Licheng, Mega50)/page_4.png
+2025-06-30 07:31:21 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 5 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185150_TSE enquiry (Ningbo Licheng, Mega50)/page_5.png
+2025-06-30 07:31:22 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 6 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185150_TSE enquiry (Ningbo Licheng, Mega50)/page_6.png
+2025-06-30 07:31:22 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 7 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185150_TSE enquiry (Ningbo Licheng, Mega50)/page_7.png
+2025-06-30 07:31:22 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 8 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185150_TSE enquiry (Ningbo Licheng, Mega50)/page_8.png
+2025-06-30 07:31:22 | INFO     | extract_pdf_data.py:95 | Creating markdown file at: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185150_TSE enquiry (Ningbo Licheng, Mega50)/output_all_pages.md
+2025-06-30 07:31:22 | INFO     | extract_pdf_data.py:100 | ✅ Created markdown file at: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185150_TSE enquiry (Ningbo Licheng, Mega50)/output_all_pages.md
+2025-06-30 07:31:22 | INFO     | extract_pdf_data.py:101 | ✅ All files saved in folder: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185150_TSE enquiry (Ningbo Licheng, Mega50)
+2025-06-30 07:31:22 | INFO     | extract_pdf_data.py:104 | Returning folder path: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185150_TSE enquiry (Ningbo Licheng, Mega50)
+2025-06-30 07:31:22 | INFO     | extract_pdf_data.py:512 | Working with image folder: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185150_TSE enquiry (Ningbo Licheng, Mega50)
+2025-06-30 07:31:22 | INFO     | extract_pdf_data.py:529 | 📋 Found 8 pages to process
+2025-06-30 07:31:22 | INFO     | extract_pdf_data.py:535 | Output will be saved to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185150_TSE enquiry (Ningbo Licheng, Mega50)/output_all_pages.md
+2025-06-30 07:31:22 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 1/8: page_1.png
+2025-06-30 07:31:22 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_1.png
+2025-06-30 07:31:28 | INFO     | extract_pdf_data.py:199 | ✅ Successfully extracted 929 characters
+2025-06-30 07:31:28 | INFO     | extract_pdf_data.py:571 | ✅ Completed: page_1.png (929 characters)
+2025-06-30 07:31:28 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 2/8: page_2.png
+2025-06-30 07:31:28 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_2.png
+2025-06-30 07:31:32 | INFO     | extract_pdf_data.py:199 | ✅ Successfully extracted 980 characters
+2025-06-30 07:31:32 | INFO     | extract_pdf_data.py:571 | ✅ Completed: page_2.png (980 characters)
+2025-06-30 07:31:32 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 3/8: page_3.png
+2025-06-30 07:31:32 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_3.png
+2025-06-30 07:31:37 | INFO     | extract_pdf_data.py:199 | ✅ Successfully extracted 1228 characters
+2025-06-30 07:31:37 | INFO     | extract_pdf_data.py:571 | ✅ Completed: page_3.png (1228 characters)
+2025-06-30 07:31:37 | INFO     | extract_pdf_data.py:255 | ✅ Progress saved successfully to /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185150_TSE enquiry (Ningbo Licheng, Mega50)/temp_output_all_pages.md
+2025-06-30 07:31:37 | INFO     | extract_pdf_data.py:256 | 📊 Metadata saved to /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185150_TSE enquiry (Ningbo Licheng, Mega50)/temp_output_all_pages.md.meta
+2025-06-30 07:31:37 | INFO     | extract_pdf_data.py:576 | 💾 Progress saved (processed 3 pages)
+2025-06-30 07:31:37 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 4/8: page_4.png
+2025-06-30 07:31:37 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_4.png
+2025-06-30 07:31:43 | INFO     | extract_pdf_data.py:199 | ✅ Successfully extracted 2808 characters
+2025-06-30 07:31:43 | INFO     | extract_pdf_data.py:571 | ✅ Completed: page_4.png (2808 characters)
+2025-06-30 07:31:43 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 5/8: page_5.png
+2025-06-30 07:31:43 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_5.png
+2025-06-30 07:31:47 | INFO     | extract_pdf_data.py:199 | ✅ Successfully extracted 670 characters
+2025-06-30 07:31:47 | INFO     | extract_pdf_data.py:571 | ✅ Completed: page_5.png (670 characters)
+2025-06-30 07:31:47 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 6/8: page_6.png
+2025-06-30 07:31:47 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_6.png
+2025-06-30 07:31:54 | INFO     | extract_pdf_data.py:199 | ✅ Successfully extracted 1960 characters
+2025-06-30 07:31:54 | INFO     | extract_pdf_data.py:571 | ✅ Completed: page_6.png (1960 characters)
+2025-06-30 07:31:54 | INFO     | extract_pdf_data.py:255 | ✅ Progress saved successfully to /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185150_TSE enquiry (Ningbo Licheng, Mega50)/temp_output_all_pages.md
+2025-06-30 07:31:54 | INFO     | extract_pdf_data.py:256 | 📊 Metadata saved to /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185150_TSE enquiry (Ningbo Licheng, Mega50)/temp_output_all_pages.md.meta
+2025-06-30 07:31:54 | INFO     | extract_pdf_data.py:576 | 💾 Progress saved (processed 6 pages)
+2025-06-30 07:31:54 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 7/8: page_7.png
+2025-06-30 07:31:54 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_7.png
+2025-06-30 07:31:58 | INFO     | extract_pdf_data.py:199 | ✅ Successfully extracted 1179 characters
+2025-06-30 07:31:58 | INFO     | extract_pdf_data.py:571 | ✅ Completed: page_7.png (1179 characters)
+2025-06-30 07:31:58 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 8/8: page_8.png
+2025-06-30 07:31:58 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_8.png
+2025-06-30 07:32:03 | INFO     | extract_pdf_data.py:199 | ✅ Successfully extracted 983 characters
+2025-06-30 07:32:03 | INFO     | extract_pdf_data.py:571 | ✅ Completed: page_8.png (983 characters)
+2025-06-30 07:32:03 | INFO     | extract_pdf_data.py:609 | 
+✅ Final output saved to '/mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185150_TSE enquiry (Ningbo Licheng, Mega50)/output_all_pages.md'
+2025-06-30 07:32:03 | INFO     | extract_pdf_data.py:610 | 📊 Summary: 8 successful, 0 failed out of 8 total pages
+2025-06-30 07:32:03 | INFO     | extract_pdf_data.py:367 | 📊 Successfully read Excel file with 2 rows
+2025-06-30 07:32:03 | INFO     | extract_pdf_data.py:373 | Processing file: C:\Users\Imran\OneDrive - Ahana Systems and Solutions (P) Ltd\Desktop\Demo\steer_document_processing_poc\demo_app\backend\Agent_AI\image\enquiry_20250629_185150_TSE enquiry (Ningbo Licheng, Mega50).pdf
+2025-06-30 07:32:03 | INFO     | extract_pdf_data.py:309 | Looking for normalized name: 'c:\users\imran\onedrive - ahana systems and solutions (p) ltd\desktop\demo\steer_document_processing_poc\demo_app\backend\agent_ai\image\enquiry_20250629_185150_tse enquiry (ningbo licheng, mega50)'
+2025-06-30 07:32:03 | INFO     | extract_pdf_data.py:310 | Original filename: 'C:\Users\Imran\OneDrive - Ahana Systems and Solutions (P) Ltd\Desktop\Demo\steer_document_processing_poc\demo_app\backend\Agent_AI\image\enquiry_20250629_185150_TSE enquiry (Ningbo Licheng, Mega50).pdf'
+2025-06-30 07:32:03 | INFO     | extract_pdf_data.py:333 | ✅ Found match in row 0, position 0
+2025-06-30 07:32:03 | INFO     | extract_pdf_data.py:400 | Before update:
+2025-06-30 07:32:03 | INFO     | extract_pdf_data.py:401 | Status: ['pending', 'pending', 'pending', 'pending']
+2025-06-30 07:32:03 | INFO     | extract_pdf_data.py:402 | Counts: ['3', '0', '0', '0']
+2025-06-30 07:32:03 | INFO     | extract_pdf_data.py:464 | 
+Final state:
+2025-06-30 07:32:03 | INFO     | extract_pdf_data.py:465 | Completed positions: [0]
+2025-06-30 07:32:03 | INFO     | extract_pdf_data.py:466 | Pending positions: [1]
+2025-06-30 07:32:03 | INFO     | extract_pdf_data.py:467 | Status - Completed: 1, Pending: 3
+2025-06-30 07:32:03 | INFO     | extract_pdf_data.py:468 | Counts - Ones: 1, Zeros: 3
+2025-06-30 07:32:03 | INFO     | extract_pdf_data.py:469 | Status list: ['completed', 'pending', 'pending', 'pending']
+2025-06-30 07:32:03 | INFO     | extract_pdf_data.py:470 | Count list: ['1', '0', '0', '0']
+2025-06-30 07:32:03 | INFO     | extract_pdf_data.py:473 | ✅ Perfect balance achieved
+2025-06-30 07:32:03 | INFO     | extract_pdf_data.py:482 | 💾 Successfully saved updates to Excel file
+2025-06-30 07:32:04 | INFO     | classification_engine.py:506 | Classifying document
+2025-06-30 07:32:04 | INFO     | classification_engine.py:409 | Classifying document
+2025-06-30 07:32:04 | INFO     | step_process.py:95 | Using schema: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/schemas/extruder_enquiry_fields.json
+2025-06-30 07:32:04 | INFO     | step_process.py:108 | Successfully read 11487 characters from file
+2025-06-30 07:32:21 | INFO     | step_process.py:139 | Successfully extracted data from document
+2025-06-30 07:32:21 | INFO     | step_process.py:197 | Generated result path: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/result_json/enquiry_20250629_185150_TSE enquiry (Ningbo Licheng, Mega50).json
+2025-06-30 07:32:21 | INFO     | step_process.py:201 | JSON file generated successfully
+2025-06-30 07:32:21 | INFO     | step_process.py:212 | Successfully processed file: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/download_email/enquiry_20250629_185150_TSE enquiry (Ningbo Licheng, Mega50).pdf
+2025-06-30 07:32:21 | INFO     | step_process.py:213 | Result saved to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/result_json/enquiry_20250629_185150_TSE enquiry (Ningbo Licheng, Mega50).json
+2025-06-30 07:32:21 | INFO     | step_process.py:191 | Processing: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/download_email/enquiry_20250629_185152_Enquiry form - Gulf Additives (Revised 11112024).pdf
+2025-06-30 07:32:21 | INFO     | extract_pdf_data.py:55 | Converting PDF to images: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/download_email/enquiry_20250629_185152_Enquiry form - Gulf Additives (Revised 11112024).pdf
+2025-06-30 07:32:21 | INFO     | extract_pdf_data.py:59 | Current working directory: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI
+2025-06-30 07:32:21 | INFO     | extract_pdf_data.py:63 | Normalized upload path: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/download_email/enquiry_20250629_185152_Enquiry form - Gulf Additives (Revised 11112024).pdf
+2025-06-30 07:32:21 | INFO     | extract_pdf_data.py:67 | Base filename: enquiry_20250629_185152_Enquiry form - Gulf Additives (Revised 11112024)
+2025-06-30 07:32:21 | INFO     | extract_pdf_data.py:72 | Creating output folder at: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185152_Enquiry form - Gulf Additives (Revised 11112024)
+2025-06-30 07:32:21 | INFO     | extract_pdf_data.py:76 | Created output folder at: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185152_Enquiry form - Gulf Additives (Revised 11112024)
+2025-06-30 07:32:21 | INFO     | extract_pdf_data.py:78 | 📄 Converting PDF to images: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/download_email/enquiry_20250629_185152_Enquiry form - Gulf Additives (Revised 11112024).pdf
+2025-06-30 07:32:25 | INFO     | extract_pdf_data.py:82 | Converted 8 pages
+2025-06-30 07:32:25 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 1 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185152_Enquiry form - Gulf Additives (Revised 11112024)/page_1.png
+2025-06-30 07:32:25 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 2 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185152_Enquiry form - Gulf Additives (Revised 11112024)/page_2.png
+2025-06-30 07:32:25 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 3 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185152_Enquiry form - Gulf Additives (Revised 11112024)/page_3.png
+2025-06-30 07:32:26 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 4 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185152_Enquiry form - Gulf Additives (Revised 11112024)/page_4.png
+2025-06-30 07:32:26 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 5 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185152_Enquiry form - Gulf Additives (Revised 11112024)/page_5.png
+2025-06-30 07:32:26 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 6 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185152_Enquiry form - Gulf Additives (Revised 11112024)/page_6.png
+2025-06-30 07:32:26 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 7 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185152_Enquiry form - Gulf Additives (Revised 11112024)/page_7.png
+2025-06-30 07:32:26 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 8 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185152_Enquiry form - Gulf Additives (Revised 11112024)/page_8.png
+2025-06-30 07:32:26 | INFO     | extract_pdf_data.py:95 | Creating markdown file at: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185152_Enquiry form - Gulf Additives (Revised 11112024)/output_all_pages.md
+2025-06-30 07:32:26 | INFO     | extract_pdf_data.py:100 | ✅ Created markdown file at: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185152_Enquiry form - Gulf Additives (Revised 11112024)/output_all_pages.md
+2025-06-30 07:32:26 | INFO     | extract_pdf_data.py:101 | ✅ All files saved in folder: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185152_Enquiry form - Gulf Additives (Revised 11112024)
+2025-06-30 07:32:26 | INFO     | extract_pdf_data.py:104 | Returning folder path: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185152_Enquiry form - Gulf Additives (Revised 11112024)
+2025-06-30 07:32:26 | INFO     | extract_pdf_data.py:512 | Working with image folder: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185152_Enquiry form - Gulf Additives (Revised 11112024)
+2025-06-30 07:32:26 | INFO     | extract_pdf_data.py:529 | 📋 Found 8 pages to process
+2025-06-30 07:32:26 | INFO     | extract_pdf_data.py:535 | Output will be saved to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185152_Enquiry form - Gulf Additives (Revised 11112024)/output_all_pages.md
+2025-06-30 07:32:26 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 1/8: page_1.png
+2025-06-30 07:32:26 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_1.png
+2025-06-30 07:32:31 | INFO     | extract_pdf_data.py:199 | ✅ Successfully extracted 1077 characters
+2025-06-30 07:32:31 | INFO     | extract_pdf_data.py:571 | ✅ Completed: page_1.png (1077 characters)
+2025-06-30 07:32:31 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 2/8: page_2.png
+2025-06-30 07:32:31 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_2.png
+2025-06-30 07:32:37 | INFO     | extract_pdf_data.py:199 | ✅ Successfully extracted 977 characters
+2025-06-30 07:32:37 | INFO     | extract_pdf_data.py:571 | ✅ Completed: page_2.png (977 characters)
+2025-06-30 07:32:37 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 3/8: page_3.png
+2025-06-30 07:32:37 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_3.png
+2025-06-30 07:32:42 | INFO     | extract_pdf_data.py:199 | ✅ Successfully extracted 1293 characters
+2025-06-30 07:32:42 | INFO     | extract_pdf_data.py:571 | ✅ Completed: page_3.png (1293 characters)
+2025-06-30 07:32:42 | INFO     | extract_pdf_data.py:255 | ✅ Progress saved successfully to /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185152_Enquiry form - Gulf Additives (Revised 11112024)/temp_output_all_pages.md
+2025-06-30 07:32:42 | INFO     | extract_pdf_data.py:256 | 📊 Metadata saved to /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185152_Enquiry form - Gulf Additives (Revised 11112024)/temp_output_all_pages.md.meta
+2025-06-30 07:32:42 | INFO     | extract_pdf_data.py:576 | 💾 Progress saved (processed 3 pages)
+2025-06-30 07:32:42 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 4/8: page_4.png
+2025-06-30 07:32:42 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_4.png
+2025-06-30 07:32:48 | INFO     | extract_pdf_data.py:199 | ✅ Successfully extracted 1046 characters
+2025-06-30 07:32:48 | INFO     | extract_pdf_data.py:571 | ✅ Completed: page_4.png (1046 characters)
+2025-06-30 07:32:48 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 5/8: page_5.png
+2025-06-30 07:32:48 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_5.png
+2025-06-30 07:32:53 | INFO     | extract_pdf_data.py:199 | ✅ Successfully extracted 1621 characters
+2025-06-30 07:32:53 | INFO     | extract_pdf_data.py:571 | ✅ Completed: page_5.png (1621 characters)
+2025-06-30 07:32:53 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 6/8: page_6.png
+2025-06-30 07:32:53 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_6.png
+2025-06-30 07:32:59 | INFO     | extract_pdf_data.py:199 | ✅ Successfully extracted 1971 characters
+2025-06-30 07:32:59 | INFO     | extract_pdf_data.py:571 | ✅ Completed: page_6.png (1971 characters)
+2025-06-30 07:33:00 | INFO     | extract_pdf_data.py:255 | ✅ Progress saved successfully to /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185152_Enquiry form - Gulf Additives (Revised 11112024)/temp_output_all_pages.md
+2025-06-30 07:33:00 | INFO     | extract_pdf_data.py:256 | 📊 Metadata saved to /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185152_Enquiry form - Gulf Additives (Revised 11112024)/temp_output_all_pages.md.meta
+2025-06-30 07:33:00 | INFO     | extract_pdf_data.py:576 | 💾 Progress saved (processed 6 pages)
+2025-06-30 07:33:00 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 7/8: page_7.png
+2025-06-30 07:33:00 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_7.png
+2025-06-30 07:33:04 | INFO     | extract_pdf_data.py:199 | ✅ Successfully extracted 1045 characters
+2025-06-30 07:33:04 | INFO     | extract_pdf_data.py:571 | ✅ Completed: page_7.png (1045 characters)
+2025-06-30 07:33:04 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 8/8: page_8.png
+2025-06-30 07:33:04 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_8.png
+2025-06-30 07:33:09 | INFO     | extract_pdf_data.py:199 | ✅ Successfully extracted 1028 characters
+2025-06-30 07:33:09 | INFO     | extract_pdf_data.py:571 | ✅ Completed: page_8.png (1028 characters)
+2025-06-30 07:33:09 | INFO     | extract_pdf_data.py:609 | 
+✅ Final output saved to '/mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185152_Enquiry form - Gulf Additives (Revised 11112024)/output_all_pages.md'
+2025-06-30 07:33:09 | INFO     | extract_pdf_data.py:610 | 📊 Summary: 8 successful, 0 failed out of 8 total pages
+2025-06-30 07:33:09 | INFO     | extract_pdf_data.py:367 | 📊 Successfully read Excel file with 2 rows
+2025-06-30 07:33:09 | INFO     | extract_pdf_data.py:373 | Processing file: C:\Users\Imran\OneDrive - Ahana Systems and Solutions (P) Ltd\Desktop\Demo\steer_document_processing_poc\demo_app\backend\Agent_AI\image\enquiry_20250629_185152_Enquiry form - Gulf Additives (Revised 11112024).pdf
+2025-06-30 07:33:09 | INFO     | extract_pdf_data.py:309 | Looking for normalized name: 'c:\users\imran\onedrive - ahana systems and solutions (p) ltd\desktop\demo\steer_document_processing_poc\demo_app\backend\agent_ai\image\enquiry_20250629_185152_enquiry form - gulf additives (revised 11112024)'
+2025-06-30 07:33:09 | INFO     | extract_pdf_data.py:310 | Original filename: 'C:\Users\Imran\OneDrive - Ahana Systems and Solutions (P) Ltd\Desktop\Demo\steer_document_processing_poc\demo_app\backend\Agent_AI\image\enquiry_20250629_185152_Enquiry form - Gulf Additives (Revised 11112024).pdf'
+2025-06-30 07:33:09 | INFO     | extract_pdf_data.py:333 | ✅ Found match in row 0, position 3
+2025-06-30 07:33:09 | INFO     | extract_pdf_data.py:400 | Before update:
+2025-06-30 07:33:09 | INFO     | extract_pdf_data.py:401 | Status: ['completed', 'pending', 'pending', 'pending', 'pending']
+2025-06-30 07:33:09 | INFO     | extract_pdf_data.py:402 | Counts: ['1', '0', '0', '0', '0']
+2025-06-30 07:33:09 | INFO     | extract_pdf_data.py:464 | 
+Final state:
+2025-06-30 07:33:09 | INFO     | extract_pdf_data.py:465 | Completed positions: [0, 3]
+2025-06-30 07:33:09 | INFO     | extract_pdf_data.py:466 | Pending positions: [1, 2]
+2025-06-30 07:33:09 | INFO     | extract_pdf_data.py:467 | Status - Completed: 2, Pending: 3
+2025-06-30 07:33:09 | INFO     | extract_pdf_data.py:468 | Counts - Ones: 2, Zeros: 3
+2025-06-30 07:33:09 | INFO     | extract_pdf_data.py:469 | Status list: ['completed', 'pending', 'pending', 'completed', 'pending']
+2025-06-30 07:33:09 | INFO     | extract_pdf_data.py:470 | Count list: ['1', '0', '0', '1', '0']
+2025-06-30 07:33:09 | INFO     | extract_pdf_data.py:473 | ✅ Perfect balance achieved
+2025-06-30 07:33:09 | INFO     | extract_pdf_data.py:482 | 💾 Successfully saved updates to Excel file
+2025-06-30 07:33:09 | INFO     | classification_engine.py:506 | Classifying document
+2025-06-30 07:33:09 | INFO     | classification_engine.py:409 | Classifying document
+2025-06-30 07:33:09 | INFO     | step_process.py:95 | Using schema: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/schemas/extruder_enquiry_fields.json
+2025-06-30 07:33:09 | INFO     | step_process.py:108 | Successfully read 10820 characters from file
+2025-06-30 07:33:27 | INFO     | step_process.py:139 | Successfully extracted data from document
+2025-06-30 07:33:27 | INFO     | step_process.py:197 | Generated result path: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/result_json/enquiry_20250629_185152_Enquiry form - Gulf Additives (Revised 11112024).json
+2025-06-30 07:33:27 | INFO     | step_process.py:201 | JSON file generated successfully
+2025-06-30 07:33:27 | INFO     | step_process.py:212 | Successfully processed file: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/download_email/enquiry_20250629_185152_Enquiry form - Gulf Additives (Revised 11112024).pdf
+2025-06-30 07:33:27 | INFO     | step_process.py:213 | Result saved to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/result_json/enquiry_20250629_185152_Enquiry form - Gulf Additives (Revised 11112024).json
+2025-06-30 07:33:27 | INFO     | step_process.py:191 | Processing: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/download_email/enquiry_20250629_185153_Enquiry_form.pdf
+2025-06-30 07:33:27 | INFO     | extract_pdf_data.py:55 | Converting PDF to images: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/download_email/enquiry_20250629_185153_Enquiry_form.pdf
+2025-06-30 07:33:27 | INFO     | extract_pdf_data.py:59 | Current working directory: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI
+2025-06-30 07:33:27 | INFO     | extract_pdf_data.py:63 | Normalized upload path: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/download_email/enquiry_20250629_185153_Enquiry_form.pdf
+2025-06-30 07:33:27 | INFO     | extract_pdf_data.py:67 | Base filename: enquiry_20250629_185153_Enquiry_form
+2025-06-30 07:33:27 | INFO     | extract_pdf_data.py:72 | Creating output folder at: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185153_Enquiry_form
+2025-06-30 07:33:27 | INFO     | extract_pdf_data.py:76 | Created output folder at: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185153_Enquiry_form
+2025-06-30 07:33:27 | INFO     | extract_pdf_data.py:78 | 📄 Converting PDF to images: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/download_email/enquiry_20250629_185153_Enquiry_form.pdf
+2025-06-30 07:33:30 | INFO     | extract_pdf_data.py:82 | Converted 8 pages
+2025-06-30 07:33:30 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 1 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185153_Enquiry_form/page_1.png
+2025-06-30 07:33:30 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 2 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185153_Enquiry_form/page_2.png
+2025-06-30 07:33:30 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 3 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185153_Enquiry_form/page_3.png
+2025-06-30 07:33:30 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 4 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185153_Enquiry_form/page_4.png
+2025-06-30 07:33:31 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 5 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185153_Enquiry_form/page_5.png
+2025-06-30 07:33:31 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 6 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185153_Enquiry_form/page_6.png
+2025-06-30 07:33:31 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 7 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185153_Enquiry_form/page_7.png
+2025-06-30 07:33:31 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 8 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185153_Enquiry_form/page_8.png
+2025-06-30 07:33:31 | INFO     | extract_pdf_data.py:95 | Creating markdown file at: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185153_Enquiry_form/output_all_pages.md
+2025-06-30 07:33:31 | INFO     | extract_pdf_data.py:100 | ✅ Created markdown file at: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185153_Enquiry_form/output_all_pages.md
+2025-06-30 07:33:31 | INFO     | extract_pdf_data.py:101 | ✅ All files saved in folder: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185153_Enquiry_form
+2025-06-30 07:33:31 | INFO     | extract_pdf_data.py:104 | Returning folder path: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185153_Enquiry_form
+2025-06-30 07:33:31 | INFO     | extract_pdf_data.py:512 | Working with image folder: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185153_Enquiry_form
+2025-06-30 07:33:31 | INFO     | extract_pdf_data.py:529 | 📋 Found 8 pages to process
+2025-06-30 07:33:31 | INFO     | extract_pdf_data.py:535 | Output will be saved to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185153_Enquiry_form/output_all_pages.md
+2025-06-30 07:33:31 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 1/8: page_1.png
+2025-06-30 07:33:31 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_1.png
+2025-06-30 07:33:36 | INFO     | extract_pdf_data.py:199 | ✅ Successfully extracted 1080 characters
+2025-06-30 07:33:36 | INFO     | extract_pdf_data.py:571 | ✅ Completed: page_1.png (1080 characters)
+2025-06-30 07:33:36 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 2/8: page_2.png
+2025-06-30 07:33:36 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_2.png
+2025-06-30 07:33:40 | INFO     | extract_pdf_data.py:199 | ✅ Successfully extracted 978 characters
+2025-06-30 07:33:40 | INFO     | extract_pdf_data.py:571 | ✅ Completed: page_2.png (978 characters)
+2025-06-30 07:33:40 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 3/8: page_3.png
+2025-06-30 07:33:40 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_3.png
+2025-06-30 07:33:45 | INFO     | extract_pdf_data.py:199 | ✅ Successfully extracted 1282 characters
+2025-06-30 07:33:45 | INFO     | extract_pdf_data.py:571 | ✅ Completed: page_3.png (1282 characters)
+2025-06-30 07:33:45 | INFO     | extract_pdf_data.py:255 | ✅ Progress saved successfully to /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185153_Enquiry_form/temp_output_all_pages.md
+2025-06-30 07:33:45 | INFO     | extract_pdf_data.py:256 | 📊 Metadata saved to /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185153_Enquiry_form/temp_output_all_pages.md.meta
+2025-06-30 07:33:45 | INFO     | extract_pdf_data.py:576 | 💾 Progress saved (processed 3 pages)
+2025-06-30 07:33:45 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 4/8: page_4.png
+2025-06-30 07:33:45 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_4.png
+2025-06-30 07:33:51 | INFO     | extract_pdf_data.py:199 | ✅ Successfully extracted 1036 characters
+2025-06-30 07:33:51 | INFO     | extract_pdf_data.py:571 | ✅ Completed: page_4.png (1036 characters)
+2025-06-30 07:33:51 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 5/8: page_5.png
+2025-06-30 07:33:51 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_5.png
+2025-06-30 07:33:56 | INFO     | extract_pdf_data.py:199 | ✅ Successfully extracted 773 characters
+2025-06-30 07:33:56 | INFO     | extract_pdf_data.py:571 | ✅ Completed: page_5.png (773 characters)
+2025-06-30 07:33:56 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 6/8: page_6.png
+2025-06-30 07:33:56 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_6.png
+2025-06-30 07:34:03 | INFO     | extract_pdf_data.py:199 | ✅ Successfully extracted 1939 characters
+2025-06-30 07:34:03 | INFO     | extract_pdf_data.py:571 | ✅ Completed: page_6.png (1939 characters)
+2025-06-30 07:34:03 | INFO     | extract_pdf_data.py:255 | ✅ Progress saved successfully to /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185153_Enquiry_form/temp_output_all_pages.md
+2025-06-30 07:34:03 | INFO     | extract_pdf_data.py:256 | 📊 Metadata saved to /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185153_Enquiry_form/temp_output_all_pages.md.meta
+2025-06-30 07:34:03 | INFO     | extract_pdf_data.py:576 | 💾 Progress saved (processed 6 pages)
+2025-06-30 07:34:03 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 7/8: page_7.png
+2025-06-30 07:34:03 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_7.png
+2025-06-30 07:34:08 | INFO     | extract_pdf_data.py:199 | ✅ Successfully extracted 1091 characters
+2025-06-30 07:34:08 | INFO     | extract_pdf_data.py:571 | ✅ Completed: page_7.png (1091 characters)
+2025-06-30 07:34:08 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 8/8: page_8.png
+2025-06-30 07:34:08 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_8.png
+2025-06-30 07:34:13 | INFO     | extract_pdf_data.py:199 | ✅ Successfully extracted 1014 characters
+2025-06-30 07:34:13 | INFO     | extract_pdf_data.py:571 | ✅ Completed: page_8.png (1014 characters)
+2025-06-30 07:34:13 | INFO     | extract_pdf_data.py:609 | 
+✅ Final output saved to '/mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185153_Enquiry_form/output_all_pages.md'
+2025-06-30 07:34:13 | INFO     | extract_pdf_data.py:610 | 📊 Summary: 8 successful, 0 failed out of 8 total pages
+2025-06-30 07:34:13 | INFO     | extract_pdf_data.py:367 | 📊 Successfully read Excel file with 2 rows
+2025-06-30 07:34:13 | INFO     | extract_pdf_data.py:373 | Processing file: C:\Users\Imran\OneDrive - Ahana Systems and Solutions (P) Ltd\Desktop\Demo\steer_document_processing_poc\demo_app\backend\Agent_AI\image\enquiry_20250629_185153_Enquiry_form.pdf
+2025-06-30 07:34:13 | INFO     | extract_pdf_data.py:309 | Looking for normalized name: 'c:\users\imran\onedrive - ahana systems and solutions (p) ltd\desktop\demo\steer_document_processing_poc\demo_app\backend\agent_ai\image\enquiry_20250629_185153_enquiry_form'
+2025-06-30 07:34:13 | INFO     | extract_pdf_data.py:310 | Original filename: 'C:\Users\Imran\OneDrive - Ahana Systems and Solutions (P) Ltd\Desktop\Demo\steer_document_processing_poc\demo_app\backend\Agent_AI\image\enquiry_20250629_185153_Enquiry_form.pdf'
+2025-06-30 07:34:13 | INFO     | extract_pdf_data.py:333 | ✅ Found match in row 0, position 4
+2025-06-30 07:34:13 | INFO     | extract_pdf_data.py:400 | Before update:
+2025-06-30 07:34:13 | INFO     | extract_pdf_data.py:401 | Status: ['completed', 'pending', 'pending', 'completed', 'pending']
+2025-06-30 07:34:13 | INFO     | extract_pdf_data.py:402 | Counts: ['1', '0', '0', '1', '0']
+2025-06-30 07:34:13 | INFO     | extract_pdf_data.py:464 | 
+Final state:
+2025-06-30 07:34:13 | INFO     | extract_pdf_data.py:465 | Completed positions: [0, 4]
+2025-06-30 07:34:13 | INFO     | extract_pdf_data.py:466 | Pending positions: [1, 2]
+2025-06-30 07:34:13 | INFO     | extract_pdf_data.py:467 | Status - Completed: 2, Pending: 3
+2025-06-30 07:34:13 | INFO     | extract_pdf_data.py:468 | Counts - Ones: 2, Zeros: 3
+2025-06-30 07:34:13 | INFO     | extract_pdf_data.py:469 | Status list: ['completed', 'pending', 'pending', 'pending', 'completed']
+2025-06-30 07:34:13 | INFO     | extract_pdf_data.py:470 | Count list: ['1', '0', '0', '0', '1']
+2025-06-30 07:34:13 | INFO     | extract_pdf_data.py:473 | ✅ Perfect balance achieved
+2025-06-30 07:34:13 | INFO     | extract_pdf_data.py:482 | 💾 Successfully saved updates to Excel file
+2025-06-30 07:34:13 | INFO     | classification_engine.py:506 | Classifying document
+2025-06-30 07:34:13 | INFO     | classification_engine.py:409 | Classifying document
+2025-06-30 07:34:13 | INFO     | step_process.py:95 | Using schema: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/schemas/extruder_enquiry_fields.json
+2025-06-30 07:34:13 | INFO     | step_process.py:108 | Successfully read 9919 characters from file
+2025-06-30 07:34:30 | INFO     | step_process.py:139 | Successfully extracted data from document
+2025-06-30 07:34:30 | INFO     | step_process.py:197 | Generated result path: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/result_json/enquiry_20250629_185153_Enquiry_form.json
+2025-06-30 07:34:30 | INFO     | step_process.py:201 | JSON file generated successfully
+2025-06-30 07:34:30 | INFO     | step_process.py:212 | Successfully processed file: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/download_email/enquiry_20250629_185153_Enquiry_form.pdf
+2025-06-30 07:34:30 | INFO     | step_process.py:213 | Result saved to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/result_json/enquiry_20250629_185153_Enquiry_form.json
+2025-06-30 07:34:30 | INFO     | step_process.py:227 | IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+2025-06-30 07:34:30 | INFO     | step_process.py:228 | res_paths: ['/mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/result_json/enquiry_20250629_185150_TSE enquiry (Ningbo Licheng, Mega50).json', '/mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/result_json/enquiry_20250629_185152_Enquiry form - Gulf Additives (Revised 11112024).json', '/mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/result_json/enquiry_20250629_185153_Enquiry_form.json']
+2025-06-30 07:34:30 | INFO     | step_process.py:229 | res_statuses: ['completed', 'completed', 'completed']
+2025-06-30 07:34:30 | INFO     | step_process.py:230 | markdown_statuses: ['pending', 'pending', 'pending']
+2025-06-30 07:34:30 | INFO     | step_process.py:231 | IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+2025-06-30 07:34:30 | INFO     | step_process.py:377 | 
+Updating row 0:
+2025-06-30 07:34:30 | INFO     | step_process.py:378 | Result paths: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/result_json/enquiry_20250629_185150_TSE enquiry (Ningbo Licheng, Mega50).json,/mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/result_json/enquiry_20250629_185152_Enquiry form - Gulf Additives (Revised 11112024).json,/mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/result_json/enquiry_20250629_185153_Enquiry_form.json
+2025-06-30 07:34:30 | INFO     | step_process.py:379 | Status: completed,completed,completed
+2025-06-30 07:34:30 | INFO     | step_process.py:380 | Markdown status: pending,pending,pending
+2025-06-30 07:34:30 | INFO     | step_process.py:271 | Successfully updated row 0 in Excel file
+2025-06-30 07:34:30 | INFO     | step_process.py:272 | Updated fields: res_path, res_status, markdown_status
+2025-06-30 07:34:30 | INFO     | step_process.py:355 | Processing files for row 1: ['/mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/download_email/enquiry_20250629_185204_EM19335_Quotation_with_material__23.05.2025.pdf']
+2025-06-30 07:34:30 | INFO     | step_process.py:191 | Processing: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/download_email/enquiry_20250629_185204_EM19335_Quotation_with_material__23.05.2025.pdf
+2025-06-30 07:34:30 | INFO     | extract_pdf_data.py:55 | Converting PDF to images: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/download_email/enquiry_20250629_185204_EM19335_Quotation_with_material__23.05.2025.pdf
+2025-06-30 07:34:30 | INFO     | extract_pdf_data.py:59 | Current working directory: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI
+2025-06-30 07:34:30 | INFO     | extract_pdf_data.py:63 | Normalized upload path: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/download_email/enquiry_20250629_185204_EM19335_Quotation_with_material__23.05.2025.pdf
+2025-06-30 07:34:30 | INFO     | extract_pdf_data.py:67 | Base filename: enquiry_20250629_185204_EM19335_Quotation_with_material__23.05.2025
+2025-06-30 07:34:30 | INFO     | extract_pdf_data.py:72 | Creating output folder at: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185204_EM19335_Quotation_with_material__23.05.2025
+2025-06-30 07:34:30 | INFO     | extract_pdf_data.py:76 | Created output folder at: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185204_EM19335_Quotation_with_material__23.05.2025
+2025-06-30 07:34:30 | INFO     | extract_pdf_data.py:78 | 📄 Converting PDF to images: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/download_email/enquiry_20250629_185204_EM19335_Quotation_with_material__23.05.2025.pdf
+2025-06-30 07:34:31 | INFO     | extract_pdf_data.py:82 | Converted 1 pages
+2025-06-30 07:34:31 | INFO     | extract_pdf_data.py:91 | ✅ Saved page 1 to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185204_EM19335_Quotation_with_material__23.05.2025/page_1.png
+2025-06-30 07:34:31 | INFO     | extract_pdf_data.py:95 | Creating markdown file at: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185204_EM19335_Quotation_with_material__23.05.2025/output_all_pages.md
+2025-06-30 07:34:31 | INFO     | extract_pdf_data.py:100 | ✅ Created markdown file at: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185204_EM19335_Quotation_with_material__23.05.2025/output_all_pages.md
+2025-06-30 07:34:31 | INFO     | extract_pdf_data.py:101 | ✅ All files saved in folder: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185204_EM19335_Quotation_with_material__23.05.2025
+2025-06-30 07:34:31 | INFO     | extract_pdf_data.py:104 | Returning folder path: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185204_EM19335_Quotation_with_material__23.05.2025
+2025-06-30 07:34:31 | INFO     | extract_pdf_data.py:512 | Working with image folder: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185204_EM19335_Quotation_with_material__23.05.2025
+2025-06-30 07:34:31 | INFO     | extract_pdf_data.py:529 | 📋 Found 1 pages to process
+2025-06-30 07:34:31 | INFO     | extract_pdf_data.py:535 | Output will be saved to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185204_EM19335_Quotation_with_material__23.05.2025/output_all_pages.md
+2025-06-30 07:34:31 | INFO     | extract_pdf_data.py:545 | 
+🔍 Processing 1/1: page_1.png
+2025-06-30 07:34:31 | INFO     | extract_pdf_data.py:178 | 🔄 Attempt 1/3 for page_1.png
+2025-06-30 07:34:39 | INFO     | extract_pdf_data.py:199 | ✅ Successfully extracted 2403 characters
+2025-06-30 07:34:39 | INFO     | extract_pdf_data.py:571 | ✅ Completed: page_1.png (2403 characters)
+2025-06-30 07:34:39 | INFO     | extract_pdf_data.py:609 | 
+✅ Final output saved to '/mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/image/enquiry_20250629_185204_EM19335_Quotation_with_material__23.05.2025/output_all_pages.md'
+2025-06-30 07:34:39 | INFO     | extract_pdf_data.py:610 | 📊 Summary: 1 successful, 0 failed out of 1 total pages
+2025-06-30 07:34:39 | INFO     | extract_pdf_data.py:367 | 📊 Successfully read Excel file with 2 rows
+2025-06-30 07:34:39 | INFO     | extract_pdf_data.py:373 | Processing file: C:\Users\Imran\OneDrive - Ahana Systems and Solutions (P) Ltd\Desktop\Demo\steer_document_processing_poc\demo_app\backend\Agent_AI\image\enquiry_20250629_185204_EM19335_Quotation_with_material__23.05.2025.pdf
+2025-06-30 07:34:39 | INFO     | extract_pdf_data.py:309 | Looking for normalized name: 'c:\users\imran\onedrive - ahana systems and solutions (p) ltd\desktop\demo\steer_document_processing_poc\demo_app\backend\agent_ai\image\enquiry_20250629_185204_em19335_quotation_with_material__23.05.2025'
+2025-06-30 07:34:39 | INFO     | extract_pdf_data.py:310 | Original filename: 'C:\Users\Imran\OneDrive - Ahana Systems and Solutions (P) Ltd\Desktop\Demo\steer_document_processing_poc\demo_app\backend\Agent_AI\image\enquiry_20250629_185204_EM19335_Quotation_with_material__23.05.2025.pdf'
+2025-06-30 07:34:39 | INFO     | extract_pdf_data.py:333 | ✅ Found match in row 1, position 0
+2025-06-30 07:34:39 | INFO     | extract_pdf_data.py:400 | Before update:
+2025-06-30 07:34:39 | INFO     | extract_pdf_data.py:401 | Status: ['pending']
+2025-06-30 07:34:39 | INFO     | extract_pdf_data.py:402 | Counts: ['1']
+2025-06-30 07:34:39 | INFO     | extract_pdf_data.py:464 | 
+Final state:
+2025-06-30 07:34:39 | INFO     | extract_pdf_data.py:465 | Completed positions: [0]
+2025-06-30 07:34:39 | INFO     | extract_pdf_data.py:466 | Pending positions: []
+2025-06-30 07:34:39 | INFO     | extract_pdf_data.py:467 | Status - Completed: 1, Pending: 0
+2025-06-30 07:34:39 | INFO     | extract_pdf_data.py:468 | Counts - Ones: 1, Zeros: 0
+2025-06-30 07:34:39 | INFO     | extract_pdf_data.py:469 | Status list: ['completed']
+2025-06-30 07:34:39 | INFO     | extract_pdf_data.py:470 | Count list: ['1']
+2025-06-30 07:34:39 | INFO     | extract_pdf_data.py:473 | ✅ Perfect balance achieved
+2025-06-30 07:34:40 | INFO     | extract_pdf_data.py:482 | 💾 Successfully saved updates to Excel file
+2025-06-30 07:34:40 | INFO     | classification_engine.py:506 | Classifying document
+2025-06-30 07:34:40 | INFO     | classification_engine.py:409 | Classifying document
+2025-06-30 07:34:40 | INFO     | step_process.py:95 | Using schema: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/schemas/extruder_quotation_fields.json
+2025-06-30 07:34:40 | INFO     | step_process.py:108 | Successfully read 3006 characters from file
+2025-06-30 07:34:43 | INFO     | step_process.py:139 | Successfully extracted data from document
+2025-06-30 07:34:43 | INFO     | step_process.py:197 | Generated result path: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/result_json/enquiry_20250629_185204_EM19335_Quotation_with_material__23.05.2025.json
+2025-06-30 07:34:43 | INFO     | step_process.py:201 | JSON file generated successfully
+2025-06-30 07:34:43 | INFO     | step_process.py:212 | Successfully processed file: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/download_email/enquiry_20250629_185204_EM19335_Quotation_with_material__23.05.2025.pdf
+2025-06-30 07:34:43 | INFO     | step_process.py:213 | Result saved to: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/result_json/enquiry_20250629_185204_EM19335_Quotation_with_material__23.05.2025.json
+2025-06-30 07:34:43 | INFO     | step_process.py:227 | IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+2025-06-30 07:34:43 | INFO     | step_process.py:228 | res_paths: ['/mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/result_json/enquiry_20250629_185204_EM19335_Quotation_with_material__23.05.2025.json']
+2025-06-30 07:34:43 | INFO     | step_process.py:229 | res_statuses: ['completed']
+2025-06-30 07:34:43 | INFO     | step_process.py:230 | markdown_statuses: ['pending']
+2025-06-30 07:34:43 | INFO     | step_process.py:231 | IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+2025-06-30 07:34:43 | INFO     | step_process.py:377 | 
+Updating row 1:
+2025-06-30 07:34:43 | INFO     | step_process.py:378 | Result paths: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/result_json/enquiry_20250629_185204_EM19335_Quotation_with_material__23.05.2025.json
+2025-06-30 07:34:43 | INFO     | step_process.py:379 | Status: completed
+2025-06-30 07:34:43 | INFO     | step_process.py:380 | Markdown status: pending
+2025-06-30 07:34:44 | INFO     | step_process.py:271 | Successfully updated row 1 in Excel file
+2025-06-30 07:34:44 | INFO     | step_process.py:272 | Updated fields: res_path, res_status, markdown_status
+2025-06-30 07:34:44 | INFO     | step_process.py:274 | Successfully updated Excel file with all required fields
+2025-06-30 07:34:44 | INFO     | step_process.py:393 | 
+Final save successful
+2025-06-30 07:34:44 | INFO     | step_process.py:394 | Progress saved successfully
+2025-06-30 07:34:44 | INFO     | step_process.py:395 | Excel file updated at: /mnt/c/Users/Imran/OneDrive - Ahana Systems and Solutions (P) Ltd/Desktop/Demo/steer_document_processing_poc/demo_app/backend/Agent_AI/download_email/email_download_log.xlsx
