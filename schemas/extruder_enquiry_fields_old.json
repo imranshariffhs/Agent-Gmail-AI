@@ -1,0 +1,1337 @@
+{
+    "id": "extruder_enquiry_fields",
+    "name": "General Enquiry Form",
+    "description": "Comprehensive enquiry form for equipment specifications and requirements",
+    "fields": [
+        {
+            "description": "Please tell us about your company details ",
+            "name": "company details",
+            "Info_filed": [
+                {
+                    "description": "Client identification",
+                    "name": "client name",
+                    "required": true,
+                    "type": "text"
+                },
+                {
+                    "description": "Building number of client location",
+                    "name": "building number",
+                    "required": true,
+                    "type": "text"
+                },
+                {
+                    "description": "Street address",
+                    "name": "street",
+                    "required": true,
+                    "type": "text"
+                },
+                {
+                    "description": "City or town location",
+                    "name": "city town",
+                    "required": true,
+                    "type": "text"
+                },
+                {
+                    "description": "State location",
+                    "name": "state",
+                    "required": true,
+                    "type": "text"
+                },
+                {
+                    "description": "Postal code",
+                    "name": "pin code",
+                    "required": true,
+                    "type": "text"
+                },
+                {
+                    "description": "Contact telephone number",
+                    "name": "telephone",
+                    "required": true,
+                    "type": "text"
+                },
+                {
+                    "description": "Email address",
+                    "name": "email",
+                    "required": true,
+                    "type": "email"
+                },
+                {
+                    "description": "Company website",
+                    "name": "website",
+                    "required": true,
+                    "type": "url"
+                }
+            ],
+            "required": true,
+            "type": "object"
+        },
+        {
+            "description": "Please tell us about your site information",
+            "name": "Site Information",
+            "Info_filed": [
+                {
+                    "description": "Minimum ambient temperature at installation site",
+                    "name": "ambient temperature min",
+                    "required": true,
+                    "type": "number"
+                },
+                {
+                    "description": "Maximum ambient temperature at installation site",
+                    "name": "ambient temperature max",
+                    "required": true,
+                    "type": "number"
+                },
+                {
+                    "description": "Site altitude above sea level",
+                    "name": "altitude",
+                    "required": true,
+                    "type": "number"
+                },
+                {
+                    "description": "Minimum relative humidity at site",
+                    "name": "relative humidity min",
+                    "required": true,
+                    "type": "number"
+                },
+                {
+                    "description": "Maximum relative humidity at site",
+                    "name": "relative humidity max",
+                    "required": true,
+                    "type": "number"
+                },
+                {
+                    "description": "Power supply voltage",
+                    "name": "power voltage",
+                    "required": true,
+                    "type": "number"
+                },
+                {
+                    "description": "Power supply frequency",
+                    "name": "power frequency",
+                    "required": true,
+                    "type": "number"
+                },
+                {
+                    "description": "3 Phase 1 neutral power availability",
+                    "name": "three phase power",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Cooling water availability",
+                    "name": "cooling water available",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Raw water availability",
+                    "name": "raw water available",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Pneumatic air availability",
+                    "name": "pneumatic air available",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Installation location hazard classification",
+                    "name": "installation location hazardous",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "IP protection rating required",
+                    "name": "ip protection rating",
+                    "required": true,
+                    "type": "text"
+                },
+                {
+                    "description": "Main motor IP protection",
+                    "name": "main motor ip protection",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Lube oil pump IP protection",
+                    "name": "lube oil pump ip protection",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Small motors IP protection",
+                    "name": "small motors ip protection",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Junction box IP protection",
+                    "name": "junction box ip protection",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Heaters and thermocouple IP protection",
+                    "name": "heaters thermocouple ip protection",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "PLC panel IP protection",
+                    "name": "plc panel ip protection",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Drive panel IP protection",
+                    "name": "drive panel ip protection",
+                    "required": true,
+                    "type": "boolean"
+                }
+            ],
+            "required": true,
+            "type": "object"
+        },
+        {
+            "description": "Please tell us about your Scope of supply and work",
+            "name": "Scope of supply and work",
+            "Info_filed": [
+                {
+                    "description": "Only extruder",
+                    "name": "Only extruder",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Any additional equipment requirement",
+                    "name": "additional equipment",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Extruder supplier scope",
+                    "name": "extruder supplier scope",
+                    "required": true,
+                    "type": "object",
+                    "Info_filed": [
+                        {
+                            "description": "Mezzanine floor requirement",
+                            "name": "mezzanine floor",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Refill hoppers requirement",
+                            "name": "refill hoppers",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Conveying gravimetric feeder requirement",
+                            "name": "conveying gravimetric feeder",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Volumetric feeder requirement",
+                            "name": "volumetric feeder",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Screen changer requirement",
+                            "name": "screen changer",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Melt pump requirement",
+                            "name": "melt pump",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Classifier requirement",
+                            "name": "classifier",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Water bath requirement",
+                            "name": "water bath",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Air knife pelletizer requirement",
+                            "name": "air knife pelletizer",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Under water pelletizer requirement",
+                            "name": "under water pelletizer",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Finished goods storage and conveying requirement",
+                            "name": "fg storage conveying",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "25Kg/Jumbo bag packing and sealing requirement",
+                            "name": "bag packing sealing",
+                            "required": true,
+                            "type": "boolean"
+                        }
+                    ]
+                },
+                {
+                    "Complete plant engineering work": {
+                        "Info_filed": [
+                            {
+                                "description": "Complete plant engineering work",
+                                "name": "complete plant engineering",
+                                "required": true,
+                                "type": "boolean"
+                            },
+                            {
+                                "description": "Cable supply, laying and termination work",
+                                "name": "cable supply laying termination",
+                                "required": true,
+                                "type": "boolean"
+                            },
+                            {
+                                "description": "Upstream and downstream equipment supervision",
+                                "name": "equipment supervision",
+                                "required": true,
+                                "type": "boolean"
+                            },
+                            {
+                                "description": "Utility piping supply and connection",
+                                "name": "utility piping supply connection",
+                                "required": true,
+                                "type": "boolean"
+                            },
+                            {
+                                "description": "De-dusting system and ducting work",
+                                "name": "dedusting system ducting",
+                                "required": true,
+                                "type": "boolean"
+                            }
+                        ],
+                        "required": true,
+                        "type": "object"
+                    }
+                }
+            ]
+        },
+        {
+            "description": "Please tell us about your Application details",
+            "name": "Application details",
+            "Info_filed": [
+                {
+                    "description": "Basic recipe details",
+                    "name": "basic recipe",
+                    "required": true,
+                    "type": "textarea"
+                },
+                {
+                    "description": "Industrial application end use",
+                    "name": "industrial application",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Home appliance application end use",
+                    "name": "home appliance application",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Electrical and electronics application",
+                    "name": "electrical electronics application",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Automotive application",
+                    "name": "automotive application",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Housing and construction application",
+                    "name": "housing construction application",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Packaging application",
+                    "name": "packaging application",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Specialty application",
+                    "name": "specialty application",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Extrusion end product usage",
+                    "name": "extrusion usage",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Molding end product usage",
+                    "name": "molding usage",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Granules end product form",
+                    "name": "granules form",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Sheet end product form",
+                    "name": "sheet form",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "ASTM testing method",
+                    "name": "astm testing",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "ISO testing method",
+                    "name": "iso testing",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Testing method to be provided before contract",
+                    "name": "testing method before contract",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Benchmark availability",
+                    "name": "benchmark available",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "MFI benchmark specification",
+                    "name": "mfi benchmark",
+                    "required": true,
+                    "type": "text"
+                },
+                {
+                    "description": "Impact benchmark specification",
+                    "name": "impact benchmark",
+                    "required": true,
+                    "type": "text"
+                },
+                {
+                    "description": "Tensile benchmark specification",
+                    "name": "tensile benchmark",
+                    "required": true,
+                    "type": "text"
+                },
+                {
+                    "description": "Flexural benchmark specification",
+                    "name": "flexural benchmark",
+                    "required": true,
+                    "type": "text"
+                },
+                {
+                    "description": "Flammability benchmark specification",
+                    "name": "flammability benchmark",
+                    "required": true,
+                    "type": "text"
+                },
+                {
+                    "description": "Other benchmark specifications",
+                    "name": "other benchmark",
+                    "required": true,
+                    "type": "text"
+                },
+                {
+                    "description": "Lab trial requirement",
+                    "name": "lab trial required",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "STEER India lab trial location",
+                    "name": "steer india lab",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "STEER Japan lab trial location",
+                    "name": "steer japan lab",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "STEER China lab trial location",
+                    "name": "steer china lab",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "STEER America lab trial location",
+                    "name": "steer america lab",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Willingness to send sample with MSDS",
+                    "name": "send sample msds",
+                    "required": true,
+                    "type": "boolean"
+                }
+            ],
+            "required": true,
+            "type": "object"
+        },
+        {
+            "description": "Complete formulation table data as JSON array",
+            "name": "formulation_tables",
+            "required": true,
+            "type": "json_array",
+            "schema": {
+                "formulation_id": "number",
+                "entries": [
+                    {
+                        "sl_no": "number",
+                        "raw_material_name": "text",
+                        "bulk_density": "number",
+                        "physical_form": "text",
+                        "size": "text",
+                        "feed_rate_percentage": "number"
+                    }
+                ]
+            }
+        },
+        {
+            "description": "Please tell me about your Raw material details",
+            "name": "Raw material details",
+            "Info_filed": [
+                {
+                    "description": "Processing zone barrel specifications table",
+                    "name": "processing_zone_table",
+                    "required": true,
+                    "type": "json_array",
+                    "schema": {
+                        "barrel_length": "text",
+                        "barrel_type": "text",
+                        "barrel_preferred_moc": "text",
+                        "element_preferred_moc": "text",
+                        "shaft_moc": "text"
+                    }
+                },
+                {
+                    "description": "Raw material storage in bulk silo",
+                    "name": "bulk silo storage",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Raw material storage inside warehouse",
+                    "name": "warehouse storage",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Magnetic separator screening requirement",
+                    "name": "magnetic separator",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Metal separator screening requirement",
+                    "name": "metal separator",
+                    "required": true,
+                    "type": "boolean"
+                }
+            ],
+            "required": true,
+            "type": "object"
+        },
+        {
+            "description": "Please tell me about your Extruder details",
+            "name": "Extruder details",
+            "Info_filed": [
+                {
+                    "description": "Extruder specification source - STEER",
+                    "name": "steer specification",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Extruder specification source - Customer",
+                    "name": "customer specification",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Omega platform (Do/Di 1.71)",
+                    "name": "omega platform",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Mega platform (Do/Di 1.55)",
+                    "name": "mega platform",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Alpha platform (Do/Di 1.49)",
+                    "name": "alpha platform",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Premix process type",
+                    "name": "premix process",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Split feed process type",
+                    "name": "split feed process",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Expected throughput in kg/hr",
+                    "name": "expected throughput",
+                    "required": true,
+                    "type": "number"
+                },
+                {
+                    "description": "Screw diameter in mm",
+                    "name": "screw diameter",
+                    "required": true,
+                    "type": "number"
+                },
+                {
+                    "description": "Screw speed in rpm",
+                    "name": "screw speed",
+                    "required": true,
+                    "type": "number"
+                },
+                {
+                    "description": "Motor power in kW",
+                    "name": "motor power",
+                    "required": true,
+                    "type": "number"
+                },
+                {
+                    "description": "Water cooled motor type",
+                    "name": "water cooled motor",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Air cooled motor type",
+                    "name": "air cooled motor",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Synchronous servo motor type",
+                    "name": "synchronous servo motor",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Nominal torque in Nm/shaft",
+                    "name": "nominal torque",
+                    "required": true,
+                    "type": "number"
+                },
+                {
+                    "description": "Specific torque in Nm/cm3",
+                    "name": "specific torque",
+                    "required": true,
+                    "type": "number"
+                },
+                {
+                    "description": "PIV gearbox preference",
+                    "name": "piv gearbox",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Zambello gearbox preference",
+                    "name": "zambello gearbox",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Eisenbeiss gearbox preference",
+                    "name": "eisenbeiss gearbox",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "STEER gearbox preference",
+                    "name": "steer gearbox",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Number of side feeders required",
+                    "name": "side feeders count",
+                    "required": true,
+                    "type": "number"
+                },
+                {
+                    "description": "Preferred L/D ratio",
+                    "name": "preferred ld ratio",
+                    "required": true,
+                    "type": "number"
+                },
+                {
+                    "description": "4D barrel type",
+                    "name": "4d barrel type",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "6D barrel type",
+                    "name": "6d barrel type",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Maximum barrel temperature in deg C",
+                    "name": "max barrel temperature",
+                    "required": true,
+                    "type": "number"
+                },
+                {
+                    "description": "STEER MOC preference",
+                    "name": "steer moc preference",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Customer specified MOC",
+                    "name": "customer moc preference",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Please tell me about your Processing zone details",
+                    "name": "processing zone details",
+                    "Info_filed": [
+                        {
+                            "description": "Barrel Length (4D or 6D per segment)",
+                            "name": "barrel length",
+                            "required": true,
+                            "type": "array"
+                        },
+                        {
+                            "description": "Barrel Type per segment (1-Intake, 2-Closed, 3-Side feed, 4-ATM Vent, 5-Vacuum Vent, 6-Liquid injection)",
+                            "name": "barrel type",
+                            "required": true,
+                            "type": "array"
+                        },
+                        {
+                            "description": "Barrel Preferred MOC",
+                            "name": "barrel preferred moc",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "description": "Element Preferred MOC",
+                            "name": "element preferred moc",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "description": "Shaft MOC",
+                            "name": "shaft moc",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "description": "Drive and PLC panel cooling type - Fan cooled",
+                            "name": "fan cooled panels",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Drive and PLC panel cooling type - Air conditioned",
+                            "name": "air conditioned panels",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Cable entry - Top",
+                            "name": "top cable entry",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Cable entry - Bottom",
+                            "name": "bottom cable entry",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Cable exit - Top",
+                            "name": "top cable exit",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Cable exit - Bottom",
+                            "name": "bottom cable exit",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Electrical standards preference",
+                            "name": "electrical standards",
+                            "required": true,
+                            "type": "textarea"
+                        },
+                        {
+                            "description": "Preferred operating interface - Basic push button",
+                            "name": "basic push button control",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Preferred operating interface - HMI",
+                            "name": "hmi control type",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Preferred operating interface - Industrial PC",
+                            "name": "industrial pc control",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Operating side when viewed from Die end - Right",
+                            "name": "operating side right",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Operating side when viewed from Die end - Left",
+                            "name": "operating side left",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "TCU position when viewed from Die end - Right",
+                            "name": "tcu position right",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "TCU position when viewed from Die end - Left",
+                            "name": "tcu position left",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Vacuum system when viewed from Die end - Right",
+                            "name": "vacuum system right",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Vacuum system when viewed from Die end - Left",
+                            "name": "vacuum system left",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Side feeder when viewed from Die end - Right",
+                            "name": "side feeder right",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Side feeder when viewed from Die end - Left",
+                            "name": "side feeder left",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Additional customization information",
+                            "name": "customization details",
+                            "required": true,
+                            "type": "textarea"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "description": "Please tell me about your Extruder details",
+            "name": "Extruder details",
+            "Info_filed": [
+                {
+                    "description": "Extruder specification source - STEER",
+                    "name": "steer specification",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Extruder specification source - Customer",
+                    "name": "customer specification",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Omega platform (Do/Di 1.71)",
+                    "name": "omega platform",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Mega platform (Do/Di 1.55)",
+                    "name": "mega platform",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Alpha platform (Do/Di 1.49)",
+                    "name": "alpha platform",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Premix process type",
+                    "name": "premix process",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Split feed process type",
+                    "name": "split feed process",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Expected throughput in kg/hr",
+                    "name": "expected throughput",
+                    "required": true,
+                    "type": "number"
+                },
+                {
+                    "description": "Screw diameter in mm",
+                    "name": "screw diameter",
+                    "required": true,
+                    "type": "number"
+                },
+                {
+                    "description": "Screw speed in rpm",
+                    "name": "screw speed",
+                    "required": true,
+                    "type": "number"
+                },
+                {
+                    "description": "Motor power in kW",
+                    "name": "motor power",
+                    "required": true,
+                    "type": "number"
+                },
+                {
+                    "description": "Water cooled motor type",
+                    "name": "water cooled motor",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Air cooled motor type",
+                    "name": "air cooled motor",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Synchronous servo motor type",
+                    "name": "synchronous servo motor",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Nominal torque in Nm/shaft",
+                    "name": "nominal torque",
+                    "required": true,
+                    "type": "number"
+                },
+                {
+                    "description": "Specific torque in Nm/cm3",
+                    "name": "specific torque",
+                    "required": true,
+                    "type": "number"
+                },
+                {
+                    "description": "PIV gearbox preference",
+                    "name": "piv gearbox",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Zambello gearbox preference",
+                    "name": "zambello gearbox",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Eisenbeiss gearbox preference",
+                    "name": "eisenbeiss gearbox",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "STEER gearbox preference",
+                    "name": "steer gearbox",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Number of side feeders required",
+                    "name": "side feeders count",
+                    "required": true,
+                    "type": "number"
+                },
+                {
+                    "description": "Preferred L/D ratio",
+                    "name": "preferred ld ratio",
+                    "required": true,
+                    "type": "number"
+                },
+                {
+                    "description": "4D barrel type",
+                    "name": "4d barrel type",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "6D barrel type",
+                    "name": "6d barrel type",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Maximum barrel temperature in deg C",
+                    "name": "max barrel temperature",
+                    "required": true,
+                    "type": "number"
+                },
+                {
+                    "description": "STEER MOC preference",
+                    "name": "steer moc preference",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Customer specified MOC",
+                    "name": "customer moc preference",
+                    "required": true,
+                    "type": "boolean"
+                },
+                {
+                    "description": "Please tell me about your Processing zone details",
+                    "name": "processing zone details",
+                    "Info_filed": [
+                        {
+                            "description": "Barrel Length (4D or 6D per segment)",
+                            "name": "barrel length",
+                            "required": true,
+                            "type": "array"
+                        },
+                        {
+                            "description": "Barrel Type per segment (1-Intake, 2-Closed, 3-Side feed, 4-ATM Vent, 5-Vacuum Vent, 6-Liquid injection)",
+                            "name": "barrel type",
+                            "required": true,
+                            "type": "array"
+                        },
+                        {
+                            "description": "Barrel Preferred MOC",
+                            "name": "barrel preferred moc",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "description": "Element Preferred MOC",
+                            "name": "element preferred moc",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "description": "Shaft MOC",
+                            "name": "shaft moc",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "description": "Drive and PLC panel cooling type - Fan cooled",
+                            "name": "fan cooled panels",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Drive and PLC panel cooling type - Air conditioned",
+                            "name": "air conditioned panels",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Cable entry - Top",
+                            "name": "top cable entry",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Cable entry - Bottom",
+                            "name": "bottom cable entry",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Cable exit - Top",
+                            "name": "top cable exit",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Cable exit - Bottom",
+                            "name": "bottom cable exit",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Electrical standards preference",
+                            "name": "electrical standards",
+                            "required": true,
+                            "type": "textarea"
+                        },
+                        {
+                            "description": "Preferred operating interface - Basic push button",
+                            "name": "basic push button control",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Preferred operating interface - HMI",
+                            "name": "hmi control type",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Preferred operating interface - Industrial PC",
+                            "name": "industrial pc control",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Operating side when viewed from Die end - Right",
+                            "name": "operating side right",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Operating side when viewed from Die end - Left",
+                            "name": "operating side left",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "TCU position when viewed from Die end - Right",
+                            "name": "tcu position right",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "TCU position when viewed from Die end - Left",
+                            "name": "tcu position left",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Vacuum system when viewed from Die end - Right",
+                            "name": "vacuum system right",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Vacuum system when viewed from Die end - Left",
+                            "name": "vacuum system left",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Side feeder when viewed from Die end - Right",
+                            "name": "side feeder right",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Side feeder when viewed from Die end - Left",
+                            "name": "side feeder left",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Additional customization information",
+                            "name": "customization details",
+                            "required": true,
+                            "type": "textarea"
+                        }
+                    ]
+                },
+                {
+                    "description": "Please provide other and project details",
+                    "name": "other and project details",
+                    "Info_filed": [
+                        {
+                            "description": "Extruder maintenance resource - In house",
+                            "name": "maintenance inhouse",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Extruder maintenance resource - External/contract",
+                            "name": "maintenance external",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Extruder maintenance resource - Not applicable",
+                            "name": "maintenance na",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Extruder maintenance skill level - Unskilled",
+                            "name": "maintenance unskilled",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Extruder maintenance skill level - Semi-skilled",
+                            "name": "maintenance semi skilled",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Extruder maintenance skill level - Skilled",
+                            "name": "maintenance skilled",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Extruder maintenance skill level - Not applicable",
+                            "name": "maintenance skill na",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Training required from extruder supplier - TSE operation",
+                            "name": "training tse operation",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Training required from extruder supplier - TSE maintenance",
+                            "name": "training tse maintenance",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Training required from extruder supplier - Application processing",
+                            "name": "training application processing",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Training required from extruder supplier - Not applicable",
+                            "name": "training na",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Color coding preference - Standard (RAL7035 base/panels, RAL5009 gearbox/feeders, RAL1003 guards)",
+                            "name": "color coding standard",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Color coding preference - Non-standard",
+                            "name": "color coding non standard",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "If non-standard color coding selected, please specify",
+                            "name": "color coding non standard details",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "description": "Extruder manuals - Standard English",
+                            "name": "manuals standard english",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "Extruder manuals - Other language",
+                            "name": "manuals other language",
+                            "required": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "description": "If other language selected, please specify",
+                            "name": "manuals other language details",
+                            "required": false,
+                            "type": "string"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "description": "Project timeline details",
+            "name": "project details",
+            "Info_filed": [
+                {
+                    "description": "Expected finalization time in weeks",
+                    "name": "expected finalization weeks",
+                    "required": true,
+                    "type": "number"
+                },
+                {
+                    "description": "Expected delivery time in weeks",
+                    "name": "expected delivery weeks",
+                    "required": true,
+                    "type": "number"
+                }
+            ]
+        }
+    ],
+    "created_at": "2025-06-23T00:00:00.000000",
+    "updated_at": "2025-06-23T00:00:00.000000"
+}
