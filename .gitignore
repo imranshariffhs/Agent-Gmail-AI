@@ -5,3 +5,5 @@ __pycache__/
 .vscode
 .ruff_cache/tokenold.json
 credentialsnew.json
+tokenold.json
+credentialsnew.json
