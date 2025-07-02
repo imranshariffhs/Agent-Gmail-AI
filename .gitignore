@@ -8,3 +8,9 @@ credentialsnew.json
 tokenold.json
 credentialsnew.json
 credentialsold.json
+tokenold.json
+token.json
+credentials.json
+*.json
+.env
+config.ini
