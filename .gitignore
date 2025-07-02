@@ -3,3 +3,5 @@ token.json
 .env
 __pycache__/
 .vscode
+.ruff_cache/tokenold.json
+credentialsnew.json

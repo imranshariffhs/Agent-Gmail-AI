@@ -1,17 +1,19 @@
-from extract_pdf_data import process_pdf_image
-from pdf_process import (
-    format_field_definitions,
-    EXTRACTION_PROMPT,
-    extract_json_from_response,
-)
-from classification_engine import classify_document_clean
-import pandas as pd
+import json
 import os
 import re
-import json
-from langchain_google_genai import GoogleGenerativeAI
 import time
+
+import pandas as pd
+from langchain_google_genai import GoogleGenerativeAI
+
+from classification_engine import classify_document_clean
+from extract_pdf_data import process_pdf_image
 from logger import logger
+from pdf_process import (
+    EXTRACTION_PROMPT,
+    extract_json_from_response,
+    format_field_definitions,
+)
 
 # Get the directory of the current script
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -82,171 +84,154 @@ def get_schema_path(document_type, base_dir):
     return schema_path
 
 
+def _load_and_validate_schema(schema_path):
+    try:
+        with open(schema_path) as f:
+            schema = json.load(f)
+            if not schema or "fields" not in schema:
+                raise ValueError("Invalid schema format")
+            return schema["fields"]
+    except json.JSONDecodeError as e:
+        raise ValueError(f"Invalid JSON in schema file: {str(e)}") from e
+
+
+def _extract_pdf_text(output_folder):
+    output_text_path = os.path.join(output_folder, "output_all_pages.md")
+    if not os.path.exists(output_text_path):
+        raise ValueError(f"PDF text output not found: {output_text_path}")
+    with open(output_text_path, encoding="utf-8") as file:
+        pdf_text = file.read()
+    if not pdf_text:
+        raise ValueError("No text extracted from PDF")
+    logger.info("Successfully read %d characters from file", len(pdf_text))
+    return pdf_text
+
+
+def _construct_prompt(fields, pdf_text):
+    field_def_text = format_field_definitions(fields)
+    if not field_def_text:
+        raise ValueError("Failed to format field definitions")
+    return EXTRACTION_PROMPT.format(field_definitions=field_def_text, pdf_text=pdf_text)
+
+
+def _get_llm_response(prompt, llm):
+    response = llm.invoke(prompt)
+    if not response:
+        raise ValueError("No response from LLM")
+    extraction_json_data = extract_json_from_response(response)
+    if not extraction_json_data:
+        raise ValueError("Failed to extract JSON from LLM response")
+    logger.info("Successfully extracted data from document")
+    return extraction_json_data
+
+
+def _save_result_json(output_folder, extraction_json_data):
+    output_folder_name = os.path.basename(output_folder)
+    result_path = os.path.join(path_result_json, f"{output_folder_name}.json")
+    os.makedirs(os.path.dirname(result_path), exist_ok=True)
+    with open(result_path, "w") as f:
+        json.dump(extraction_json_data, f, indent=2)
+    return result_path
+
+
 def process_pdf_document(pdf_path, llm):
     """Process a single PDF document and extract information"""
     try:
-        # Process PDF to images and get output folder
         output_folder = process_pdf_image(pdf_path)
         if not output_folder:
             raise ValueError("Failed to process PDF to images")
-
-        # Classify document
         document_type = classify_document_clean(output_folder)
         if not document_type:
             raise ValueError("Failed to classify document")
-
-        # Get schema path
         schema_path = get_schema_path(document_type, os.path.dirname(current_dir))
         if not schema_path:
             raise ValueError(f"No schema available for document type: {document_type}")
-
         logger.info("Using schema: %s", schema_path)
-
-        # Extract text from PDF
-        output_text_path = os.path.join(output_folder, "output_all_pages.md")
-        if not os.path.exists(output_text_path):
-            raise ValueError(f"PDF text output not found: {output_text_path}")
-
-        with open(output_text_path, "r", encoding="utf-8") as file:
-            pdf_text = file.read()
-
-        if not pdf_text:
-            raise ValueError("No text extracted from PDF")
-
-        logger.info("Successfully read %d characters from file", len(pdf_text))
-
-        # Load and process schema
-        try:
-            with open(schema_path, "r") as f:
-                schema = json.load(f)
-                if not schema or "fields" not in schema:
-                    raise ValueError("Invalid schema format")
-                fields = schema["fields"]
-        except json.JSONDecodeError as e:
-            raise ValueError(f"Invalid JSON in schema file: {str(e)}")
-
-        # Format fields and create prompt
-        field_def_text = format_field_definitions(fields)
-        if not field_def_text:
-            raise ValueError("Failed to format field definitions")
-
-        prompt = EXTRACTION_PROMPT.format(
-            field_definitions=field_def_text, pdf_text=pdf_text
-        )
-
-        # Get LLM response
-        response = llm.invoke(prompt)
-        if not response:
-            raise ValueError("No response from LLM")
-
-        extraction_json_data = extract_json_from_response(response)
-        if not extraction_json_data:
-            raise ValueError("Failed to extract JSON from LLM response")
-
-        logger.info("Successfully extracted data from document")
-
-        # Save results
-        output_folder_name = os.path.basename(output_folder)
-        result_path = os.path.join(path_result_json, f"{output_folder_name}.json")
-
-        # Create parent directories if they don't exist
-        os.makedirs(os.path.dirname(result_path), exist_ok=True)
-
-        with open(result_path, "w") as f:
-            json.dump(extraction_json_data, f, indent=2)
-
-        # If we successfully saved the JSON file, return completed status
+        fields = _load_and_validate_schema(schema_path)
+        pdf_text = _extract_pdf_text(output_folder)
+        prompt = _construct_prompt(fields, pdf_text)
+        extraction_json_data = _get_llm_response(prompt, llm)
+        result_path = _save_result_json(output_folder, extraction_json_data)
         return result_path, "completed"
-
     except Exception as e:
         logger.error("Error processing document: %s", str(e))
         return None, f"error: {str(e)}"
+
+
+def prepare_and_validate_path(file_path):
+    file_path = clean_file_path(file_path)
+    if not file_path:
+        return None
+    if not os.path.isabs(file_path):
+        abs_path = os.path.join(path_log_fetch_pdf, file_path)
+    else:
+        abs_path = file_path
+    abs_path = os.path.normpath(abs_path)
+    if not os.path.exists(abs_path):
+        logger.info("File not found: %s", abs_path)
+        return None
+    return abs_path
+
+
+def handle_result_path(result_path, abs_path):
+    if result_path:
+        result_path = os.path.abspath(result_path)
+        logger.info("Generated result path: %s", result_path)
+        if os.path.exists(result_path):
+            logger.info("JSON file generated successfully")
+            return result_path, "completed"
+        else:
+            logger.warning("No result file found for %s", os.path.basename(abs_path))
+            return result_path, "error"
+    return "", "error"
+
+
+def _initialize_llm_safe():
+    try:
+        return initialize_llm(), False
+    except Exception as e:
+        logger.error("Error initializing LLM: %s", str(e))
+        return None, True
+
+
+def _append_error(res_paths, res_statuses, markdown_statuses):
+    res_paths.append("")
+    res_statuses.append("error")
+    markdown_statuses.append("pending")
+
+
+def _process_files_loop(file_paths, llm):
+    res_paths = []
+    res_statuses = []
+    markdown_statuses = []
+    for file_path in file_paths:
+        abs_path = prepare_and_validate_path(file_path)
+        if not abs_path:
+            _append_error(res_paths, res_statuses, markdown_statuses)
+            continue
+        try:
+            result_path, status = process_pdf_document(abs_path, llm)
+            result_path, status = handle_result_path(result_path, abs_path)
+            res_paths.append(result_path)
+            res_statuses.append(status)
+            markdown_statuses.append("pending")
+            if result_path and status == "completed":
+                logger.info("Successfully processed file: %s", file_path)
+                logger.info("Result saved to: %s", result_path)
+        except Exception as e:
+            logger.error("Error processing file %s: %s", file_path, str(e))
+            _append_error(res_paths, res_statuses, markdown_statuses)
+    return res_paths, res_statuses, markdown_statuses
 
 
 def process_file_batch(file_paths):
     """Process a batch of files and update the log"""
     if not file_paths:
         return [], [], []
-
-    # Initialize results lists
-    res_paths = []
-    res_statuses = []
-    markdown_statuses = []
-
-    # Initialize LLM
-    try:
-        llm = initialize_llm()
-    except Exception as e:
-        logger.error("Error initializing LLM: %s", str(e))
-        return (
-            [""] * len(file_paths),
-            ["error"] * len(file_paths),
-            ["pending"] * len(file_paths),
-        )
-
-    for file_path in file_paths:
-        try:
-            # Clean and validate file path
-            file_path = clean_file_path(file_path)
-            if not file_path:
-                res_paths.append("")
-                res_statuses.append("error")
-                markdown_statuses.append("pending")
-                continue
-
-            # Convert to absolute path if needed
-            if not os.path.isabs(file_path):
-                file_path = os.path.join(path_log_fetch_pdf, file_path)
-            file_path = os.path.normpath(file_path)
-
-            if os.path.exists(file_path):
-                logger.info("Processing: %s", file_path)
-                result_path, status = process_pdf_document(file_path, llm)
-
-                # Ensure result_path is absolute
-                if result_path:
-                    result_path = os.path.abspath(result_path)
-                    logger.info("Generated result path: %s", result_path)
-
-                    # Check if JSON file exists
-                    if os.path.exists(result_path):
-                        logger.info("JSON file generated successfully")
-                        status = (
-                            "completed"  # Ensure status is completed when JSON exists
-                        )
-                    else:
-                        logger.warning(
-                            "No result file found for %s", os.path.basename(file_path)
-                        )
-                        status = "error"
-
-                res_paths.append(result_path if result_path else "")
-                res_statuses.append(status if status else "error")
-                markdown_statuses.append("pending")
-
-                if result_path:
-                    logger.info("Successfully processed file: %s", file_path)
-                    logger.info("Result saved to: %s", result_path)
-            else:
-                logger.info("File not found: %s", file_path)
-                res_paths.append("")
-                res_statuses.append("error")
-                markdown_statuses.append("pending")
-
-        except Exception as e:
-            logger.error("Error processing file %s: %s", file_path, str(e))
-            res_paths.append("")
-            res_statuses.append("error")
-            markdown_statuses.append("pending")
-
-    # Log the results
-    # logger.info("II" * 30)
-    # logger.info("res_paths: %s", res_paths)
-    # logger.info("res_statuses: %s", res_statuses)
-    # logger.info("markdown_statuses: %s", markdown_statuses)
-    # logger.info("II" * 30)
-
-    return res_paths, res_statuses, markdown_statuses
+    llm, llm_error = _initialize_llm_safe()
+    if llm_error:
+        return ["" for _ in file_paths], ["error" for _ in file_paths], ["pending" for _ in file_paths]
+    return _process_files_loop(file_paths, llm)
 
 
 def update_excel_file(df, file_path, row_index=None):
@@ -303,225 +288,184 @@ def update_excel_file(df, file_path, row_index=None):
         return False
 
 
+def _find_excel_file():
+    excel_path = os.path.join(path_log_fetch_pdf, "email_download_log.xlsx")
+    if os.path.exists(excel_path):
+        return excel_path
+    alt_excel_path = os.path.join(current_dir, "email_download_log.xlsx")
+    if os.path.exists(alt_excel_path):
+        logger.info(f"Found Excel file in current directory: {alt_excel_path}")
+        return alt_excel_path
+    logger.error(f"Excel log file not found at: {excel_path} or {alt_excel_path}")
+    return None
+
+
+def _read_and_validate_excel(excel_path):
+    try:
+        log_df = pd.read_excel(excel_path, dtype=str)
+        logger.info(f"Successfully read Excel file with {len(log_df)} rows")
+        logger.info(f"Columns found in Excel: {list(log_df.columns)}")
+    except Exception as e:
+        logger.error(f"Error reading Excel file: {str(e)}")
+        return None, f"Failed to read Excel file: {str(e)}"
+    if "file_paths" not in log_df.columns:
+        logger.error("Required column 'file_paths' not found in Excel file")
+        return None, "Required column 'file_paths' not found"
+    return log_df, None
+
+
+def _preprocess_dataframe(log_df):
+    date_columns = [
+        "first_inbox_msg",
+        "last_check_date",
+        "download_date",
+        "duplicate_check_date",
+    ]
+    for col in date_columns:
+        if col in log_df.columns:
+            log_df[col] = pd.to_datetime(log_df[col], errors="coerce")
+    numeric_columns = ["count_download", "list_name_count"]
+    for col in numeric_columns:
+        if col in log_df.columns:
+            log_df[col] = pd.to_numeric(log_df[col], errors="coerce").fillna(0).astype(int)
+    return log_df
+
+
+def _extract_and_pad_statuses(updated_df, index, file_paths):
+    def _get_and_pad(col_name, default):
+        values = []
+        if col_name in updated_df.columns and pd.notna(updated_df.loc[index, col_name]):
+            values = [s.strip() for s in str(updated_df.loc[index, col_name]).split(",")]
+        while len(values) < len(file_paths):
+            values.append(default)
+        return values
+
+    current_res_statuses = _get_and_pad("res_status", "")
+    current_res_paths = _get_and_pad("res_path", "")
+    current_markdown_statuses = _get_and_pad("markdown_status", "pending")
+    return current_res_statuses, current_res_paths, current_markdown_statuses
+
+
+def _recombine_results(
+    file_paths,
+    current_res_statuses,
+    current_res_paths,
+    current_markdown_statuses,
+    res_paths,
+    res_statuses,
+    markdown_statuses,
+):
+    final_res_paths = []
+    final_res_statuses = []
+    final_markdown_statuses = []
+    process_counter = 0
+    for i in range(len(file_paths)):
+        if str(current_res_statuses[i]).lower() == "completed":
+            final_res_paths.append(current_res_paths[i])
+            final_res_statuses.append(current_res_statuses[i])
+            final_markdown_statuses.append(current_markdown_statuses[i])
+        else:
+            final_res_paths.append(res_paths[process_counter] if process_counter < len(res_paths) else "")
+            final_res_statuses.append(res_statuses[process_counter] if process_counter < len(res_statuses) else "error")
+            final_markdown_statuses.append(
+                markdown_statuses[process_counter] if process_counter < len(markdown_statuses) else "pending"
+            )
+            process_counter += 1
+    return final_res_paths, final_res_statuses, final_markdown_statuses
+
+
+def _update_row_in_df(updated_df, index, final_res_paths, final_res_statuses, final_markdown_statuses, excel_path):
+    res_paths_str = ",".join(str(path) if path else "" for path in final_res_paths)
+    res_statuses_str = ",".join(str(status) if status else "error" for status in final_res_statuses)
+    markdown_statuses_str = ",".join(str(status) if status else "pending" for status in final_markdown_statuses)
+    updated_df.loc[index, "res_path"] = res_paths_str
+    updated_df.loc[index, "res_status"] = res_statuses_str
+    updated_df.loc[index, "markdown_status"] = markdown_statuses_str
+    logger.info(f"\nUpdating row {index}:")
+    logger.info(f"Result paths: {res_paths_str}")
+    logger.info(f"Status: {res_statuses_str}")
+    logger.info(f"Markdown status: {markdown_statuses_str}")
+    if not update_excel_file(updated_df, excel_path, index):
+        logger.warning(f"Warning: Failed to save changes for row {index}")
+
+
+def _process_rows(updated_df, excel_path):
+    changes_made = False
+    for index, row in updated_df.iterrows():
+        if pd.notna(row["file_paths"]):
+            try:
+                raw_paths = str(row["file_paths"])
+                file_paths = [path.strip() for path in re.split(r",(?![^(]*\))", raw_paths)]
+                current_res_statuses, current_res_paths, current_markdown_statuses = _extract_and_pad_statuses(
+                    updated_df, index, file_paths
+                )
+                files_to_process = []
+                for i, status in enumerate(current_res_statuses):
+                    if str(status).lower() != "completed":
+                        files_to_process.append(file_paths[i])
+                if files_to_process:
+                    res_paths, res_statuses, markdown_statuses = process_file_batch(files_to_process)
+                else:
+                    res_paths, res_statuses, markdown_statuses = [], [], []
+                final_res_paths, final_res_statuses, final_markdown_statuses = _recombine_results(
+                    file_paths,
+                    current_res_statuses,
+                    current_res_paths,
+                    current_markdown_statuses,
+                    res_paths,
+                    res_statuses,
+                    markdown_statuses,
+                )
+                _update_row_in_df(
+                    updated_df, index, final_res_paths, final_res_statuses, final_markdown_statuses, excel_path
+                )
+                changes_made = True
+            except Exception as row_error:
+                logger.error(f"Error processing row {index}: {str(row_error)}")
+                continue
+    return changes_made, updated_df
+
+
+def _final_save(changes_made, updated_df, excel_path):
+    if changes_made:
+        if update_excel_file(updated_df, excel_path):
+            logger.info("\nFinal save successful")
+            logger.info("Progress saved successfully")
+            logger.info(f"Excel file updated at: {excel_path}")
+            return {"status": "success", "message": "All documents processed successfully"}
+        else:
+            return {"status": "error", "message": "Failed to save final updates"}
+    else:
+        logger.info("No changes were necessary in the log file.")
+        return {"status": "success", "message": "No updates required"}
+
+
 def main():
     """Main function to process documents from Excel log"""
     try:
         logger.info("Starting step process")
         logger.info(f"Current directory: {current_dir}")
         logger.info(f"Looking for Excel file in: {path_log_fetch_pdf}")
-
-        excel_path = os.path.join(path_log_fetch_pdf, "email_download_log.xlsx")
-
-        # Check if Excel file exists
-        if not os.path.exists(excel_path):
-            logger.error(f"Excel log file not found at: {excel_path}")
-            # Try to find the Excel file in the current directory
-            alt_excel_path = os.path.join(current_dir, "email_download_log.xlsx")
-            if os.path.exists(alt_excel_path):
-                excel_path = alt_excel_path
-                logger.info(f"Found Excel file in current directory: {excel_path}")
-            else:
-                return {
-                    "status": "error",
-                    "message": f"Excel log file not found at: {excel_path} or {alt_excel_path}",
-                }
-
-        # Read Excel file with all columns as string type initially
-        try:
-            log_df = pd.read_excel(excel_path, dtype=str)
-            logger.info(f"Successfully read Excel file with {len(log_df)} rows")
-            logger.info(f"Columns found in Excel: {list(log_df.columns)}")
-        except Exception as e:
-            logger.error(f"Error reading Excel file: {str(e)}")
-            return {
-                "status": "error",
-                "message": f"Failed to read Excel file: {str(e)}",
-            }
-
-        # Check if file_paths column exists
-        if "file_paths" not in log_df.columns:
-            logger.error("Required column 'file_paths' not found in Excel file")
-            return {
-                "status": "error",
-                "message": "Required column 'file_paths' not found",
-            }
-
-        # Check if there are any files to process
+        excel_path = _find_excel_file()
+        if not excel_path:
+            return {"status": "error", "message": "Excel log file not found"}
+        log_df, error = _read_and_validate_excel(excel_path)
+        if error:
+            return {"status": "error", "message": error}
         files_to_process = log_df["file_paths"].notna().sum()
         if files_to_process == 0:
             logger.info("No files found to process in the Excel log")
             return {"status": "success", "message": "No files to process"}
         else:
             logger.info(f"Found {files_to_process} rows with files to process")
-            # Print the first few file paths for debugging
             sample_paths = log_df.loc[log_df["file_paths"].notna(), "file_paths"].head()
             logger.info("Sample file paths to process:")
             for idx, path in enumerate(sample_paths):
                 logger.info(f"Row {idx}: {path}")
-
-        # Convert date columns to datetime
-        date_columns = [
-            "first_inbox_msg",
-            "last_check_date",
-            "download_date",
-            "duplicate_check_date",
-        ]
-        for col in date_columns:
-            if col in log_df.columns:
-                log_df[col] = pd.to_datetime(log_df[col], errors="coerce")
-
-        # Convert numeric columns
-        numeric_columns = ["count_download", "list_name_count"]
-        for col in numeric_columns:
-            if col in log_df.columns:
-                log_df[col] = (
-                    pd.to_numeric(log_df[col], errors="coerce").fillna(0).astype(int)
-                )
-
-        # Create a copy of the DataFrame to track changes
+        log_df = _preprocess_dataframe(log_df)
         updated_df = log_df.copy()
-        changes_made = False
-
-        # Process each row
-        for index, row in updated_df.iterrows():
-            if pd.notna(row["file_paths"]):
-                try:
-                    # Split file paths and clean them
-                    raw_paths = str(row["file_paths"])
-                    file_paths = [
-                        path.strip() for path in re.split(r",(?![^(]*\))", raw_paths)
-                    ]
-
-                    # Get current statuses for this row (as lists)
-                    current_res_statuses = []
-                    if "res_status" in updated_df.columns and pd.notna(
-                        updated_df.loc[index, "res_status"]
-                    ):
-                        current_res_statuses = [
-                            s.strip()
-                            for s in str(updated_df.loc[index, "res_status"]).split(",")
-                        ]
-                    while len(current_res_statuses) < len(file_paths):
-                        current_res_statuses.append("")
-
-                    current_res_paths = []
-                    if "res_path" in updated_df.columns and pd.notna(
-                        updated_df.loc[index, "res_path"]
-                    ):
-                        current_res_paths = [
-                            s.strip()
-                            for s in str(updated_df.loc[index, "res_path"]).split(",")
-                        ]
-                    while len(current_res_paths) < len(file_paths):
-                        current_res_paths.append("")
-
-                    current_markdown_statuses = []
-                    if "markdown_status" in updated_df.columns and pd.notna(
-                        updated_df.loc[index, "markdown_status"]
-                    ):
-                        current_markdown_statuses = [
-                            s.strip()
-                            for s in str(
-                                updated_df.loc[index, "markdown_status"]
-                            ).split(",")
-                        ]
-                    while len(current_markdown_statuses) < len(file_paths):
-                        current_markdown_statuses.append("pending")
-
-                    # Determine which files need processing
-                    files_to_process = []
-                    process_indices = []
-                    for i, status in enumerate(current_res_statuses):
-                        if str(status).lower() != "completed":
-                            files_to_process.append(file_paths[i])
-                            process_indices.append(i)
-
-                    # Process only the files that are not completed
-                    if files_to_process:
-                        res_paths, res_statuses, markdown_statuses = process_file_batch(
-                            files_to_process
-                        )
-                    else:
-                        res_paths, res_statuses, markdown_statuses = [], [], []
-
-                    # Recombine results in the original order
-                    final_res_paths = []
-                    final_res_statuses = []
-                    final_markdown_statuses = []
-                    process_counter = 0
-                    for i in range(len(file_paths)):
-                        if str(current_res_statuses[i]).lower() == "completed":
-                            final_res_paths.append(current_res_paths[i])
-                            final_res_statuses.append(current_res_statuses[i])
-                            final_markdown_statuses.append(current_markdown_statuses[i])
-                        else:
-                            final_res_paths.append(
-                                res_paths[process_counter]
-                                if process_counter < len(res_paths)
-                                else ""
-                            )
-                            final_res_statuses.append(
-                                res_statuses[process_counter]
-                                if process_counter < len(res_statuses)
-                                else "error"
-                            )
-                            final_markdown_statuses.append(
-                                markdown_statuses[process_counter]
-                                if process_counter < len(markdown_statuses)
-                                else "pending"
-                            )
-                            process_counter += 1
-
-                    res_paths_str = ",".join(
-                        str(path) if path else "" for path in final_res_paths
-                    )
-                    res_statuses_str = ",".join(
-                        str(status) if status else "error"
-                        for status in final_res_statuses
-                    )
-                    markdown_statuses_str = ",".join(
-                        str(status) if status else "pending"
-                        for status in final_markdown_statuses
-                    )
-
-                    # Update the DataFrame
-                    updated_df.loc[index, "res_path"] = res_paths_str
-                    updated_df.loc[index, "res_status"] = res_statuses_str
-                    updated_df.loc[index, "markdown_status"] = markdown_statuses_str
-                    changes_made = True
-
-                    # Print update information
-                    logger.info(f"\nUpdating row {index}:")
-                    logger.info(f"Result paths: {res_paths_str}")
-                    logger.info(f"Status: {res_statuses_str}")
-                    logger.info(f"Markdown status: {markdown_statuses_str}")
-
-                    # Try to save after each update
-                    if not update_excel_file(updated_df, excel_path, index):
-                        logger.warning(
-                            f"Warning: Failed to save changes for row {index}"
-                        )
-
-                except Exception as row_error:
-                    logger.error(f"Error processing row {index}: {str(row_error)}")
-                    continue
-
-        # Final save if any changes were made
-        if changes_made:
-            if update_excel_file(updated_df, excel_path):
-                logger.info("\nFinal save successful")
-                logger.info("Progress saved successfully")
-                logger.info(f"Excel file updated at: {excel_path}")
-                return {
-                    "status": "success",
-                    "message": "All documents processed successfully",
-                }
-            else:
-                return {"status": "error", "message": "Failed to save final updates"}
-        else:
-            logger.info("No changes were necessary in the log file.")
-            return {"status": "success", "message": "No updates required"}
-
+        changes_made, updated_df = _process_rows(updated_df, excel_path)
+        return _final_save(changes_made, updated_df, excel_path)
     except Exception as e:
         logger.error(f"Error in main process: {str(e)}")
         return {"status": "error", "message": str(e)}

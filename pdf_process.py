@@ -1,13 +1,13 @@
-from langchain_google_genai import GoogleGenerativeAI
-from logger import logger
-
-import os
-from dotenv import load_dotenv
 import json
 import logging
+import os
 import warnings
-from cryptography.utils import CryptographyDeprecationWarning
 
+from cryptography.utils import CryptographyDeprecationWarning
+from dotenv import load_dotenv
+from langchain_google_genai import GoogleGenerativeAI
+
+from logger import logger
 
 # Filter out the cryptography deprecation warning
 warnings.filterwarnings("ignore", category=CryptographyDeprecationWarning)
@@ -16,14 +16,11 @@ load_dotenv()
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
 
 # LangChain configuration
 google_api_key = os.getenv("GEMINI_API_KEY")
 if not google_api_key:
-    logger.warning(
-        "GEMINI_API_KEY not found in environment. Document processing will be limited."
-    )
+    logger.warning("GEMINI_API_KEY not found in environment. Document processing will be limited.")
     llm = None
 else:
     llm = GoogleGenerativeAI(
@@ -36,7 +33,8 @@ else:
     )
 
 # # Create a PromptTemplate for extraction
-# EXTRACTION_PROMPT = """You are an expert data extraction assistant. Your task is to extract data from PDF documents and return it in JSON format.
+# EXTRACTION_PROMPT = """You are an expert data extraction assistant. Your task is to extract data from PDF documents
+# and return it in JSON format.
 
 # FIELD DEFINITIONS:
 # {field_definitions}
@@ -59,11 +57,13 @@ else:
 # }}
 # """
 
-EXTRACTION_PROMPT = """You are an expert data analyzer assistant. Your task is to analyse data from markdown document  and return it in JSON format.
+EXTRACTION_PROMPT = """You are an expert data analyzer assistant. Your task is to analyse data from markdown document  
+and return it in JSON format.
  
 extract what are the field name asked and the respected selected options.
 the selected options are below the field name with the [x] or (•) which selected to find it easily
-Be concious with the actual table and text options , some times the normal option is also getting in table format with each character as a column
+Be concious with the actual table and text options , some times the normal option is also getting in table format with 
+each character as a column
  
 FIELD DEFINITIONS:
 {field_definitions}
@@ -115,7 +115,7 @@ def format_field_definitions(field_definitions):
 
 
 def extract_json_from_response(response_text):
-    """Extract JSON from response text with improved error handling"""
+    """Extract JSON from response text with error handling"""
     try:
         # If already a dict, return as is
         if isinstance(response_text, dict):
@@ -131,7 +131,7 @@ def extract_json_from_response(response_text):
         try:
             # Try direct JSON parsing first
             return json.loads(text)
-        except:
+        except Exception:
             # Find the first { and last }
             start = text.find("{")
             end = text.rfind("}")

@@ -1,0 +1,30 @@
+[tool.ruff]
+line-length = 120
+exclude = [
+    ".git",
+    "__pycache__",
+    ".ruff_cache",
+    "build",
+    "dist",
+    ".venv",
+]
+target-version = "py39"
+
+[tool.ruff.lint]
+select = [
+    "E",  # pycodestyle errors
+    "F",  # pyflakes
+    "B",  # bugbear
+    "I",  # isort
+    "UP", # pyupgrade
+    "C90", # mccabe
+]
+ignore = [] 
+fixable = ["ALL"]
+unfixable = []  # Keep empty to allow all safe fixes
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "auto"
+docstring-code-format = true

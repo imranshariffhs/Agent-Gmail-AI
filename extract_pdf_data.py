@@ -1,17 +1,17 @@
-import os
-from dotenv import load_dotenv
 import base64
-import time
-import json
-from pdf2image import convert_from_path
-from PIL import Image
-from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_core.messages import HumanMessage
 import hashlib
+import json
+import os
+import time
 from datetime import datetime
-from logger import logger
+
 import pandas as pd
-import openpyxl  # Explicitly import openpyxl
+from dotenv import load_dotenv
+from langchain_core.messages import HumanMessage
+from langchain_google_genai import ChatGoogleGenerativeAI
+from pdf2image import convert_from_path
+
+from logger import logger
 
 # ---------- 1. Configuration ----------
 
@@ -22,9 +22,7 @@ load_dotenv()
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 if not GEMINI_API_KEY:
     # Try to load from parent directory's .env file
-    parent_env_path = os.path.join(
-        os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".env"
-    )
+    parent_env_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".env")
     if os.path.exists(parent_env_path):
         from dotenv import load_dotenv
 
@@ -181,7 +179,8 @@ def extract_image_to_markdown(image_path, max_retries=3):
     # """
 
     enhanced_prompt = """
-You are an expert AI assistant specialized in extracting data from images of manufacturing industry quotation and enquiry forms, and converting it into a clean, well-formatted Markdown file.
+You are an expert AI assistant specialized in extracting data from images of manufacturing industry quotation and 
+enquiry forms, and converting it into a clean, well-formatted Markdown file.
 Input: You will receive an image of a form. This form may contain:
 Tables (with or without clearly defined borders)
 Checkboxes (checked or unchecked)
@@ -192,12 +191,20 @@ Handwritten text (if present, try to interpret it and flag if uncertain)
 Varying fonts and font sizes
 Noise, shadows, or slight distortions
 Task:
-Text Extraction: Accurately extract all text elements from the image, using OCR or other appropriate methods. Pay close attention to detail to ensure that no information is missed. Correct any OCR errors, especially in technical terms, part numbers, or industry-specific vocabulary.
-Data Interpretation: Analyze the extracted text to identify the different form elements (tables, checkboxes, radio buttons, fields, etc.) and their relationships. Understand the form's structure to correctly interpret the data.
-Markdown Conversion: Convert the extracted data into a clean, well-formatted Markdown file. Follow these specific formatting
+Text Extraction: Accurately extract all text elements from the image, using OCR or other appropriate methods. 
+Pay close attention to detail to ensure that no information is missed. Correct any OCR errors, especially in
+ technical terms, part numbers, or industry-specific vocabulary.
+Data Interpretation: Analyze the extracted text to identify the different form elements (tables, checkboxes,
+ radio buttons, fields, etc.) and their relationships. Understand the form's structure to correctly interpret 
+ the data.
+Markdown Conversion: Convert the extracted data into a clean, well-formatted Markdown file. Follow these 
+specific formatting
 ! important follow this - Do not put ```markdown and ``` at starting and ending of markdown data
 guidelines:
-Headings: Use appropriate Markdown headings ( ##, ###, etc.) to structure the document and clearly identify different sections of the form (e.g., "Company Details", "Product Specifications", "Contact Information"). Maintain the hierarchy of the form in the headings.
+Headings: Use appropriate Markdown headings ( ##, ###, etc.) to structure the document and clearly 
+identify different sections of the form (e.g., "Company Details", "Product Specifications", "Contact Information"). 
+Maintain the hierarchy of the form in the headings.
+
 Lists: Use Markdown lists (-, *, 1., etc.) to represent lists of items.
 Checkboxes and Radio Buttons: Represent checkboxes and radio buttons using the following format:
 Checked: [x]
@@ -213,7 +220,10 @@ Generated markdown
 - [ ] Plastic
 Use code with caution.
  
-Tables: Convert tables into Markdown tables using | to separate columns and --- to create the header row separator. Ensure that the table is properly aligned and readable. If the table has no visible borders, infer the structure from the data.
+Tables: Convert tables into Markdown tables using | to separate columns and --- to create 
+the header row separator. Ensure that the table is properly aligned and readable. If the 
+table has no visible borders, infer the structure from the data.
+
 Generated markdown
 | Header 1 | Header 2 | Header 3 |
 |---|---|---|
@@ -221,7 +231,11 @@ Generated markdown
 | Data 4 | Data 5 | Data 6 |
 Use code with caution.
  
-Input Fields and Text Fields: Represent input fields and text fields with the field label followed by the extracted text (if any) or a placeholder (e.g., ______) if the field is blank. If the label is missing, infer it from the surrounding context. For multi-line text fields, preserve the line breaks in the Markdown output.
+Input Fields and Text Fields: Represent input fields and text fields with the field label 
+followed by the extracted text (if any) or a placeholder (e.g., ______) if the field is blank. 
+If the label is missing, infer it from the surrounding context. For multi-line text fields, 
+preserve the line breaks in the Markdown output.
+
 Generated markdown
 Name: John Doe
 Email: john.doe@example.com
@@ -235,13 +249,18 @@ Generated markdown
 > **Note:** All prices are in USD and do not include shipping.
  
  
-Uncertainty Flagging: If you are uncertain about any extracted data (e.g., due to poor image quality or handwriting), add a comment in the Markdown file indicating the uncertainty. Use the following format:
+Uncertainty Flagging: If you are uncertain about any extracted data 
+(e.g., due to poor image quality or handwriting), add a comment in the Markdown file indicating the uncertainty. 
+Use the following format:
+
 Generated markdown
 <!-- Possible OCR error: "Part Number: AB1234?" - Please verify. -->
  
  
-Original Form Layout: While the focus is on structured data, try to preserve the original form's layout as much as possible in the Markdown structure to improve readability.
-Cleanliness: Ensure that the final Markdown file is clean, well-formatted, and easy to read. Remove any unnecessary characters or formatting.
+Original Form Layout: While the focus is on structured data, try to preserve the original form's 
+layout as much as possible in the Markdown structure to improve readability.
+Cleanliness: Ensure that the final Markdown file is clean, well-formatted, and easy to read. 
+Remove any unnecessary characters or formatting.
  
 Constraints:
 You should not add any information that is not present in the image.
@@ -250,7 +269,8 @@ Prioritize readability in the Markdown output.
 Do not put ```markdown and ``` at starting and ending of markdown data ! important follow this
 at last I need to combine multiple md files together , there will be a issue with this approach
 Output:
-A complete Markdown file containing all the extracted data from the image, formatted according to the guidelines above."""
+A complete Markdown file containing all the extracted data from the image, 
+formatted according to the guidelines above."""
 
     for attempt in range(max_retries):
         try:
@@ -270,9 +290,7 @@ A complete Markdown file containing all the extracted data from the image, forma
                             {"type": "text", "text": enhanced_prompt},
                             {
                                 "type": "image_url",
-                                "image_url": {
-                                    "url": f"data:image/png;base64,{image_base64}"
-                                },
+                                "image_url": {"url": f"data:image/png;base64,{image_base64}"},
                             },
                         ]
                     )
@@ -283,15 +301,11 @@ A complete Markdown file containing all the extracted data from the image, forma
 
             # Validate response content
             if not content or len(content.strip()) < 10:
-                raise ValueError(
-                    f"Response too short or empty: {len(content) if content else 0} characters"
-                )
+                raise ValueError(f"Response too short or empty: {len(content) if content else 0} characters")
 
             # Check for common extraction failures
             if "unable to" in content.lower() or "cannot extract" in content.lower():
-                raise ValueError(
-                    "Extraction failed - model reported inability to process"
-                )
+                raise ValueError("Extraction failed - model reported inability to process")
 
             logger.info("✅ Successfully extracted %d characters", len(content))
             return content
@@ -305,7 +319,11 @@ A complete Markdown file containing all the extracted data from the image, forma
             else:
                 logger.error("❌ All attempts failed for %s", image_path)
                 # Return a placeholder to prevent complete data loss
-                return f"# Error Processing {os.path.basename(image_path)}\n\n*Failed to extract content after {max_retries} attempts.*\n\n**Error:** {str(e)}\n"
+                return (
+                    f"# Error Processing {os.path.basename(image_path)}\n\n"
+                    f"*Failed to extract content after {max_retries} attempts.*\n\n"
+                    f"**Error:** {str(e)}\n"
+                )
 
 
 # ---------- 5. Enhanced Main Process with Data Loss Prevention ----------
@@ -411,11 +429,11 @@ def find_matching_row(df, update_filename, update_path):
         logger.info("Looking for normalized name: '%s'", normalized_update)
         logger.info("Original filename: '%s'", update_filename)
 
-        for idx, row in df.iterrows():
+        for _idx, row in df.iterrows():
             if pd.notna(row["file_paths"]):
                 file_paths = [p.strip() for p in str(row["file_paths"]).split(",")]
 
-                logger.debug("Checking row %d with %d files", idx, len(file_paths))
+                logger.debug("Checking row %d with %d files", _idx, len(file_paths))
                 for i, path in enumerate(file_paths):
                     current_filename = os.path.basename(path)
                     normalized_current = normalize_filename(current_filename)
@@ -428,19 +446,17 @@ def find_matching_row(df, update_filename, update_path):
 
                     # Try different matching strategies
                     if (
-                        normalized_current
-                        == normalized_update  # Exact normalized match
-                        or current_filename.lower()
-                        == update_filename.lower()  # Exact filename match
+                        normalized_current == normalized_update  # Exact normalized match
+                        or current_filename.lower() == update_filename.lower()  # Exact filename match
                         or normalized_current in normalized_update  # Partial match
                         or normalized_update in normalized_current
                     ):  # Reverse partial match
-                        logger.info("✅ Found match in row %d, position %d", idx, i)
-                        return idx, i, file_paths
+                        logger.info("✅ Found match in row %d, position %d", _idx, i)
+                        return _idx, i, file_paths
 
         logger.warning("❌ No match found for file: %s", update_filename)
         logger.warning("Available files in Excel:")
-        for idx, row in df.iterrows():
+        for _idx, row in df.iterrows():
             if pd.notna(row["file_paths"]):
                 paths = str(row["file_paths"]).split(",")
                 for path in paths:
@@ -456,303 +472,224 @@ def find_matching_row(df, update_filename, update_path):
         return None, None, None
 
 
+def _load_excel(file_resd_xlsx):
+    if not os.path.exists(file_resd_xlsx):
+        logger.error("❌ Excel log file not found: %s", file_resd_xlsx)
+        return None
+    try:
+        df = pd.read_excel(file_resd_xlsx, engine="openpyxl", keep_default_na=True)
+        logger.info("📊 Successfully read Excel file with %d rows", len(df))
+        return df
+    except Exception as excel_read_error:
+        logger.error("❌ Error reading Excel file: %s", str(excel_read_error))
+        return None
+
+
+def _prepare_status_and_count_lists(df, idx, total_files):
+    current_res_status = str(df.at[idx, "res_status"]) if pd.notna(df.at[idx, "res_status"]) else ""
+    res_status = current_res_status.split(",") if current_res_status else []
+    res_status = [s.strip().lower() for s in res_status]
+    current_count = str(df.at[idx, "count_download"]) if pd.notna(df.at[idx, "count_download"]) else ""
+    count_list = current_count.split(",") if current_count else []
+    count_list = [c.strip() for c in count_list]
+    while len(res_status) < total_files:
+        res_status.append("pending")
+    while len(count_list) < total_files:
+        count_list.append("0")
+    return res_status, count_list
+
+
+def _balance_positions(total_files, res_status, position):
+    completed_positions = []
+    pending_positions = []
+    for i in range(total_files):
+        if i == position or (i < len(res_status) and res_status[i].lower() == "completed"):
+            completed_positions.append(i)
+        else:
+            pending_positions.append(i)
+    while len(completed_positions) > len(pending_positions):
+        if completed_positions[-1] != position:
+            completed_positions.pop()
+        elif len(completed_positions) > 1:
+            completed_positions.pop(-2)
+        else:
+            break
+    while len(completed_positions) < len(pending_positions):
+        pending_positions.pop()
+    return completed_positions, pending_positions
+
+
+def _update_dataframe_columns(df, idx, file_paths, new_status, new_count, update_row_index, position, total_files):
+    file_paths[position] = update_row_index
+    file_hashes = str(df.at[idx, "file_hash"]).split(",") if pd.notna(df.at[idx, "file_hash"]) else [""] * total_files
+    file_hashes = [h.strip() for h in file_hashes]
+    while len(file_hashes) < total_files:
+        file_hashes.append("")
+    file_hashes[position] = update_row_index
+    df.at[idx, "file_paths"] = ",".join(file_paths)
+    df.at[idx, "res_status"] = ",".join(new_status)
+    df.at[idx, "count_download"] = ",".join(new_count)
+    df.at[idx, "file_hash"] = ",".join(file_hashes)
+
+
+def _update_row_values(df, idx, position, update_row_index):
+    try:
+        file_paths = [p.strip() for p in str(df.at[idx, "file_paths"]).split(",")]
+        total_files = len(file_paths)
+        res_status, count_list = _prepare_status_and_count_lists(df, idx, total_files)
+        logger.info("Before update:")
+        logger.info(f"Status: {res_status}")
+        logger.info(f"Counts: {count_list}")
+        new_status = ["pending"] * total_files
+        new_count = ["0"] * total_files
+        new_status[position] = "completed"
+        new_count[position] = "1"
+        completed_positions, pending_positions = _balance_positions(total_files, res_status, position)
+        for pos in completed_positions:
+            new_status[pos] = "completed"
+            new_count[pos] = "1"
+        for pos in pending_positions:
+            new_status[pos] = "pending"
+            new_count[pos] = "0"
+        _update_dataframe_columns(df, idx, file_paths, new_status, new_count, update_row_index, position, total_files)
+        final_completed = sum(1 for s in new_status if s == "completed")
+        final_pending = sum(1 for s in new_status if s == "pending")
+        final_count_1 = sum(1 for c in new_count if c == "1")
+        final_count_0 = sum(1 for c in new_count if c == "0")
+        logger.info("\nFinal state:")
+        logger.info(f"Completed positions: {completed_positions}")
+        logger.info(f"Pending positions: {pending_positions}")
+        logger.info(f"Status - Completed: {final_completed}, Pending: {final_pending}")
+        logger.info(f"Counts - Ones: {final_count_1}, Zeros: {final_count_0}")
+        logger.info(f"Status list: {new_status}")
+        logger.info(f"Count list: {new_count}")
+        if final_completed == final_count_1 and final_pending == final_count_0:
+            logger.info("✅ Perfect balance achieved")
+        else:
+            logger.error("❌ Balance check failed!")
+            logger.error(f"Completed count mismatch: Status={final_completed}, Count={final_count_1}")
+            logger.error(f"Pending count mismatch: Status={final_pending}, Count={final_count_0}")
+        return True
+    except Exception as update_error:
+        logger.error("❌ Error updating values: %s", str(update_error))
+        return False
+
+
+def _save_excel(df, file_resd_xlsx):
+    try:
+        with pd.ExcelWriter(file_resd_xlsx, engine="openpyxl", mode="w") as writer:
+            df.to_excel(writer, index=False)
+        logger.info("💾 Successfully saved updates to Excel file")
+        return True
+    except Exception as e:
+        logger.error("❌ Error saving Excel file: %s", str(e))
+        return False
+
+
 def update_excel_log(output_file):
     """Update Excel log with processing status"""
     try:
-        # Convert and normalize the update path
         update_row_index = output_file.split("/output_all_pages.md")[0] + ".pdf"
         update_row_index = convert_wsl_to_windows_path(update_row_index)
         update_row_index = os.path.normpath(update_row_index)
-
         file_resd_xlsx = "download_email/email_download_log.xlsx"
-
-        if not os.path.exists(file_resd_xlsx):
-            logger.error("❌ Excel log file not found: %s", file_resd_xlsx)
+        df = _load_excel(file_resd_xlsx)
+        if df is None:
             return False
-
-        try:
-            df = pd.read_excel(file_resd_xlsx, engine="openpyxl", keep_default_na=True)
-            logger.info("📊 Successfully read Excel file with %d rows", len(df))
-        except Exception as excel_read_error:
-            logger.error("❌ Error reading Excel file: %s", str(excel_read_error))
-            return False
-
         update_filename = os.path.basename(update_row_index)
         logger.info("Processing file: %s", update_filename)
-
-        # Find matching row
-        idx, position, file_paths = find_matching_row(
-            df, update_filename, update_row_index
-        )
-
+        idx, position, file_paths = find_matching_row(df, update_filename, update_row_index)
         if idx is not None and position is not None:
-            try:
-                # Get current values
-                file_paths = [
-                    p.strip() for p in str(df.at[idx, "file_paths"]).split(",")
-                ]
-                total_files = len(file_paths)
-
-                # Initialize or get current res_status
-                current_res_status = (
-                    str(df.at[idx, "res_status"])
-                    if pd.notna(df.at[idx, "res_status"])
-                    else ""
-                )
-                res_status = current_res_status.split(",") if current_res_status else []
-                res_status = [s.strip().lower() for s in res_status]
-
-                # Initialize or get current count_download
-                current_count = (
-                    str(df.at[idx, "count_download"])
-                    if pd.notna(df.at[idx, "count_download"])
-                    else ""
-                )
-                count_list = current_count.split(",") if current_count else []
-                count_list = [c.strip() for c in count_list]
-
-                # Ensure lists have correct length
-                while len(res_status) < total_files:
-                    res_status.append("pending")
-                while len(count_list) < total_files:
-                    count_list.append("0")
-
-                logger.info("Before update:")
-                logger.info(f"Status: {res_status}")
-                logger.info(f"Counts: {count_list}")
-
-                # Create new status and count lists
-                new_status = ["pending"] * total_files
-                new_count = ["0"] * total_files
-
-                # First, mark our current position
-                new_status[position] = "completed"
-                new_count[position] = "1"
-
-                # For each completed status, ensure exactly one pending status follows it
-                completed_positions = []
-                pending_positions = []
-
-                # First, collect all positions
-                for i in range(total_files):
-                    if i == position or (
-                        i < len(res_status) and res_status[i].lower() == "completed"
-                    ):
-                        completed_positions.append(i)
-                    else:
-                        pending_positions.append(i)
-
-                # Ensure we have equal numbers by adjusting if necessary
-                while len(completed_positions) > len(pending_positions):
-                    if (
-                        completed_positions[-1] != position
-                    ):  # Don't remove our current position
-                        completed_positions.pop()
-                    elif (
-                        len(completed_positions) > 1
-                    ):  # If we must keep current position, remove another
-                        completed_positions.pop(-2)
-                    else:
-                        break  # Can't reduce further
-
-                while len(completed_positions) < len(pending_positions):
-                    pending_positions.pop()
-
-                # Apply the balanced statuses
-                for pos in completed_positions:
-                    new_status[pos] = "completed"
-                    new_count[pos] = "1"
-
-                for pos in pending_positions:
-                    new_status[pos] = "pending"
-                    new_count[pos] = "0"
-
-                # Update file paths and hashes
-                file_paths[position] = update_row_index
-                file_hashes = (
-                    str(df.at[idx, "file_hash"]).split(",")
-                    if pd.notna(df.at[idx, "file_hash"])
-                    else [""] * total_files
-                )
-                file_hashes = [h.strip() for h in file_hashes]
-                while len(file_hashes) < total_files:
-                    file_hashes.append("")
-                file_hashes[position] = update_row_index
-
-                # Save all updates back to DataFrame
-                df.at[idx, "file_paths"] = ",".join(file_paths)
-                df.at[idx, "res_status"] = ",".join(new_status)
-                df.at[idx, "count_download"] = ",".join(new_count)
-                df.at[idx, "file_hash"] = ",".join(file_hashes)
-
-                # Verify final state
-                final_completed = sum(1 for s in new_status if s == "completed")
-                final_pending = sum(1 for s in new_status if s == "pending")
-                final_count_1 = sum(1 for c in new_count if c == "1")
-                final_count_0 = sum(1 for c in new_count if c == "0")
-
-                logger.info("\nFinal state:")
-                logger.info(f"Completed positions: {completed_positions}")
-                logger.info(f"Pending positions: {pending_positions}")
-                logger.info(
-                    f"Status - Completed: {final_completed}, Pending: {final_pending}"
-                )
-                logger.info(f"Counts - Ones: {final_count_1}, Zeros: {final_count_0}")
-                logger.info(f"Status list: {new_status}")
-                logger.info(f"Count list: {new_count}")
-
-                if final_completed == final_count_1 and final_pending == final_count_0:
-                    logger.info("✅ Perfect balance achieved")
-                else:
-                    logger.error("❌ Balance check failed!")
-                    logger.error(
-                        f"Completed count mismatch: Status={final_completed}, Count={final_count_1}"
-                    )
-                    logger.error(
-                        f"Pending count mismatch: Status={final_pending}, Count={final_count_0}"
-                    )
-
-                # Save Excel file
-                with pd.ExcelWriter(
-                    file_resd_xlsx, engine="openpyxl", mode="w"
-                ) as writer:
-                    df.to_excel(writer, index=False)
-                logger.info("💾 Successfully saved updates to Excel file")
-                return True
-
-            except Exception as update_error:
-                logger.error("❌ Error updating values: %s", str(update_error))
+            if not _update_row_values(df, idx, position, update_row_index):
                 return False
+            if not _save_excel(df, file_resd_xlsx):
+                return False
+            return True
         else:
-            logger.warning(
-                "⚠️ No matching file found in Excel log for: %s", update_row_index
-            )
+            logger.warning("⚠️ No matching file found in Excel log for: %s", update_row_index)
             return False
-
     except Exception as e:
         logger.error("❌ Error updating Excel log: %s", str(e))
         return False
 
 
-def process_pdf_image(pdf_path):
-    """Process PDF with comprehensive error handling and data preservation"""
-
-    # Check API key
-    if not os.environ.get("GOOGLE_API_KEY"):
-        logger.error("❌ GOOGLE_API_KEY not set in environment variables")
-        return None
-
+def _convert_pdf_and_get_folder(pdf_path):
     try:
         image_folder = pdf_to_image(pdf_path)
         abs_image_folder = os.path.abspath(image_folder)
         logger.info("Working with image folder: %s", abs_image_folder)
+        return abs_image_folder
     except Exception as e:
         logger.error("❌ Failed to convert PDF to images: %s", str(e))
         return None
 
-    # Get all image files and validate
+
+def _get_image_files(abs_image_folder):
     if not os.path.exists(abs_image_folder):
         logger.error("❌ Image folder not found: %s", abs_image_folder)
-        return None
-
-    image_files = [
-        f
-        for f in sorted(os.listdir(abs_image_folder))
-        if f.endswith(".png") and f.startswith("page_")
-    ]
-
+        return []
+    image_files = [f for f in sorted(os.listdir(abs_image_folder)) if f.endswith(".png") and f.startswith("page_")]
     if not image_files:
         logger.error("❌ No page images found in %s", abs_image_folder)
-        return None
+    return image_files
 
-    logger.info("📋 Found %d pages to process", len(image_files))
 
-    # Set up output paths
-    output_file = os.path.join(abs_image_folder, "output_all_pages.md")
-    temp_output_file = os.path.join(abs_image_folder, "temp_output_all_pages.md")
-
-    logger.info("Output will be saved to: %s", output_file)
+def _process_pages(image_files, abs_image_folder, temp_output_file):
     processed_count = 0
     failed_count = 0
     all_markdown = []
-
-    # Process each page
     for i, filename in enumerate(image_files, 1):
         image_path = os.path.join(abs_image_folder, filename)
-
         logger.info("\n🔍 Processing %d/%d: %s", i, len(image_files), filename)
-
         try:
-            # Validate image file exists and has content
             if not os.path.exists(image_path):
                 logger.warning("⚠️ Image file missing: %s", filename)
                 failed_count += 1
                 continue
-
             if os.path.getsize(image_path) == 0:
                 logger.warning("⚠️ Image file is empty: %s", filename)
                 failed_count += 1
                 continue
-
-            # Extract content
             markdown_text = extract_image_to_markdown(image_path)
-
-            # Validate extracted content
             if not markdown_text or len(markdown_text.strip()) < 5:
-                logger.warning(
-                    "⚠️ Warning: Very little content extracted from %s", filename
-                )
-
-            # Add to results
+                logger.warning("⚠️ Warning: Very little content extracted from %s", filename)
             page_content = f"## {filename}\n\n{markdown_text}\n\n---\n\n"
             all_markdown.append(page_content)
             processed_count += 1
-
-            logger.info(
-                "✅ Completed: %s (%d characters)", filename, len(markdown_text)
-            )
-
-            # Save progress every 3 pages to prevent data loss
+            logger.info("✅ Completed: %s (%d characters)", filename, len(markdown_text))
             if i % 3 == 0:
                 if save_progress(all_markdown, temp_output_file):
-                    logger.info(
-                        "💾 Progress saved (processed %d pages)", processed_count
-                    )
-
+                    logger.info("💾 Progress saved (processed %d pages)", processed_count)
         except KeyboardInterrupt:
             logger.warning("\n⚠️ Process interrupted by user")
-            logger.warning(
-                "💾 Saving progress for %d completed pages...", processed_count
-            )
+            logger.warning("💾 Saving progress for %d completed pages...", processed_count)
             break
-
         except Exception as e:
             logger.error("❌ Error processing %s: %s", filename, str(e))
             failed_count += 1
-
-            # Add error placeholder to maintain page order
-            error_content = (
-                f"## {filename}\n\n*Error processing this page: {str(e)}*\n\n---\n\n"
-            )
+            error_content = f"## {filename}\n\n*Error processing this page: {str(e)}*\n\n---\n\n"
             all_markdown.append(error_content)
             continue
+    return all_markdown, processed_count, failed_count
 
-    # Final save
+
+def _final_save_and_summary(
+    all_markdown, output_file, temp_output_file, pdf_path, image_files, processed_count, failed_count
+):
     if all_markdown:
         try:
             with open(output_file, "w", encoding="utf-8") as f:
-                # Add summary header
-                summary = f"""# PDF Extraction Summary
-                                **File:** {pdf_path}
-                                **Total Pages:** {len(image_files)}
-                                **Successfully Processed:** {processed_count}
-                                **Failed:** {failed_count}
-                                **Extraction Date:** {time.strftime("%Y-%m-%d %H:%M:%S")}
-                                ---
-                        """
+                summary = (
+                    f"# PDF Extraction Summary\n"
+                    f"**File:** {pdf_path}\n"
+                    f"**Total Pages:** {len(image_files)}\n"
+                    f"**Successfully Processed:** {processed_count}\n"
+                    f"**Failed:** {failed_count}\n"
+                    f"**Extraction Date:** {time.strftime('%Y-%m-%d %H:%M:%S')}\n"
+                    f"---\n"
+                )
                 f.write(summary)
                 f.writelines(all_markdown)
-
             logger.info("\n✅ Final output saved to '%s'", output_file)
             logger.info(
                 "📊 Summary: %d successful, %d failed out of %d total pages",
@@ -760,20 +697,11 @@ def process_pdf_image(pdf_path):
                 failed_count,
                 len(image_files),
             )
-
-            # Update Excel log with new function
             if not update_excel_log(output_file):
-                logger.warning(
-                    "⚠️ Failed to update Excel log, but PDF processing completed successfully"
-                )
-
-            # Clean up temp file
+                logger.warning("⚠️ Failed to update Excel log, but PDF processing completed successfully")
             if os.path.exists(temp_output_file):
                 os.remove(temp_output_file)
-
-            # Return absolute path to the folder
-            return abs_image_folder
-
+            return os.path.dirname(output_file)
         except Exception as e:
             logger.error("❌ Error saving final output: %s", str(e))
             return None
@@ -782,13 +710,37 @@ def process_pdf_image(pdf_path):
         return None
 
 
+def process_pdf_image(pdf_path):
+    """Process PDF with comprehensive error handling and data preservation"""
+    if not os.environ.get("GOOGLE_API_KEY"):
+        logger.error("❌ GOOGLE_API_KEY not set in environment variables")
+        return None
+    abs_image_folder = _convert_pdf_and_get_folder(pdf_path)
+    if not abs_image_folder:
+        return None
+    image_files = _get_image_files(abs_image_folder)
+    if not image_files:
+        return None
+    logger.info("📋 Found %d pages to process", len(image_files))
+    output_file = os.path.join(abs_image_folder, "output_all_pages.md")
+    temp_output_file = os.path.join(abs_image_folder, "temp_output_all_pages.md")
+    all_markdown, processed_count, failed_count = _process_pages(image_files, abs_image_folder, temp_output_file)
+    return _final_save_and_summary(
+        all_markdown, output_file, temp_output_file, pdf_path, image_files, processed_count, failed_count
+    )
+
+
 # ---------- 6. Main Execution ----------
 
 # if __name__ == "__main__":
 #     # Get the current directory
 #     current_dir = os.path.dirname(os.path.abspath(__file__))
 #     # Construct path to the uploads directory
-#     pdf_path = os.path.join(os.path.dirname(current_dir), 'uploads', '1f702d07-27b0-45a1-9ff5-9deba4e1e2de_Enquiry_form_-_Gulf_Additives_Revised_11112024.pdf')
+#     pdf_path = os.path.join(
+#         os.path.dirname(current_dir),
+#         'uploads',
+#         '1f702d07-27b0-45a1-9ff5-9deba4e1e2de_Enquiry_form_-_Gulf_Additives_Revised_11112024.pdf'
+#     )
 #     # Normalize the path
 #     pdf_path = os.path.normpath(pdf_path)
 #     print(f"PDF path: {pdf_path}")

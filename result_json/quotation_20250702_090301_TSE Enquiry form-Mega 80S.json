@@ -7,7 +7,7 @@
       "City/Town": "Sriperumbudur, Kancheepuram",
       "State": "Tamilnadu",
       "Pin code": "602105",
-      "Telephone": null,
+      "Telephone": "______",
       "Email": "arjun@machinopolymers.com",
       "Website": "www.machinopolymers.com"
     }
@@ -16,7 +16,7 @@
     "Location": {
       "Ambient temperature at site": "Min 30 deg C Max 45 deg C",
       "Altitude": "100 Meters above sea level",
-      "Relative humidity at site": "Min 45% Max 70%",
+      "Relative humidity at site": "Min 45 % Max 70 %",
       "Power voltage/Hz": "415 Voltage 50 Hz",
       "3 Phase, 1 neutral": "Yes",
       "Cooling water available": "Yes",
@@ -24,13 +24,13 @@
       "Pneumatic air available": "Yes",
       "Place of machine installation": "Non hazardous",
       "Please specify IP protection required": "Standard IP55",
-      "Main Motor": null,
-      "Lube oil pump": null,
-      "Small motors": null,
-      "Junction box": null,
-      "Heaters and Thermocouple": null,
-      "PLC panel": null,
-      "Drive panel": null
+      "Main Motor": "______",
+      "Lube oil pump": "______",
+      "Small motors": "______",
+      "Junction box": "______",
+      "Heaters and Thermocouple": "______",
+      "PLC panel": "______",
+      "Drive panel": "______"
     }
   },
   "scope of supply and work": {
@@ -57,7 +57,6 @@
   },
   "application details": {
     "Location": {
-      "Basic recipe details": null,
       "Industrial application": false,
       "Home appliance": true,
       "Electrical and electronics": false,
@@ -72,17 +71,11 @@
       "ASTM": true,
       "ISO": true,
       "Bench mark available": "No",
-      "MFI": null,
-      "Impact": null,
-      "Tensile": null,
-      "Flexural": null,
-      "Flammability": null,
-      "Lab trial required": "No",
-      "STEER India": false,
-      "STEER Japan": false,
-      "STEER china": false,
-      "STEER America": false,
-      "Willing to send sample along with MSDS to specified location": "No"
+      "MFI": "______",
+      "Impact": "______",
+      "Tensile": "______",
+      "Flexural": "______",
+      "Flammability": false
     }
   },
   "formulation_tables": null,
@@ -271,7 +264,7 @@
       "Extruder specification required from": "STEER",
       "Platform": "Mega (Do/Di 1.55)",
       "Type of process": "Split feed",
-      "Expected throughput": "1800 to 2800 kg/hr",
+      "Expected throughput": "______ 1800 to 2800 kg/hr",
       "Screw diameter": "80S mm",
       "Screw speed": "900 rpm",
       "Motor": "630 kW",
@@ -287,86 +280,19 @@
       ],
       "Maximum barrel temperature": "350 deg C",
       "Barrel, Element and Shaft MOC preference": "STEER",
-      "Barrel Length*": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
-      "Barrel Type**": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
-      "Barrel preffered MOC***": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
-      "Element Preffered MOC***": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
-      "Shaft MOC***": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-      ]
-    }
-  },
-  "other and project details": {
-    "Location": {
       "Drive and PLC panel cooling type": "Air Condition",
-      "Cable entry to Drive and PLC panel": null,
       "Cable exit from Drive and PLC panel": "Bottom",
-      "Electrical STD preference if any please specify": null,
       "Preferred operating interface": "HMI type",
       "Operating side when viewed from Die end": "Left side",
       "TCU position when viewed from Die end": "Left side",
       "Vacuum system when viewed from Die end": "Left side",
-      "Side feeder when viewed from Die end": "Left side",
+      "Side feeder when viewed from Die end": "Left side"
+    }
+  },
+  "other and project details": {
+    "Location": {
       "Extruder maintenance resource": "In house",
-      "Extruder maintenance resource:": "Skilled",
+      "Extruder maintenance resource ": "Skilled",
       "Type of training required from Extruder supplier": [
         "TSE operation",
         "TSE maintenance",
