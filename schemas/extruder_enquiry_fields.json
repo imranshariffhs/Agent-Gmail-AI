@@ -698,154 +698,148 @@
           "type": "boolean"
         },
         {
-          "description": "Please tell me about your Processing zone details",
-          "name": "processing zone details",
-          "Info_filed": [
-            {
-              "description": "Barrel Length (4D or 6D per segment)",
-              "name": "barrel length",
-              "required": true,
-              "type": "array"
-            },
-            {
-              "description": "Barrel Type per segment (1-Intake, 2-Closed, 3-Side feed, 4-ATM Vent, 5-Vacuum Vent, 6-Liquid injection)",
-              "name": "barrel type",
-              "required": true,
-              "type": "array"
-            },
-            {
-              "description": "Barrel Preferred MOC",
-              "name": "barrel preferred moc",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "description": "Element Preferred MOC",
-              "name": "element preferred moc",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "description": "Shaft MOC",
-              "name": "shaft moc",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "description": "Drive and PLC panel cooling type - Fan cooled",
-              "name": "fan cooled panels",
-              "required": true,
-              "type": "boolean"
-            },
-            {
-              "description": "Drive and PLC panel cooling type - Air conditioned",
-              "name": "air conditioned panels",
-              "required": true,
-              "type": "boolean"
-            },
-            {
-              "description": "Cable entry - Top",
-              "name": "top cable entry",
-              "required": true,
-              "type": "boolean"
-            },
-            {
-              "description": "Cable entry - Bottom",
-              "name": "bottom cable entry",
-              "required": true,
-              "type": "boolean"
-            },
-            {
-              "description": "Cable exit - Top",
-              "name": "top cable exit",
-              "required": true,
-              "type": "boolean"
-            },
-            {
-              "description": "Cable exit - Bottom",
-              "name": "bottom cable exit",
-              "required": true,
-              "type": "boolean"
-            },
-            {
-              "description": "Electrical standards preference",
-              "name": "electrical standards",
-              "required": true,
-              "type": "textarea"
-            },
-            {
-              "description": "Preferred operating interface - Basic push button",
-              "name": "basic push button control",
-              "required": true,
-              "type": "boolean"
-            },
-            {
-              "description": "Preferred operating interface - HMI",
-              "name": "hmi control type",
-              "required": true,
-              "type": "boolean"
-            },
-            {
-              "description": "Preferred operating interface - Industrial PC",
-              "name": "industrial pc control",
-              "required": true,
-              "type": "boolean"
-            },
-            {
-              "description": "Operating side when viewed from Die end - Right",
-              "name": "operating side right",
-              "required": true,
-              "type": "boolean"
-            },
-            {
-              "description": "Operating side when viewed from Die end - Left",
-              "name": "operating side left",
-              "required": true,
-              "type": "boolean"
-            },
-            {
-              "description": "TCU position when viewed from Die end - Right",
-              "name": "tcu position right",
-              "required": true,
-              "type": "boolean"
-            },
-            {
-              "description": "TCU position when viewed from Die end - Left",
-              "name": "tcu position left",
-              "required": true,
-              "type": "boolean"
-            },
-            {
-              "description": "Vacuum system when viewed from Die end - Right",
-              "name": "vacuum system right",
-              "required": true,
-              "type": "boolean"
-            },
-            {
-              "description": "Vacuum system when viewed from Die end - Left",
-              "name": "vacuum system left",
-              "required": true,
-              "type": "boolean"
-            },
-            {
-              "description": "Side feeder when viewed from Die end - Right",
-              "name": "side feeder right",
-              "required": true,
-              "type": "boolean"
-            },
-            {
-              "description": "Side feeder when viewed from Die end - Left",
-              "name": "side feeder left",
-              "required": true,
-              "type": "boolean"
-            },
-            {
-              "description": "Additional customization information",
-              "name": "customization details",
-              "required": true,
-              "type": "textarea"
-            }
-          ]
+          "description": "Barrel Length (4D or 6D per segment)",
+          "name": "barrel length",
+          "required": true,
+          "type": "array"
+        },
+        {
+          "description": "Barrel Type per segment (1-Intake, 2-Closed, 3-Side feed, 4-ATM Vent, 5-Vacuum Vent, 6-Liquid injection)",
+          "name": "barrel type",
+          "required": true,
+          "type": "array"
+        },
+        {
+          "description": "Barrel Preferred MOC",
+          "name": "barrel preferred moc",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "description": "Element Preferred MOC",
+          "name": "element preferred moc",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "description": "Shaft MOC",
+          "name": "shaft moc",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "description": "Drive and PLC panel cooling type - Fan cooled",
+          "name": "fan cooled panels",
+          "required": true,
+          "type": "boolean"
+        },
+        {
+          "description": "Drive and PLC panel cooling type - Air conditioned",
+          "name": "air conditioned panels",
+          "required": true,
+          "type": "boolean"
+        },
+        {
+          "description": "Cable entry - Top",
+          "name": "top cable entry",
+          "required": true,
+          "type": "boolean"
+        },
+        {
+          "description": "Cable entry - Bottom",
+          "name": "bottom cable entry",
+          "required": true,
+          "type": "boolean"
+        },
+        {
+          "description": "Cable exit - Top",
+          "name": "top cable exit",
+          "required": true,
+          "type": "boolean"
+        },
+        {
+          "description": "Cable exit - Bottom",
+          "name": "bottom cable exit",
+          "required": true,
+          "type": "boolean"
+        },
+        {
+          "description": "Electrical standards preference",
+          "name": "electrical standards",
+          "required": true,
+          "type": "textarea"
+        },
+        {
+          "description": "Preferred operating interface - Basic push button",
+          "name": "basic push button control",
+          "required": true,
+          "type": "boolean"
+        },
+        {
+          "description": "Preferred operating interface - HMI",
+          "name": "hmi control type",
+          "required": true,
+          "type": "boolean"
+        },
+        {
+          "description": "Preferred operating interface - Industrial PC",
+          "name": "industrial pc control",
+          "required": true,
+          "type": "boolean"
+        },
+        {
+          "description": "Operating side when viewed from Die end - Right",
+          "name": "operating side right",
+          "required": true,
+          "type": "boolean"
+        },
+        {
+          "description": "Operating side when viewed from Die end - Left",
+          "name": "operating side left",
+          "required": true,
+          "type": "boolean"
+        },
+        {
+          "description": "TCU position when viewed from Die end - Right",
+          "name": "tcu position right",
+          "required": true,
+          "type": "boolean"
+        },
+        {
+          "description": "TCU position when viewed from Die end - Left",
+          "name": "tcu position left",
+          "required": true,
+          "type": "boolean"
+        },
+        {
+          "description": "Vacuum system when viewed from Die end - Right",
+          "name": "vacuum system right",
+          "required": true,
+          "type": "boolean"
+        },
+        {
+          "description": "Vacuum system when viewed from Die end - Left",
+          "name": "vacuum system left",
+          "required": true,
+          "type": "boolean"
+        },
+        {
+          "description": "Side feeder when viewed from Die end - Right",
+          "name": "side feeder right",
+          "required": true,
+          "type": "boolean"
+        },
+        {
+          "description": "Side feeder when viewed from Die end - Left",
+          "name": "side feeder left",
+          "required": true,
+          "type": "boolean"
+        },
+        {
+          "description": "Additional customization information",
+          "name": "customization details",
+          "required": true,
+          "type": "textarea"
         }
       ]
     },

@@ -1,5 +1,7 @@
 import logging
 import logging.handlers
+import os
+import uuid
 from pathlib import Path
 
 
@@ -82,3 +84,33 @@ def get_logger(name="agent_ai"):
         logging.Logger: Logger instance
     """
     return logging.getLogger(name)
+
+
+def format_log_message(message, trx=None, pid=None):
+    """
+    Format log message to include TRX (Unique_ID) and Process ID (User-specific).
+    Args:
+        message (str): The log message
+        trx (str, optional): Unique transaction ID
+        pid (str, optional): User-specific process ID
+    Returns:
+        str: Formatted log message
+    """
+    prefix = []
+    if trx:
+        prefix.append(f"TRX: {trx}")
+    if pid:
+        prefix.append(f"PID: {pid}")
+    if prefix:
+        return " | ".join(prefix) + " | " + message
+    return message
+
+
+def generate_trx_id():
+    """Generate a unique transaction ID (TRX) using uuid4."""
+    return str(uuid.uuid4())
+
+
+def get_process_id():
+    """Get the current process ID (PID)."""
+    return str(os.getpid())

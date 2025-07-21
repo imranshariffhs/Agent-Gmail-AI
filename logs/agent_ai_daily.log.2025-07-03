@@ -983,28 +983,3 @@ Final save successful
 2025-07-03 12:51:49 | INFO     | step_process.py:431 | TRX: c23a2dd2-ce6c-4ab4-9d96-eae2c664ca2e | PID: 10804 | Progress saved successfully
 2025-07-03 12:51:49 | INFO     | main.py:75 | TRX: d3b3f79e-b771-4959-8305-19cb78c4f1d2 | PID: 10804 | **************************************************
 2025-07-03 12:51:49 | INFO     | main.py:81 |  End Process ....
-2025-07-04 05:04:24 | INFO     | main.py:3 |  Start Process ....
-2025-07-04 05:04:29 | INFO     | main.py:12 | TRX: d10b94ee-d0a6-4640-acbb-b2db466958ee | PID: 1675 | **************************************************
-2025-07-04 05:04:29 | INFO     | main.py:15 | TRX: d10b94ee-d0a6-4640-acbb-b2db466958ee | PID: 1675 |  Start Process ....
-2025-07-04 05:04:29 | INFO     | gmail_agent.py:1566 | Initializing Gmail Processing Agent...
-2025-07-04 05:04:34 | INFO     | gmail_agent.py:1580 | ✅ Agent execution completed successfully.
-2025-07-04 05:04:34 | INFO     | step_process.py:446 | TRX: 3c998513-6f81-493c-b640-58f6eb548522 | PID: 1675 | Starting step process
-2025-07-04 05:04:34 | INFO     | step_process.py:304 | TRX: 3c998513-6f81-493c-b640-58f6eb548522 | PID: 1675 | Successfully read Excel file with 1 rows
-2025-07-04 05:04:34 | INFO     | step_process.py:270 | TRX: 3c998513-6f81-493c-b640-58f6eb548522 | PID: 1675 | Successfully updated row 0 in Excel file
-2025-07-04 05:04:34 | INFO     | step_process.py:273 | TRX: 3c998513-6f81-493c-b640-58f6eb548522 | PID: 1675 | Updated fields: res_path, res_status, markdown_status
-2025-07-04 05:04:35 | INFO     | step_process.py:277 | TRX: 3c998513-6f81-493c-b640-58f6eb548522 | PID: 1675 | Successfully updated Excel file with all required fields
-2025-07-04 05:04:35 | INFO     | step_process.py:430 | TRX: 3c998513-6f81-493c-b640-58f6eb548522 | PID: 1675 | 
-Final save successful
-2025-07-04 05:04:35 | INFO     | step_process.py:431 | TRX: 3c998513-6f81-493c-b640-58f6eb548522 | PID: 1675 | Progress saved successfully
-2025-07-04 05:04:35 | INFO     | main.py:34 | TRX: d10b94ee-d0a6-4640-acbb-b2db466958ee | PID: 1675 | **************************************************
-2025-07-04 05:04:35 | INFO     | main.py:39 | TRX: d10b94ee-d0a6-4640-acbb-b2db466958ee | PID: 1675 |  End Process ....
-2025-07-04 05:04:35 | INFO     | step_process.py:446 | TRX: 02b5e7f7-a51d-4efa-ab91-c1287e940ea2 | PID: 1675 | Starting step process
-2025-07-04 05:04:35 | INFO     | step_process.py:304 | TRX: 02b5e7f7-a51d-4efa-ab91-c1287e940ea2 | PID: 1675 | Successfully read Excel file with 1 rows
-2025-07-04 05:04:35 | INFO     | step_process.py:270 | TRX: 02b5e7f7-a51d-4efa-ab91-c1287e940ea2 | PID: 1675 | Successfully updated row 0 in Excel file
-2025-07-04 05:04:35 | INFO     | step_process.py:273 | TRX: 02b5e7f7-a51d-4efa-ab91-c1287e940ea2 | PID: 1675 | Updated fields: res_path, res_status, markdown_status
-2025-07-04 05:04:35 | INFO     | step_process.py:277 | TRX: 02b5e7f7-a51d-4efa-ab91-c1287e940ea2 | PID: 1675 | Successfully updated Excel file with all required fields
-2025-07-04 05:04:35 | INFO     | step_process.py:430 | TRX: 02b5e7f7-a51d-4efa-ab91-c1287e940ea2 | PID: 1675 | 
-Final save successful
-2025-07-04 05:04:35 | INFO     | step_process.py:431 | TRX: 02b5e7f7-a51d-4efa-ab91-c1287e940ea2 | PID: 1675 | Progress saved successfully
-2025-07-04 05:04:35 | INFO     | main.py:75 | TRX: d10b94ee-d0a6-4640-acbb-b2db466958ee | PID: 1675 | **************************************************
-2025-07-04 05:04:35 | INFO     | main.py:81 |  End Process ....

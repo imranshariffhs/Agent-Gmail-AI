@@ -1,5 +1,4 @@
 import json
-import logging
 import os
 import warnings
 
@@ -7,7 +6,7 @@ from cryptography.utils import CryptographyDeprecationWarning
 from dotenv import load_dotenv
 from langchain_google_genai import GoogleGenerativeAI
 
-from logger import logger
+from logger import format_log_message, logger
 
 # Filter out the cryptography deprecation warning
 warnings.filterwarnings("ignore", category=CryptographyDeprecationWarning)
@@ -15,12 +14,18 @@ warnings.filterwarnings("ignore", category=CryptographyDeprecationWarning)
 load_dotenv()
 
 # Configure logging
-logging.basicConfig(level=logging.INFO)
+# logging.basicConfig(level=logging.INFO)
 
 # LangChain configuration
 google_api_key = os.getenv("GEMINI_API_KEY")
 if not google_api_key:
-    logger.warning("GEMINI_API_KEY not found in environment. Document processing will be limited.")
+    logger.warning(
+        format_log_message(
+            "GEMINI_API_KEY not found in environment. Document processing will be limited.",
+            trx="DUMMY_TRX",
+            pid="DUMMY_PID",
+        )
+    )
     llm = None
 else:
     llm = GoogleGenerativeAI(
@@ -86,6 +91,7 @@ INSTRUCTIONS:
 5. Use exact field names from the definitions
 6. For checkboxes and radio buttons, extract the selected/checked values
 7. For tables, extract relevant data as arrays of objects where each object represents a row
+8. If have empty or null all please fetch thougs details ad as it's thable information
  
 RESPONSE FORMAT:
 Return only a JSON object like this (using actual field names from definitions):
@@ -102,6 +108,9 @@ Return only a JSON object like this (using actual field names from definitions):
  
 """
 
+trx_id = None
+pid = None
+
 
 def format_field_definitions(field_definitions):
     """Format field definitions for the prompt"""
@@ -115,7 +124,16 @@ def format_field_definitions(field_definitions):
 
 
 def extract_json_from_response(response_text):
-    """Extract JSON from response text with error handling"""
+    """Extract JSON from response text with error handling and one retry on failure"""
+
+    def try_parse_json(text):
+        try:
+            return json.loads(text)
+        except json.JSONDecodeError as e:
+            logger.error(format_log_message(f"Failed to parse JSON: {e}", trx=trx_id, pid=pid))
+            logger.error(format_log_message(f"Attempted to parse: {text}", trx=trx_id, pid=pid))
+            return None
+
     try:
         # If already a dict, return as is
         if isinstance(response_text, dict):
@@ -128,46 +146,62 @@ def extract_json_from_response(response_text):
         # Clean up the text
         text = response_text.strip()
 
-        try:
-            # Try direct JSON parsing first
-            return json.loads(text)
-        except Exception:
-            # Find the first { and last }
-            start = text.find("{")
-            end = text.rfind("}")
+        # Remove Markdown code block markers if present
+        lines = text.splitlines()
+        lines = [line for line in lines if not line.strip().startswith("```")]
+        text = "\n".join(lines).strip()
 
-            if start != -1 and end != -1:
-                # Extract just the JSON part
-                json_text = text[start : end + 1]
+        # Try direct JSON parsing first, with one retry if it fails
+        result = try_parse_json(text)
+        if result is not None:
+            return result
+        # Retry once
+        result = try_parse_json(text)
+        if result is not None:
+            return result
 
-                # Clean up common issues
-                json_text = json_text.replace("\n", " ")
-                json_text = json_text.replace("\r", " ")
-                json_text = " ".join(json_text.split())  # Normalize whitespace
-                json_text = json_text.replace("'", '"')  # Replace single quotes
+        # Fallback: Find the first { and last }
+        start = text.find("{")
+        end = text.rfind("}")
 
-                try:
-                    return json.loads(json_text)
-                except json.JSONDecodeError as e:
-                    logger.error(f"Failed to parse JSON: {e}")
-                    logger.error(f"Attempted to parse: {json_text}")
-                    return {}
+        if start != -1 and end != -1:
+            # Extract just the JSON part
+            json_text = text[start : end + 1]
 
-            logger.error("No JSON object found in response")
-            logger.error(f"Response text: {text}")
+            # Clean up common issues
+            json_text = json_text.replace("\n", " ")
+            json_text = json_text.replace("\r", " ")
+            json_text = " ".join(json_text.split())  # Normalize whitespace
+            json_text = json_text.replace("'", '"')  # Replace single quotes
+
+            # Try fallback JSON parsing, with one retry if it fails
+            result = try_parse_json(json_text)
+            if result is not None:
+                return result
+            # Retry once
+            result = try_parse_json(json_text)
+            if result is not None:
+                return result
+
+            logger.error(format_log_message("No JSON object found in response after retries", trx=trx_id, pid=pid))
+            logger.error(format_log_message(f"Response text: {text}", trx=trx_id, pid=pid))
             return {}
 
+        logger.error(format_log_message("No JSON object found in response", trx=trx_id, pid=pid))
+        logger.error(format_log_message(f"Response text: {text}", trx=trx_id, pid=pid))
+        return {}
+
     except Exception as e:
-        logger.error(f"Error in extract_json_from_response: {str(e)}")
-        logger.error(f"Response text: {response_text}")
+        logger.error(format_log_message(f"Error in extract_json_from_response: {str(e)}", trx=trx_id, pid=pid))
+        logger.error(format_log_message(f"Response text: {response_text}", trx=trx_id, pid=pid))
         return {}
 
 
-def process_pdf(file_path):
-    try:
-        logger.info("Processing PDF: %s", file_path)
-        # ... rest of the code with print statements replaced with logger calls ...
+# def process_pdf(file_path):
+#     try:
+#         logger.info("Processing PDF: %s", file_path)
+#         # ... rest of the code with print statements replaced with logger calls ...
 
-    except Exception as e:
-        logger.error("Error processing PDF: %s", str(e))
-        return None
+#     except Exception as e:
+#         logger.error("Error processing PDF: %s", str(e))
+#         return None

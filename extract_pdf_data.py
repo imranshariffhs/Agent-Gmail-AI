@@ -54,34 +54,34 @@ def pdf_to_image(upload_path):
     - String: Path to the folder containing the images and markdown file
     """
     try:
-        logger.info("Converting PDF to images: %s", upload_path)
+        # logger.info("Converting PDF to images: %s", upload_path)
 
         # Debug: Print current working directory
         cwd = os.getcwd()
-        logger.info("Current working directory: %s", cwd)
+        # logger.info("Current working directory: %s", cwd)
 
         # Normalize paths
         upload_path = os.path.abspath(os.path.normpath(upload_path))
-        logger.info("Normalized upload path: %s", upload_path)
+        # logger.info("Normalized upload path: %s", upload_path)
 
         # Get the base filename without extension
         filename = os.path.splitext(os.path.basename(upload_path))[0]
-        logger.info("Base filename: %s", filename)
+        # logger.info("Base filename: %s", filename)
 
         # Create output folder path
         output_folder = os.path.join("image", filename)
         abs_output_folder = os.path.abspath(output_folder)
-        logger.info("Creating output folder at: %s", abs_output_folder)
+        # logger.info("Creating output folder at: %s", abs_output_folder)
 
         # Create output folder
         os.makedirs(abs_output_folder, exist_ok=True)
-        logger.info("Created output folder at: %s", abs_output_folder)
+        # logger.info("Created output folder at: %s", abs_output_folder)
 
-        logger.info("📄 Converting PDF to images: %s", upload_path)
+        # logger.info("📄 Converting PDF to images: %s", upload_path)
 
         # Convert PDF to images
         images = convert_from_path(upload_path, dpi=300)
-        logger.info("Converted %d pages", len(images))
+        # logger.info("Converted %d pages", len(images))
 
         if not images:
             raise ValueError("❌ No pages found in PDF")
@@ -90,11 +90,11 @@ def pdf_to_image(upload_path):
         for i, img in enumerate(images):
             output_path = os.path.join(abs_output_folder, f"page_{i + 1}.png")
             img.save(output_path, "PNG")
-            logger.info("✅ Saved page %d to: %s", i + 1, output_path)
+            # logger.info("✅ Saved page %d to: %s", i + 1, output_path)
 
         # Create markdown file
         output_md_path = os.path.join(abs_output_folder, "output_all_pages.md")
-        logger.info("Creating markdown file at: %s", output_md_path)
+        # logger.info("Creating markdown file at: %s", output_md_path)
 
         with open(output_md_path, "w", encoding="utf-8") as f:
             f.write(f"# PDF Processing Results\n\nProcessing {filename}\n\n")
@@ -103,7 +103,7 @@ def pdf_to_image(upload_path):
         logger.info("✅ All files saved in folder: %s", abs_output_folder)
 
         # Return absolute folder path
-        logger.info("Returning folder path: %s", abs_output_folder)
+        # logger.info("Returning folder path: %s", abs_output_folder)
         return abs_output_folder
 
     except Exception as e:
@@ -274,12 +274,12 @@ formatted according to the guidelines above."""
 
     for attempt in range(max_retries):
         try:
-            logger.info(
-                "🔄 Attempt %d/%d for %s",
-                attempt + 1,
-                max_retries,
-                os.path.basename(image_path),
-            )
+            # logger.info(
+            #     "🔄 Attempt %d/%d for %s",
+            #     attempt + 1,
+            #     max_retries,
+            #     os.path.basename(image_path),
+            # )
 
             image_base64 = load_image_bytes(image_path)
 
@@ -307,14 +307,14 @@ formatted according to the guidelines above."""
             if "unable to" in content.lower() or "cannot extract" in content.lower():
                 raise ValueError("Extraction failed - model reported inability to process")
 
-            logger.info("✅ Successfully extracted %d characters", len(content))
+            # logger.info("✅ Successfully extracted %d characters", len(content))
             return content
 
         except Exception as e:
             logger.warning("⚠️ Attempt %d failed: %s", attempt + 1, str(e))
             if attempt < max_retries - 1:
                 wait_time = (attempt + 1) * 2  # Progressive backoff
-                logger.info("⏳ Waiting %d seconds before retry...", wait_time)
+                # logger.info("⏳ Waiting %d seconds before retry...", wait_time)
                 time.sleep(wait_time)
             else:
                 logger.error("❌ All attempts failed for %s", image_path)
@@ -369,8 +369,8 @@ def save_progress(all_markdown, output_file):
         with open(metadata_file, "w") as f:
             json.dump(metadata, f, indent=2)
 
-        logger.info("✅ Progress saved successfully to %s", output_file)
-        logger.info("📊 Metadata saved to %s", metadata_file)
+        # logger.info("✅ Progress saved successfully to %s", output_file)
+        # logger.info("📊 Metadata saved to %s", metadata_file)
 
         return True, metadata
 
@@ -426,23 +426,23 @@ def find_matching_row(df, update_filename, update_path):
     """Find the matching row in DataFrame"""
     try:
         normalized_update = normalize_filename(update_filename)
-        logger.info("Looking for normalized name: '%s'", normalized_update)
-        logger.info("Original filename: '%s'", update_filename)
+        # logger.info("Looking for normalized name: '%s'", normalized_update)
+        # logger.info("Original filename: '%s'", update_filename)
 
         for _idx, row in df.iterrows():
             if pd.notna(row["file_paths"]):
                 file_paths = [p.strip() for p in str(row["file_paths"]).split(",")]
 
-                logger.debug("Checking row %d with %d files", _idx, len(file_paths))
+                # logger.debug("Checking row %d with %d files", _idx, len(file_paths))
                 for i, path in enumerate(file_paths):
                     current_filename = os.path.basename(path)
                     normalized_current = normalize_filename(current_filename)
 
-                    logger.debug("Comparing:")
-                    logger.debug("  Current file: '%s'", current_filename)
-                    logger.debug("  Normalized current: '%s'", normalized_current)
-                    logger.debug("  Target file: '%s'", update_filename)
-                    logger.debug("  Normalized target: '%s'", normalized_update)
+                    # logger.debug("Comparing:")
+                    # logger.debug("  Current file: '%s'", current_filename)
+                    # logger.debug("  Normalized current: '%s'", normalized_current)
+                    # logger.debug("  Target file: '%s'", update_filename)
+                    # logger.debug("  Normalized target: '%s'", normalized_update)
 
                     # Try different matching strategies
                     if (
@@ -451,7 +451,7 @@ def find_matching_row(df, update_filename, update_path):
                         or normalized_current in normalized_update  # Partial match
                         or normalized_update in normalized_current
                     ):  # Reverse partial match
-                        logger.info("✅ Found match in row %d, position %d", _idx, i)
+                        # logger.info("✅ Found match in row %d, position %d", _idx, i)
                         return _idx, i, file_paths
 
         logger.warning("❌ No match found for file: %s", update_filename)
@@ -478,7 +478,7 @@ def _load_excel(file_resd_xlsx):
         return None
     try:
         df = pd.read_excel(file_resd_xlsx, engine="openpyxl", keep_default_na=True)
-        logger.info("📊 Successfully read Excel file with %d rows", len(df))
+        # logger.info("📊 Successfully read Excel file with %d rows", len(df))
         return df
     except Exception as excel_read_error:
         logger.error("❌ Error reading Excel file: %s", str(excel_read_error))
@@ -537,9 +537,9 @@ def _update_row_values(df, idx, position, update_row_index):
         file_paths = [p.strip() for p in str(df.at[idx, "file_paths"]).split(",")]
         total_files = len(file_paths)
         res_status, count_list = _prepare_status_and_count_lists(df, idx, total_files)
-        logger.info("Before update:")
-        logger.info(f"Status: {res_status}")
-        logger.info(f"Counts: {count_list}")
+        # logger.info("Before update:")
+        # logger.info(f"Status: {res_status}")
+        # logger.info(f"Counts: {count_list}")
         new_status = ["pending"] * total_files
         new_count = ["0"] * total_files
         new_status[position] = "completed"
@@ -556,13 +556,13 @@ def _update_row_values(df, idx, position, update_row_index):
         final_pending = sum(1 for s in new_status if s == "pending")
         final_count_1 = sum(1 for c in new_count if c == "1")
         final_count_0 = sum(1 for c in new_count if c == "0")
-        logger.info("\nFinal state:")
-        logger.info(f"Completed positions: {completed_positions}")
-        logger.info(f"Pending positions: {pending_positions}")
-        logger.info(f"Status - Completed: {final_completed}, Pending: {final_pending}")
-        logger.info(f"Counts - Ones: {final_count_1}, Zeros: {final_count_0}")
-        logger.info(f"Status list: {new_status}")
-        logger.info(f"Count list: {new_count}")
+        # logger.info("\nFinal state:")
+        # logger.info(f"Completed positions: {completed_positions}")
+        # logger.info(f"Pending positions: {pending_positions}")
+        # logger.info(f"Status - Completed: {final_completed}, Pending: {final_pending}")
+        # logger.info(f"Counts - Ones: {final_count_1}, Zeros: {final_count_0}")
+        # logger.info(f"Status list: {new_status}")
+        # logger.info(f"Count list: {new_count}")
         if final_completed == final_count_1 and final_pending == final_count_0:
             logger.info("✅ Perfect balance achieved")
         else:
@@ -579,7 +579,7 @@ def _save_excel(df, file_resd_xlsx):
     try:
         with pd.ExcelWriter(file_resd_xlsx, engine="openpyxl", mode="w") as writer:
             df.to_excel(writer, index=False)
-        logger.info("💾 Successfully saved updates to Excel file")
+        # logger.info("💾 Successfully saved updates to Excel file")
         return True
     except Exception as e:
         logger.error("❌ Error saving Excel file: %s", str(e))
@@ -597,7 +597,7 @@ def update_excel_log(output_file):
         if df is None:
             return False
         update_filename = os.path.basename(update_row_index)
-        logger.info("Processing file: %s", update_filename)
+        # logger.info("Processing file: %s", update_filename)
         idx, position, file_paths = find_matching_row(df, update_filename, update_row_index)
         if idx is not None and position is not None:
             if not _update_row_values(df, idx, position, update_row_index):
@@ -617,7 +617,7 @@ def _convert_pdf_and_get_folder(pdf_path):
     try:
         image_folder = pdf_to_image(pdf_path)
         abs_image_folder = os.path.abspath(image_folder)
-        logger.info("Working with image folder: %s", abs_image_folder)
+        # logger.info("Working with image folder: %s", abs_image_folder)
         return abs_image_folder
     except Exception as e:
         logger.error("❌ Failed to convert PDF to images: %s", str(e))
@@ -640,7 +640,7 @@ def _process_pages(image_files, abs_image_folder, temp_output_file):
     all_markdown = []
     for i, filename in enumerate(image_files, 1):
         image_path = os.path.join(abs_image_folder, filename)
-        logger.info("\n🔍 Processing %d/%d: %s", i, len(image_files), filename)
+        # logger.info("\n🔍 Processing %d/%d: %s", i, len(image_files), filename)
         try:
             if not os.path.exists(image_path):
                 logger.warning("⚠️ Image file missing: %s", filename)
@@ -656,10 +656,10 @@ def _process_pages(image_files, abs_image_folder, temp_output_file):
             page_content = f"## {filename}\n\n{markdown_text}\n\n---\n\n"
             all_markdown.append(page_content)
             processed_count += 1
-            logger.info("✅ Completed: %s (%d characters)", filename, len(markdown_text))
+            # logger.info("✅ Completed: %s (%d characters)", filename, len(markdown_text))
             if i % 3 == 0:
-                if save_progress(all_markdown, temp_output_file):
-                    logger.info("💾 Progress saved (processed %d pages)", processed_count)
+                save_progress(all_markdown, temp_output_file)
+                # logger.info("💾 Progress saved (processed %d pages)", processed_count)
         except KeyboardInterrupt:
             logger.warning("\n⚠️ Process interrupted by user")
             logger.warning("💾 Saving progress for %d completed pages...", processed_count)
@@ -690,13 +690,13 @@ def _final_save_and_summary(
                 )
                 f.write(summary)
                 f.writelines(all_markdown)
-            logger.info("\n✅ Final output saved to '%s'", output_file)
-            logger.info(
-                "📊 Summary: %d successful, %d failed out of %d total pages",
-                processed_count,
-                failed_count,
-                len(image_files),
-            )
+            # logger.info("\n✅ Final output saved to '%s'", output_file)
+            # logger.info(
+            #     "📊 Summary: %d successful, %d failed out of %d total pages",
+            #     processed_count,
+            #     failed_count,
+            #     len(image_files),
+            # )
             if not update_excel_log(output_file):
                 logger.warning("⚠️ Failed to update Excel log, but PDF processing completed successfully")
             if os.path.exists(temp_output_file):
@@ -721,7 +721,7 @@ def process_pdf_image(pdf_path):
     image_files = _get_image_files(abs_image_folder)
     if not image_files:
         return None
-    logger.info("📋 Found %d pages to process", len(image_files))
+    # logger.info("📋 Found %d pages to process", len(image_files))
     output_file = os.path.join(abs_image_folder, "output_all_pages.md")
     temp_output_file = os.path.join(abs_image_folder, "temp_output_all_pages.md")
     all_markdown, processed_count, failed_count = _process_pages(image_files, abs_image_folder, temp_output_file)

@@ -8,9 +8,6 @@ import asyncio
 import atexit
 import base64
 import hashlib
-
-# Suppress googleapiclient.discovery_cache INFO logs
-import logging
 import os
 import re
 import signal
@@ -42,15 +39,9 @@ from tenacity import (
 
 from logger import format_log_message, logger
 
-logging.getLogger("googleapiclient.discovery_cache").setLevel(logging.WARNING)
-
 # Global variables for cleanup management
 _cleanup_done = False
 _event_loop = None
-
-# At the top, after imports
-trx_id = None
-pid = None
 
 
 def get_event_loop():
@@ -62,7 +53,7 @@ def get_event_loop():
             asyncio.set_event_loop(_event_loop)
         return _event_loop
     except Exception:
-        logger.error(format_log_message("Error getting event loop: %s", trx=trx_id, pid=pid))
+        logger.error(format_log_message("Error getting event loop: %s", trx="DUMMY_TRX", pid="DUMMY_PID"))
         return asyncio.new_event_loop()
 
 
@@ -71,26 +62,32 @@ def cleanup_resources():
     global _cleanup_done, _event_loop
     if _cleanup_done:
         return
+
     try:
         if _event_loop is not None and not _event_loop.is_closed():
             # Create a new event loop for cleanup if needed
             cleanup_loop = _event_loop if not _event_loop.is_closed() else asyncio.new_event_loop()
             asyncio.set_event_loop(cleanup_loop)
+
             try:
                 # Shutdown gRPC
                 grpc.aio.shutdown_grpc_aio()
             except Exception:
-                logger.warning(format_log_message("Warning: Error during gRPC shutdown: %s", trx=trx_id, pid=pid))
+                logger.warning(
+                    format_log_message("Warning: Error during gRPC shutdown: %s", trx="DUMMY_TRX", pid="DUMMY_PID")
+                )
 
             try:
                 # Close the event loop
                 cleanup_loop.close()
             except Exception:
-                logger.warning(format_log_message("Warning: Error closing event loop: %s", trx=trx_id, pid=pid))
+                logger.warning(
+                    format_log_message("Warning: Error closing event loop: %s", trx="DUMMY_TRX", pid="DUMMY_PID")
+                )
 
             _cleanup_done = True
     except Exception:
-        logger.warning(format_log_message("Warning: Error during cleanup: %s", trx=trx_id, pid=pid))
+        logger.warning(format_log_message("Warning: Error during cleanup: %s", trx="DUMMY_TRX", pid="DUMMY_PID"))
 
 
 # Register cleanup handlers
@@ -104,7 +101,7 @@ _event_loop = get_event_loop()
 try:
     grpc.aio.init_grpc_aio()
 except Exception:
-    logger.warning(format_log_message("Warning: Error initializing gRPC: %s", trx=trx_id, pid=pid))
+    logger.warning(format_log_message("Warning: Error initializing gRPC: %s", trx="DUMMY_TRX", pid="DUMMY_PID"))
 
 # Load environment variables and configuration
 load_dotenv()
@@ -127,8 +124,8 @@ def validate_gemini_api_key(api_key):
             logger.warning(
                 format_log_message(
                     "Warning: API rate limit reached. The script will implement retry logic.",
-                    trx=trx_id,
-                    pid=pid,
+                    trx="DUMMY_TRX",
+                    pid="DUMMY_PID",
                 )
             )
         elif response.status_code != 200:
@@ -141,8 +138,12 @@ def validate_gemini_api_key(api_key):
 try:
     validate_gemini_api_key(api_key)
 except ValueError:
-    logger.error(format_log_message("Error: %s", trx=trx_id, pid=pid))
-    # logger.info("Please update your API key in the .env file and try again.")
+    logger.error(format_log_message("Error: %s", trx="DUMMY_TRX", pid="DUMMY_PID"))
+    logger.info(
+        format_log_message(
+            "Please update your API key in the .env file and try again.", trx="DUMMY_TRX", pid="DUMMY_PID"
+        )
+    )
     exit(1)
 
 SCOPES = ["https://www.googleapis.com/auth/gmail.readonly"]
@@ -181,8 +182,8 @@ def create_llm():
 try:
     llm = create_llm()
 except Exception:
-    logger.error(format_log_message("Failed to initialize LLM after retries: %s", trx=trx_id, pid=pid))
-    # logger.info("Please check your API key and try again later.")
+    logger.error(format_log_message("Failed to initialize LLM after retries: %s", trx="DUMMY_TRX", pid="DUMMY_PID"))
+    logger.info(format_log_message("Please check your API key and try again later.", trx="DUMMY_TRX", pid="DUMMY_PID"))
     exit(1)
 
 
@@ -236,7 +237,7 @@ def classify_email(subject, body):
         result = classification_chain.invoke({"subject": subject, "body": body})
         return result.strip().upper()
     except Exception:
-        logger.warning(format_log_message("Error in email classification: %s", trx=trx_id, pid=pid))
+        logger.warning(format_log_message("Error in email classification: %s", trx="DUMMY_TRX", pid="DUMMY_PID"))
         raise
 
 
@@ -249,7 +250,7 @@ def get_classification_response(inputs):
     elif isinstance(response, str):
         return response.strip().upper()
     else:
-        logger.warning(format_log_message("Unexpected response type: %s", trx=trx_id, pid=pid))
+        logger.warning(format_log_message("Unexpected response type: %s", trx="DUMMY_TRX", pid="DUMMY_PID"))
         return "UNKNOWN"
 
 
@@ -267,7 +268,7 @@ def create_agent(llm, tools, prompt):
     try:
         return create_react_agent(llm=llm, tools=tools, prompt=prompt)
     except Exception:
-        logger.error(format_log_message("Error creating agent: %s", trx=trx_id, pid=pid))
+        logger.error(format_log_message("Error creating agent: %s", trx="DUMMY_TRX", pid="DUMMY_PID"))
         raise
 
 
@@ -288,7 +289,7 @@ def execute_agent(agent_executor, tools_str, tool_names):
             }
         )
     except Exception:
-        logger.error(format_log_message("Error executing agent: %s", trx=trx_id, pid=pid))
+        logger.error(format_log_message("Error executing agent: %s", trx="DUMMY_TRX", pid="DUMMY_PID"))
         raise
 
 
@@ -410,7 +411,7 @@ def initialize_log_file():
             # Save with proper date formatting
             with pd.ExcelWriter(LOG_FILE, engine="openpyxl", datetime_format="YYYY-MM-DD HH:MM:SS") as writer:
                 df.to_excel(writer, index=False)
-            logger.info(format_log_message("Created new structured log file: %s", trx=trx_id, pid=pid))
+            logger.info(format_log_message("Created new structured log file: %s", trx="DUMMY_TRX", pid="DUMMY_PID"))
             return df
         else:
             # Load existing file
@@ -425,7 +426,7 @@ def initialize_log_file():
             )
             return df
     except Exception:
-        logger.error(format_log_message("Error initializing log file: %s", trx=trx_id, pid=pid))
+        logger.error(format_log_message("Error initializing log file: %s", trx="DUMMY_TRX", pid="DUMMY_PID"))
         # Create empty DataFrame with proper structure as fallback
         return pd.DataFrame(
             columns=[
@@ -467,7 +468,7 @@ def load_log_data():
         else:
             return initialize_log_file()
     except Exception:
-        logger.error(format_log_message("Error loading log data: %s", trx=trx_id, pid=pid))
+        logger.error(format_log_message("Error loading log data: %s", trx="DUMMY_TRX", pid="DUMMY_PID"))
         return pd.DataFrame()
 
 
@@ -476,9 +477,9 @@ def save_log_data(df):
     try:
         LOG_FILE.parent.mkdir(parents=True, exist_ok=True)
         df.to_excel(LOG_FILE, index=False)
-        # logger.info("Log data saved to %s", LOG_FILE)
+        logger.info(format_log_message("Log data saved to %s", trx="DUMMY_TRX", pid="DUMMY_PID"))
     except Exception:
-        logger.error(format_log_message("Error saving log data: %s", trx=trx_id, pid=pid))
+        logger.error(format_log_message("Error saving log data: %s", trx="DUMMY_TRX", pid="DUMMY_PID"))
 
 
 def generate_message_hash(msg_data):
@@ -588,7 +589,7 @@ def should_process_email(subject, body, has_pdf_attachment):
             "confidence": 0.0,
         }
     except Exception:
-        logger.warning(format_log_message("Warning: Classification failed - %s", trx=trx_id, pid=pid))
+        logger.warning(format_log_message("Warning: Classification failed - %s", trx="DUMMY_TRX", pid="DUMMY_PID"))
         return False, {
             "decision": "SKIP",
             "reason": "Classification failed - skipping download",
@@ -730,7 +731,7 @@ def update_download_log(log_df, new_row):
         _save_log_df_to_excel(log_df)
         return log_df
     except Exception:
-        logger.error(format_log_message("Error updating download log: %s", trx=trx_id, pid=pid))
+        logger.error(format_log_message("Error updating download log: %s", trx="DUMMY_TRX", pid="DUMMY_PID"))
         return log_df
 
 
@@ -928,8 +929,8 @@ def monitor_gmail_for_new_attachments_with_logging() -> str:
         log_df = load_log_data()
         service = get_gmail_service()
         yesterday = datetime.now() - timedelta(days=1)
-        query = f"has:attachment in:inbox is:unread -from:me after:{yesterday.strftime('%Y/%m/%d')}"
-        # logger.info("Searching for emails with query: %s", query)
+        query = f"has:attachment in:inbox -from:me after:{yesterday.strftime('%Y/%m/%d')}"
+        logger.info(format_log_message("Searching for emails with query: %s", trx="DUMMY_TRX", pid="DUMMY_PID"))
         results = service.users().messages().list(userId="me", q=query).execute()
         messages = results.get("messages", [])
         if not messages:
@@ -964,19 +965,19 @@ def monitor_gmail_for_new_attachments_with_logging() -> str:
         return "\n".join(summary) if downloaded or skipped else "📭 No new document attachments found in recent emails."
     except Exception as e:
         error_msg = f"❌ Error monitoring emails: {str(e)}"
-        logger.error(format_log_message(error_msg, trx=trx_id, pid=pid))
+        logger.error(format_log_message(error_msg, trx="DUMMY_TRX", pid="DUMMY_PID"))
         return error_msg
 
 
 # --- Download helpers ---
 def _search_gmail_for_pdf_emails(service, date_limit):
-    query = f"has:attachment in:inbox  is:unread -from:me after:{date_limit}"
-    # logger.info("Searching for emails with query: %s", query)
+    query = f"has:attachment in:inbox -from:me after:{date_limit}"
+    logger.info(format_log_message("Searching for emails with query: %s", trx="DUMMY_TRX", pid="DUMMY_PID"))
     try:
         results = service.users().messages().list(userId="me", q=query).execute()
         return results.get("messages", [])
     except Exception:
-        logger.error(format_log_message("Error searching emails: %s", trx=trx_id, pid=pid))
+        logger.error(format_log_message("Error searching emails: %s", trx="DUMMY_TRX", pid="DUMMY_PID"))
         return None
 
 
@@ -1018,9 +1019,9 @@ def _process_pdf_attachment(part, service, msg, log_df, classification, thread_i
     filename = part.get("filename")
     if not filename:
         return None
-    # logger.info("Processing attachment: %s", filename)
+    logger.info(format_log_message("Processing attachment: %s", trx="DUMMY_TRX", pid="DUMMY_PID"))
     if "body" not in part or "attachmentId" not in part["body"]:
-        # logger.info("Skipping %s: Invalid attachment data", filename)
+        logger.info(format_log_message("Skipping %s: Invalid attachment data", trx="DUMMY_TRX", pid="DUMMY_PID"))
         return None
     try:
         attachment = (
@@ -1037,7 +1038,7 @@ def _process_pdf_attachment(part, service, msg, log_df, classification, thread_i
         file_data = base64.urlsafe_b64decode(attachment["data"])
         is_duplicate, reason = is_file_already_downloaded(log_df, filename, file_data, msg["id"], thread_id)
         if is_duplicate:
-            logger.info(format_log_message("Skipping duplicate: %s", trx=trx_id, pid=pid))
+            logger.info(format_log_message("Skipping duplicate: %s", trx="DUMMY_TRX", pid="DUMMY_PID"))
             return (filename, None, reason)
         # Generate unique filename with classification prefix
         base_name, ext = os.path.splitext(filename)
@@ -1052,10 +1053,10 @@ def _process_pdf_attachment(part, service, msg, log_df, classification, thread_i
         file_path.write_bytes(file_data)
         file_hash = generate_file_hash(file_data)
         unique_file_id = generate_unique_file_id(filename, file_hash, msg["id"])
-        logger.info(format_log_message("Successfully downloaded: %s", trx=trx_id, pid=pid))
+        logger.info(format_log_message("Successfully downloaded: %s", trx="DUMMY_TRX", pid="DUMMY_PID"))
         return (filename, final_filename, file_path, file_hash, unique_file_id)
     except Exception as e:
-        logger.error(format_log_message("Error downloading %s: %s", trx=trx_id, pid=pid))
+        logger.error(format_log_message("Error downloading %s: %s", trx="DUMMY_TRX", pid="DUMMY_PID"))
         return (filename, None, str(e))
 
 
@@ -1063,17 +1064,21 @@ def _generate_download_summary(downloaded, skipped, skip_details, processed_emai
     summary = []
     summary.append("🔍 Gmail Download Complete")
     summary.append("=" * 40)
+
     if downloaded:
         summary.append(f"\n✅ Downloaded {len(downloaded)} new attachments:")
         for file in downloaded:
             summary.append(f"   • {file}")
+
     if skipped:
         summary.append(f"\n⏭️ Skipped {len(skipped)} attachments:")
         summary.extend(skip_details)
+
     if processed_emails:
         summary.append("\n📨 Processed emails:")
         for email in processed_emails:
             summary.append(f"   {email}")
+
     summary.append(f"\n📊 Log file: {LOG_FILE}")
     summary.append(f"💾 Save path: {SAVE_PATH}")
     return "\n".join(summary)
@@ -1103,7 +1108,7 @@ def _process_single_email_for_download(msg, service, log_df):
                 "processed_emails": [],
                 "log_df": log_df,
             }
-        logger.info(format_log_message("Email classified as: %s", trx=trx_id, pid=pid))
+        logger.info(format_log_message("Email classified as: %s", trx="DUMMY_TRX", pid="DUMMY_PID"))
         pdf_parts = _extract_pdf_parts(msg_data)
         if not pdf_parts:
             skip_reason = "No PDF attachments found"
@@ -1174,7 +1179,7 @@ def _process_single_email_for_download(msg, service, log_df):
             "log_df": log_df,
         }
     except Exception:
-        logger.error(format_log_message("Error processing message: %s", trx=trx_id, pid=pid))
+        logger.error(format_log_message("Error processing message: %s", trx="DUMMY_TRX", pid="DUMMY_PID"))
         return {"skipped": [], "skip_details": [], "downloaded": [], "processed_emails": [], "log_df": log_df}
 
 
@@ -1182,7 +1187,9 @@ def _process_single_email_for_download(msg, service, log_df):
 def download_gmail_attachments_with_logging() -> str:
     """Download PDF attachments from business-related Enquiry or Quotation emails only."""
     try:
-        # logger.info("Starting email attachment download process...")
+        logger.info(
+            format_log_message("Starting email attachment download process...", trx="DUMMY_TRX", pid="DUMMY_PID")
+        )
         initialize_log_file()
         log_df = load_log_data()
         service = get_gmail_service()
@@ -1206,7 +1213,7 @@ def download_gmail_attachments_with_logging() -> str:
         return _generate_download_summary(downloaded, skipped, skip_details, processed_emails, LOG_FILE, SAVE_PATH)
     except Exception as e:
         error_msg = f"❌ Error in download process: {str(e)}"
-        logger.error(format_log_message(error_msg, trx=trx_id, pid=pid))
+        logger.error(format_log_message(error_msg, trx="DUMMY_TRX", pid="DUMMY_PID"))
         return error_msg
 
 
@@ -1392,9 +1399,7 @@ def update_processing_status(file_name: str, new_status: str) -> str:
 
             # Ensure lists have same length
             if len(file_names) != len(current_statuses):
-                logger.warning(
-                    format_log_message("Mismatch in file names and statuses for row %s", trx=trx_id, pid=pid)
-                )
+                logger.warning(f"Mismatch in file names and statuses for row {idx}")
                 continue
 
             # Find the file in the list
@@ -1416,7 +1421,7 @@ def update_processing_status(file_name: str, new_status: str) -> str:
         return f"❌ File '{file_name}' not found in log"
 
     except Exception as e:
-        logger.error(format_log_message("Error updating processing status: %s", trx=trx_id, pid=pid))
+        logger.error(format_log_message("Error updating processing status: %s", trx="DUMMY_TRX", pid="DUMMY_PID"))
         return f"❌ Error: {str(e)}"
 
 
@@ -1477,7 +1482,7 @@ def get_processing_status(file_name: str = None) -> str:
         return "\n".join(summary)
 
     except Exception as e:
-        logger.error(format_log_message("Error getting processing status: %s", trx=trx_id, pid=pid))
+        logger.error(format_log_message("Error getting processing status: %s", trx="DUMMY_TRX", pid="DUMMY_PID"))
         return f"❌ Error: {str(e)}"
 
 
@@ -1490,11 +1495,13 @@ def _initialize_gmail_credentials():
             client_secrets_file="credentials.json",
         )
         build_resource_service(credentials=credentials)
-        # logger.info("✅ Gmail credentials initialized successfully")
+        logger.info(
+            format_log_message("✅ Gmail credentials initialized successfully", trx="DUMMY_TRX", pid="DUMMY_PID")
+        )
         return {"status": "success", "credentials": credentials}
     except Exception as e:
         error_msg = f"Failed to initialize Gmail credentials: {str(e)}"
-        logger.error(format_log_message(error_msg, trx=trx_id, pid=pid))
+        logger.error(format_log_message(error_msg, trx="DUMMY_TRX", pid="DUMMY_PID"))
         return {
             "status": "error",
             "message": "Gmail initialization failed",
@@ -1503,46 +1510,46 @@ def _initialize_gmail_credentials():
 
 
 def _run_monitor_step():
-    # logger.info("\n1. Monitoring Gmail for new attachments...")
+    logger.info(format_log_message("\n1. Monitoring Gmail for new attachments...", trx="DUMMY_TRX", pid="DUMMY_PID"))
     try:
         monitor_result = monitor_gmail_for_new_attachments_with_logging()
-        # logger.info("✅ Monitoring completed successfully")
+        logger.info(format_log_message("✅ Monitoring completed successfully", trx="DUMMY_TRX", pid="DUMMY_PID"))
         return ("Monitor", "success", monitor_result)
     except Exception as e:
-        logger.error(format_log_message("❌ Monitoring failed: %s", trx=trx_id, pid=pid))
+        logger.error(format_log_message("❌ Monitoring failed: %s", trx="DUMMY_TRX", pid="DUMMY_PID"))
         return ("Monitor", "error", str(e))
 
 
 def _run_download_step():
-    # logger.info("\n2. Downloading relevant PDF attachments...")
+    logger.info(format_log_message("\n2. Downloading relevant PDF attachments...", trx="DUMMY_TRX", pid="DUMMY_PID"))
     try:
         download_result = download_gmail_attachments_with_logging()
-        # logger.info("✅ Download completed successfully")
+        logger.info(format_log_message("✅ Download completed successfully", trx="DUMMY_TRX", pid="DUMMY_PID"))
         return ("Download", "success", download_result)
     except Exception as e:
-        logger.error(format_log_message("❌ Download failed: %s", trx=trx_id, pid=pid))
+        logger.error(format_log_message("❌ Download failed: %s", trx="DUMMY_TRX", pid="DUMMY_PID"))
         return ("Download", "error", str(e))
 
 
 def _run_log_view_step():
-    # logger.info("\n3. Checking download log...")
+    logger.info(format_log_message("\n3. Checking download log...", trx="DUMMY_TRX", pid="DUMMY_PID"))
     try:
         log_result = view_download_log()
-        # logger.info("✅ Log check completed successfully")
+        logger.info(format_log_message("✅ Log check completed successfully", trx="DUMMY_TRX", pid="DUMMY_PID"))
         return ("Log View", "success", log_result)
     except Exception as e:
-        logger.error(format_log_message("❌ Log check failed: %s", trx=trx_id, pid=pid))
+        logger.error(format_log_message("❌ Log check failed: %s", trx="DUMMY_TRX", pid="DUMMY_PID"))
         return ("Log View", "error", str(e))
 
 
 def _run_cleanup_step():
-    # logger.info("\n4. Cleaning up duplicate entries...")
+    logger.info(format_log_message("\n4. Cleaning up duplicate entries...", trx="DUMMY_TRX", pid="DUMMY_PID"))
     try:
         cleanup_result = clear_duplicate_entries()
-        # logger.info("✅ Cleanup completed successfully")
+        logger.info(format_log_message("✅ Cleanup completed successfully", trx="DUMMY_TRX", pid="DUMMY_PID"))
         return ("Cleanup", "success", cleanup_result)
     except Exception as e:
-        logger.error(format_log_message("❌ Cleanup failed: %s", trx=trx_id, pid=pid))
+        logger.error(format_log_message("❌ Cleanup failed: %s", trx="DUMMY_TRX", pid="DUMMY_PID"))
         return ("Cleanup", "error", str(e))
 
 
@@ -1552,7 +1559,7 @@ def _generate_final_report(results):
     all_successful = all(result[1] == "success" for result in results)
     for step, status, message in results:
         if status == "success":
-            # summary.append(f"\n✅ {step}:")
+            summary.append(f"\n✅ {step}:")
             summary.append(message)
         else:
             summary.append(f"\n❌ {step} failed:")
@@ -1564,7 +1571,7 @@ def _generate_final_report(results):
 def agent_main():
     """Main function to initialize and run the Gmail processing agent."""
     try:
-        logger.info(format_log_message("Initializing Gmail Processing Agent..."))
+        logger.info(format_log_message("Initializing Gmail Processing Agent...", trx="DUMMY_TRX", pid="DUMMY_PID"))
         # Step 1: Initialize Gmail credentials
         cred_result = _initialize_gmail_credentials()
         if cred_result["status"] != "success":
@@ -1578,7 +1585,6 @@ def agent_main():
         ]
         # Step 3: Generate final report
         final_output, all_successful = _generate_final_report(results)
-        logger.info(format_log_message("✅ Agent execution completed successfully."))
         return {
             "status": "success" if all_successful else "partial_success",
             "output": final_output,
@@ -1586,7 +1592,7 @@ def agent_main():
         }
     except Exception as e:
         error_msg = f"Error in setup: {str(e)}"
-        logger.error(format_log_message(f"\n❌ {error_msg}"))
+        logger.error(format_log_message(f"\n❌ {error_msg}", trx="DUMMY_TRX", pid="DUMMY_PID"))
         if "API key" in str(e):
             logger.info("\nAPI key error. Please:")
             logger.info("1. Check if GEMINI_API_KEY is set in your .env file")
@@ -1602,10 +1608,10 @@ if __name__ == "__main__":
         if result["status"] != "success":
             logger.error("\nExecution completed with issues:")
             logger.error(result["error"])
-        # else:
-        #     logger.info("\nExecution completed successfully!")
+        else:
+            logger.info("\nExecution completed successfully!")
     except Exception as e:
-        logger.error(format_log_message(f"\nUnexpected error: {str(e)}"))
+        logger.error(format_log_message(f"\nUnexpected error: {str(e)}", trx="DUMMY_TRX", pid="DUMMY_PID"))
     finally:
         cleanup_resources()
-        # logger.info("\nExecution finished.")
+        logger.info("\nExecution finished.")

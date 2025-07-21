@@ -1,14 +1,13 @@
 import json
 import os
 import re
-import time
 
 import pandas as pd
 from langchain_google_genai import GoogleGenerativeAI
 
 from classification_engine import classify_document_clean
 from extract_pdf_data import process_pdf_image
-from logger import logger
+from logger import format_log_message, generate_trx_id, get_process_id, logger
 from pdf_process import (
     EXTRACTION_PROMPT,
     extract_json_from_response,
@@ -25,6 +24,9 @@ path_result_json = os.path.join(current_dir, "result_json")
 os.makedirs(path_result_json, exist_ok=True)
 # Create download_email directory if it doesn't exist
 os.makedirs(path_log_fetch_pdf, exist_ok=True)
+
+trx_id = None
+pid = None
 
 
 def clean_file_path(file_path):
@@ -56,7 +58,7 @@ def initialize_llm():
             max_output_tokens=8192,
         )
     except Exception as e:
-        logger.error("Error initializing LLM: %s", str(e))
+        logger.error(format_log_message("Error initializing LLM: %s" % str(e), trx=trx_id, pid=pid))
         raise
 
 
@@ -71,14 +73,14 @@ def get_schema_path(document_type, base_dir):
     doc_type = document_type.split(",")[0].strip()
 
     if doc_type not in schema_mapping:
-        logger.warning("Warning: Unsupported document type: %s", doc_type)
+        logger.warning(format_log_message("Warning: Unsupported document type: %s" % doc_type, trx=trx_id, pid=pid))
         return None
 
     schema_file = schema_mapping[doc_type]
     schema_path = os.path.join(current_dir, "schemas", schema_file)
 
     if not os.path.exists(schema_path):
-        logger.error("Error: Schema file not found: %s", schema_path)
+        logger.error(format_log_message("Error: Schema file not found: %s" % schema_path, trx=trx_id, pid=pid))
         return None
 
     return schema_path
@@ -103,7 +105,7 @@ def _extract_pdf_text(output_folder):
         pdf_text = file.read()
     if not pdf_text:
         raise ValueError("No text extracted from PDF")
-    logger.info("Successfully read %d characters from file", len(pdf_text))
+    logger.info(format_log_message("Successfully read %d characters from file" % len(pdf_text), trx=trx_id, pid=pid))
     return pdf_text
 
 
@@ -121,7 +123,7 @@ def _get_llm_response(prompt, llm):
     extraction_json_data = extract_json_from_response(response)
     if not extraction_json_data:
         raise ValueError("Failed to extract JSON from LLM response")
-    logger.info("Successfully extracted data from document")
+    logger.info(format_log_message("Successfully extracted data from document", trx=trx_id, pid=pid))
     return extraction_json_data
 
 
@@ -146,7 +148,7 @@ def process_pdf_document(pdf_path, llm):
         schema_path = get_schema_path(document_type, os.path.dirname(current_dir))
         if not schema_path:
             raise ValueError(f"No schema available for document type: {document_type}")
-        logger.info("Using schema: %s", schema_path)
+        logger.info(format_log_message("Using schema: %s" % schema_path, trx=trx_id, pid=pid))
         fields = _load_and_validate_schema(schema_path)
         pdf_text = _extract_pdf_text(output_folder)
         prompt = _construct_prompt(fields, pdf_text)
@@ -154,7 +156,7 @@ def process_pdf_document(pdf_path, llm):
         result_path = _save_result_json(output_folder, extraction_json_data)
         return result_path, "completed"
     except Exception as e:
-        logger.error("Error processing document: %s", str(e))
+        logger.error(format_log_message("Error processing document: %s" % str(e), trx=trx_id, pid=pid))
         return None, f"error: {str(e)}"
 
 
@@ -168,7 +170,7 @@ def prepare_and_validate_path(file_path):
         abs_path = file_path
     abs_path = os.path.normpath(abs_path)
     if not os.path.exists(abs_path):
-        logger.info("File not found: %s", abs_path)
+        logger.info(format_log_message("File not found: %s" % abs_path, trx=trx_id, pid=pid))
         return None
     return abs_path
 
@@ -176,12 +178,14 @@ def prepare_and_validate_path(file_path):
 def handle_result_path(result_path, abs_path):
     if result_path:
         result_path = os.path.abspath(result_path)
-        logger.info("Generated result path: %s", result_path)
+        logger.info(format_log_message("Generated result path: %s" % result_path, trx=trx_id, pid=pid))
         if os.path.exists(result_path):
-            logger.info("JSON file generated successfully")
+            logger.info(format_log_message("JSON file generated successfully", trx=trx_id, pid=pid))
             return result_path, "completed"
         else:
-            logger.warning("No result file found for %s", os.path.basename(abs_path))
+            logger.warning(
+                format_log_message("No result file found for %s" % os.path.basename(abs_path), trx=trx_id, pid=pid)
+            )
             return result_path, "error"
     return "", "error"
 
@@ -190,7 +194,7 @@ def _initialize_llm_safe():
     try:
         return initialize_llm(), False
     except Exception as e:
-        logger.error("Error initializing LLM: %s", str(e))
+        logger.error(format_log_message("Error initializing LLM: %s" % str(e), trx=trx_id, pid=pid))
         return None, True
 
 
@@ -215,11 +219,11 @@ def _process_files_loop(file_paths, llm):
             res_paths.append(result_path)
             res_statuses.append(status)
             markdown_statuses.append("pending")
-            if result_path and status == "completed":
-                logger.info("Successfully processed file: %s", file_path)
-                logger.info("Result saved to: %s", result_path)
+            # if result_path and status == "completed":
+            #     logger.info("Successfully processed file: %s", file_path)
+            #     logger.info("Result saved to: %s", result_path)
         except Exception as e:
-            logger.error("Error processing file %s: %s", file_path, str(e))
+            logger.error(format_log_message("Error processing file %s: %s" % (file_path, str(e)), trx=trx_id, pid=pid))
             _append_error(res_paths, res_statuses, markdown_statuses)
     return res_paths, res_statuses, markdown_statuses
 
@@ -237,17 +241,11 @@ def process_file_batch(file_paths):
 def update_excel_file(df, file_path, row_index=None):
     """Helper function to safely update the Excel file"""
     try:
-        # Create a backup before saving
-        backup_path = file_path.replace(".xlsx", f"_backup_{int(time.time())}.xlsx")
-
         # Ensure all required columns exist
         required_columns = ["res_path", "res_status", "markdown_status"]
         for col in required_columns:
             if col not in df.columns:
                 df[col] = ""
-
-        # Create backup
-        df.to_excel(backup_path, index=False)
 
         # Save to the main file
         with pd.ExcelWriter(
@@ -264,27 +262,24 @@ def update_excel_file(df, file_path, row_index=None):
             if not all(col in verification_df.columns for col in required_columns):
                 raise ValueError("Required columns missing after save")
         except Exception as verify_error:
-            logger.error("Save verification failed: %s", str(verify_error))
-            if os.path.exists(backup_path):
-                os.replace(backup_path, file_path)  # Restore from backup
-                logger.info("Restored from backup due to verification failure")
+            logger.error(format_log_message("Save verification failed: %s" % str(verify_error), trx=trx_id, pid=pid))
             return False
 
-        # Remove backup if save was successful and verified
-        if os.path.exists(backup_path):
-            os.remove(backup_path)
-
         if row_index is not None:
-            logger.info("Successfully updated row %d in Excel file", row_index)
-            logger.info("Updated fields: res_path, res_status, markdown_status")
+            logger.info(
+                format_log_message("Successfully updated row %d in Excel file" % row_index, trx=trx_id, pid=pid)
+            )
+            logger.info(
+                format_log_message("Updated fields: res_path, res_status, markdown_status", trx=trx_id, pid=pid)
+            )
         else:
-            logger.info("Successfully updated Excel file with all required fields")
+            logger.info(
+                format_log_message("Successfully updated Excel file with all required fields", trx=trx_id, pid=pid)
+            )
 
         return True
     except Exception as e:
-        logger.error("Error saving to Excel: %s", str(e))
-        if os.path.exists(backup_path):
-            logger.info("Backup file preserved at: %s", backup_path)
+        logger.error(format_log_message("Error saving to Excel: %s" % str(e), trx=trx_id, pid=pid))
         return False
 
 
@@ -294,22 +289,24 @@ def _find_excel_file():
         return excel_path
     alt_excel_path = os.path.join(current_dir, "email_download_log.xlsx")
     if os.path.exists(alt_excel_path):
-        logger.info(f"Found Excel file in current directory: {alt_excel_path}")
+        # logger.info(f"Found Excel file in current directory: {alt_excel_path}")
         return alt_excel_path
-    logger.error(f"Excel log file not found at: {excel_path} or {alt_excel_path}")
+    logger.error(
+        format_log_message(f"Excel log file not found at: {excel_path} or {alt_excel_path}", trx=trx_id, pid=pid)
+    )
     return None
 
 
 def _read_and_validate_excel(excel_path):
     try:
         log_df = pd.read_excel(excel_path, dtype=str)
-        logger.info(f"Successfully read Excel file with {len(log_df)} rows")
-        logger.info(f"Columns found in Excel: {list(log_df.columns)}")
+        logger.info(format_log_message(f"Successfully read Excel file with {len(log_df)} rows", trx=trx_id, pid=pid))
+        # logger.info(f"Columns found in Excel: {list(log_df.columns)}")
     except Exception as e:
-        logger.error(f"Error reading Excel file: {str(e)}")
+        logger.error(format_log_message(f"Error reading Excel file: {str(e)}", trx=trx_id, pid=pid))
         return None, f"Failed to read Excel file: {str(e)}"
     if "file_paths" not in log_df.columns:
-        logger.error("Required column 'file_paths' not found in Excel file")
+        logger.error(format_log_message("Required column 'file_paths' not found in Excel file", trx=trx_id, pid=pid))
         return None, "Required column 'file_paths' not found"
     return log_df, None
 
@@ -381,12 +378,12 @@ def _update_row_in_df(updated_df, index, final_res_paths, final_res_statuses, fi
     updated_df.loc[index, "res_path"] = res_paths_str
     updated_df.loc[index, "res_status"] = res_statuses_str
     updated_df.loc[index, "markdown_status"] = markdown_statuses_str
-    logger.info(f"\nUpdating row {index}:")
-    logger.info(f"Result paths: {res_paths_str}")
-    logger.info(f"Status: {res_statuses_str}")
-    logger.info(f"Markdown status: {markdown_statuses_str}")
+    # logger.info(f"\nUpdating row {index}:")
+    # logger.info(f"Result paths: {res_paths_str}")
+    # logger.info(f"Status: {res_statuses_str}")
+    # logger.info(f"Markdown status: {markdown_statuses_str}")
     if not update_excel_file(updated_df, excel_path, index):
-        logger.warning(f"Warning: Failed to save changes for row {index}")
+        logger.warning(format_log_message(f"Warning: Failed to save changes for row {index}", trx=trx_id, pid=pid))
 
 
 def _process_rows(updated_df, excel_path):
@@ -421,7 +418,7 @@ def _process_rows(updated_df, excel_path):
                 )
                 changes_made = True
             except Exception as row_error:
-                logger.error(f"Error processing row {index}: {str(row_error)}")
+                logger.error(format_log_message(f"Error processing row {index}: {str(row_error)}", trx=trx_id, pid=pid))
                 continue
     return changes_made, updated_df
 
@@ -429,23 +426,25 @@ def _process_rows(updated_df, excel_path):
 def _final_save(changes_made, updated_df, excel_path):
     if changes_made:
         if update_excel_file(updated_df, excel_path):
-            logger.info("\nFinal save successful")
-            logger.info("Progress saved successfully")
-            logger.info(f"Excel file updated at: {excel_path}")
+            logger.info(format_log_message("\nFinal save successful", trx=trx_id, pid=pid))
+            logger.info(format_log_message("Progress saved successfully", trx=trx_id, pid=pid))
+            # logger.info(f"Excel file updated at: {excel_path}")
             return {"status": "success", "message": "All documents processed successfully"}
         else:
             return {"status": "error", "message": "Failed to save final updates"}
     else:
-        logger.info("No changes were necessary in the log file.")
+        # logger.info("No changes were necessary in the log file.")
         return {"status": "success", "message": "No updates required"}
 
 
 def main():
-    """Main function to process documents from Excel log"""
+    global trx_id, pid
+    trx_id = generate_trx_id()
+    pid = get_process_id()
     try:
-        logger.info("Starting step process")
-        logger.info(f"Current directory: {current_dir}")
-        logger.info(f"Looking for Excel file in: {path_log_fetch_pdf}")
+        logger.info(format_log_message("Starting step process", trx=trx_id, pid=pid))
+        # logger.info(f"Current directory: {current_dir}")
+        # logger.info(f"Looking for Excel file in: {path_log_fetch_pdf}")
         excel_path = _find_excel_file()
         if not excel_path:
             return {"status": "error", "message": "Excel log file not found"}
@@ -454,22 +453,18 @@ def main():
             return {"status": "error", "message": error}
         files_to_process = log_df["file_paths"].notna().sum()
         if files_to_process == 0:
-            logger.info("No files found to process in the Excel log")
+            # logger.info("No files found to process in the Excel log")
             return {"status": "success", "message": "No files to process"}
-        else:
-            logger.info(f"Found {files_to_process} rows with files to process")
-            sample_paths = log_df.loc[log_df["file_paths"].notna(), "file_paths"].head()
-            logger.info("Sample file paths to process:")
-            for idx, path in enumerate(sample_paths):
-                logger.info(f"Row {idx}: {path}")
+        # else:
+        # logger.info(f"Found {files_to_process} rows with files to process")
+        # sample_paths = log_df.loc[log_df["file_paths"].notna(), "file_paths"].head()
+        # logger.info("Sample file paths to process:")
+        # for idx, path in enumerate(sample_paths):
+        #     logger.info(f"Row {idx}: {path}")
         log_df = _preprocess_dataframe(log_df)
         updated_df = log_df.copy()
         changes_made, updated_df = _process_rows(updated_df, excel_path)
         return _final_save(changes_made, updated_df, excel_path)
     except Exception as e:
-        logger.error(f"Error in main process: {str(e)}")
+        logger.error(format_log_message(f"Error in main process: {str(e)}", trx=trx_id, pid=pid))
         return {"status": "error", "message": str(e)}
-
-
-# if __name__ == "__main__":
-#     main()
